@@ -53,6 +53,22 @@ public class StreamingAudioPlayer {
         this.volume = (serverVolume / 100.0f) * userVolumeMultiplier;
     }
 
+    public boolean isLooping() {
+        return looping;
+    }
+
+    public long getPlaybackStartMs() {
+        return playbackStartMs;
+    }
+
+    public boolean isActive() {
+        return playing;
+    }
+
+    public boolean isFadingOut() {
+        return fadingOut;
+    }
+
     public void start() {
         playing = true;
         playbackStartMs = System.currentTimeMillis();

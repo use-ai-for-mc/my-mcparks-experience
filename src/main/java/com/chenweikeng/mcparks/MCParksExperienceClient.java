@@ -16,6 +16,7 @@ import com.chenweikeng.mcparks.subtitle.SubtitleRenderer;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.DoubleArgumentType;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
+import com.mojang.brigadier.arguments.StringArgumentType;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
 import java.util.Comparator;
@@ -189,6 +190,33 @@ public class MCParksExperienceClient implements ClientModInitializer {
         );
 
         dispatcher.register(
+            ClientCommandManager.literal("audiolist")
+                .executes(context -> {
+                    printAudioList();
+                    return 1;
+                })
+        );
+
+        dispatcher.register(
+            ClientCommandManager.literal("audiostop")
+                .then(
+                    ClientCommandManager.argument("name", StringArgumentType.greedyString())
+                        .executes(context -> {
+                            String name = StringArgumentType.getString(context, "name");
+                            boolean stopped = MCParksAudioService.getInstance().stopSoundByName(name);
+                            if (stopped) {
+                                MCParksAudioService.notifyUser("Stopped audio: " + name);
+                            } else {
+                                MCParksAudioService.notifyUser(
+                                    "No active audio named '" + name + "'. Use /audiolist to see what is playing."
+                                );
+                            }
+                            return 1;
+                        })
+                )
+        );
+
+        dispatcher.register(
             ClientCommandManager.literal("mymcparks")
                 .executes(context -> {
                     // Defer screen opening to next tick (after chat screen closes)
@@ -303,5 +331,93 @@ public class MCParksExperienceClient implements ClientModInitializer {
         }
 
         player.displayClientMessage(Component.literal(sb.toString().trim()), false);
+    }
+
+    // --- /audiolist helper ---
+
+    private void printAudioList() {
+        LocalPlayer player = Minecraft.getInstance().player;
+        if (player == null) return;
+
+        MCParksAudioService audio = MCParksAudioService.getInstance();
+        List<MCParksAudioService.ActiveTrack> tracks = audio.snapshotActive();
+
+        String connStatus = audio.isConnected() ? "\u00A7aconnected" : "\u00A7cdisconnected";
+        String header = "\u00A7e[MCParks] \u00A7fAudio " + connStatus
+                + "\u00A7f, " + tracks.size() + " active track"
+                + (tracks.size() == 1 ? "" : "s") + ":";
+        player.displayClientMessage(Component.literal(header), false);
+
+        if (tracks.isEmpty()) {
+            player.displayClientMessage(
+                Component.literal("\u00A77  (nothing playing)"), false);
+            return;
+        }
+
+        long now = System.currentTimeMillis();
+        for (MCParksAudioService.ActiveTrack t : tracks) {
+            String kindBadge;
+            if (!t.active()) {
+                kindBadge = "\u00A78[STOPPED]";
+            } else if (t.fadingOut()) {
+                kindBadge = "\u00A76[FADING]";
+            } else if (t.looping()) {
+                kindBadge = "\u00A7b[LOOP]";
+            } else {
+                kindBadge = "\u00A7d[ONESHOT]";
+            }
+
+            player.displayClientMessage(Component.literal(
+                "\u00A77 \u2022 \u00A7f" + t.name() + " " + kindBadge), false);
+
+            String startedAgo = humanDuration(now - t.startedAtMs());
+            String triggeredAgo = humanDuration(now - t.lastTriggerAtMs());
+            String line2 = String.format(
+                "\u00A78    started %s ago \u00B7 triggered %d\u00D7 (last: %s ago) \u00B7 vol %d%%",
+                startedAgo, t.triggerCount(), triggeredAgo, t.serverVolume());
+            player.displayClientMessage(Component.literal(line2), false);
+
+            String diagnosis = diagnoseTrack(t, now);
+            if (diagnosis != null) {
+                player.displayClientMessage(Component.literal("\u00A78    " + diagnosis), false);
+            }
+
+            player.displayClientMessage(Component.literal(
+                "\u00A78    msg: \u00A77" + t.lastServerMessage()), false);
+        }
+
+        player.displayClientMessage(Component.literal(
+            "\u00A77(use \u00A7f/audiostop <name>\u00A77 to stop a specific track)"), false);
+    }
+
+    private static String diagnoseTrack(MCParksAudioService.ActiveTrack t, long now) {
+        if (!t.active()) {
+            return "\u00A78\u2192 finished playing; stale entry, safe to /audiostop";
+        }
+        if (t.fadingOut()) {
+            return "\u00A78\u2192 fading out";
+        }
+        if (t.looping() && t.triggerCount() == 1) {
+            return "\u00A78\u2192 server sent one loop command; will play until server says stop";
+        }
+        if (t.looping() && t.triggerCount() > 1) {
+            return "\u00A76\u2192 server re-triggered " + t.triggerCount() + "x; possible server-side duplicate";
+        }
+        if (!t.looping() && (now - t.startedAtMs()) > 30_000) {
+            return "\u00A76\u2192 one-shot still running after 30s+; long audio or stuck";
+        }
+        return null;
+    }
+
+    private static String humanDuration(long ms) {
+        if (ms < 0) ms = 0;
+        long s = ms / 1000;
+        if (s < 60) return s + "s";
+        long m = s / 60;
+        long rs = s % 60;
+        if (m < 60) return m + "m " + rs + "s";
+        long h = m / 60;
+        long rm = m % 60;
+        return h + "h " + rm + "m";
     }
 }

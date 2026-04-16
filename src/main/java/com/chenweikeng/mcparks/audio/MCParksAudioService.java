@@ -4,6 +4,10 @@ import com.chenweikeng.mcparks.config.ModConfig;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.WebSocket;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
@@ -25,6 +29,10 @@ public class MCParksAudioService {
     private String lastUsername;
 
     private final ConcurrentHashMap<String, StreamingAudioPlayer> activeSounds = new ConcurrentHashMap<>();
+    // Per-sound-name trigger stats. Parallel to activeSounds; cleared on stop.
+    // Tracks how/when the server told us to play this sound so the user can
+    // tell stale-but-still-looping audio apart from server re-triggers.
+    private final ConcurrentHashMap<String, TrackStats> trackStats = new ConcurrentHashMap<>();
     private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2, r -> {
         Thread t = new Thread(r, "MCParks-Audio");
         t.setDaemon(true);
@@ -204,6 +212,7 @@ public class MCParksAudioService {
                 double seekSec = seekMs / 1000.0;
                 boolean fadeIn = seekMs > 1000;
                 LOGGER.debug("Loop: name={}, url={}, seekSec={}, fadeIn={}", name, url, seekSec, fadeIn);
+                recordTrigger(name, message);
                 playSound(name, url, DEFAULT_SERVER_VOLUME, true, fadeIn, seekSec);
             } catch (NumberFormatException e) {
                 LOGGER.warn("Invalid loop seekMs: {}", message, e);
@@ -226,6 +235,7 @@ public class MCParksAudioService {
                 double seekSec = seekMs / 1000.0;
                 boolean fadeIn = seekMs > 1000;
                 LOGGER.debug("Show: name={}, url={}, seekSec={}, fadeIn={}", name, url, seekSec, fadeIn);
+                recordTrigger(name, message);
                 playSound(name, url, DEFAULT_SERVER_VOLUME, false, fadeIn, seekSec);
             } catch (NumberFormatException e) {
                 LOGGER.warn("Invalid show seekMs: {}", message, e);
@@ -237,7 +247,21 @@ public class MCParksAudioService {
         String name = message;
         String url = AUDIO_BASE_URL + name + ".mp3";
         LOGGER.debug("Play (bare name): name={}, url={}", name, url);
+        recordTrigger(name, message);
         playSound(name, url, DEFAULT_SERVER_VOLUME, false, false, 0);
+    }
+
+    private void recordTrigger(String name, String rawMessage) {
+        long now = System.currentTimeMillis();
+        trackStats.compute(name, (k, existing) -> {
+            if (existing == null) {
+                return new TrackStats(now, now, 1, rawMessage);
+            }
+            existing.lastTriggerMs = now;
+            existing.triggerCount++;
+            existing.lastMessage = rawMessage;
+            return existing;
+        });
     }
 
     // --- Sound Management ---
@@ -267,21 +291,58 @@ public class MCParksAudioService {
         LOGGER.debug("Stopping all sounds ({} active)", activeSounds.size());
         // Take a snapshot of current entries and remove them from the map immediately
         // so new sounds added during fade-out won't be orphaned
-        var snapshot = new java.util.ArrayList<>(activeSounds.entrySet());
+        var snapshot = new ArrayList<>(activeSounds.entrySet());
         for (var entry : snapshot) {
             activeSounds.remove(entry.getKey(), entry.getValue());
+            trackStats.remove(entry.getKey());
             entry.getValue().stopWithFade();
         }
     }
 
     private void stopSound(String name) {
         StreamingAudioPlayer player = activeSounds.remove(name);
+        trackStats.remove(name);
         if (player != null) {
             LOGGER.debug("Stopping sound: {}", name);
             player.stopWithFade();
         } else {
             LOGGER.debug("Stop requested for '{}' but not found. Active: {}", name, activeSounds.keySet());
         }
+    }
+
+    /** Client-side remedy: stop a specific sound by name without disconnecting.
+     *  Returns true if a sound by that name was playing. */
+    public boolean stopSoundByName(String name) {
+        boolean present = activeSounds.containsKey(name);
+        if (present) {
+            stopSound(name);
+        }
+        return present;
+    }
+
+    /** Snapshot of currently-playing audio tracks. Safe to call from any thread. */
+    public List<ActiveTrack> snapshotActive() {
+        List<ActiveTrack> out = new ArrayList<>(activeSounds.size());
+        for (Map.Entry<String, StreamingAudioPlayer> e : activeSounds.entrySet()) {
+            String name = e.getKey();
+            StreamingAudioPlayer p = e.getValue();
+            TrackStats s = trackStats.get(name);
+            out.add(new ActiveTrack(
+                name,
+                p.getUrl(),
+                p.isLooping(),
+                p.getServerVolume(),
+                p.getPlaybackStartMs(),
+                s != null ? s.firstTriggerMs : p.getPlaybackStartMs(),
+                s != null ? s.lastTriggerMs : p.getPlaybackStartMs(),
+                s != null ? s.triggerCount : 1,
+                s != null ? s.lastMessage : name,
+                p.isActive(),
+                p.isFadingOut()
+            ));
+        }
+        out.sort(Comparator.comparing(t -> t.name));
+        return out;
     }
 
     private void changeVolume(String name, int newServerVolume) {
@@ -308,6 +369,37 @@ public class MCParksAudioService {
             });
         }
     }
+
+    // --- Track info snapshots ---
+
+    private static final class TrackStats {
+        final long firstTriggerMs;
+        volatile long lastTriggerMs;
+        volatile int triggerCount;
+        volatile String lastMessage;
+
+        TrackStats(long firstTriggerMs, long lastTriggerMs, int triggerCount, String lastMessage) {
+            this.firstTriggerMs = firstTriggerMs;
+            this.lastTriggerMs = lastTriggerMs;
+            this.triggerCount = triggerCount;
+            this.lastMessage = lastMessage;
+        }
+    }
+
+    /** Snapshot of one active audio track at a point in time. */
+    public record ActiveTrack(
+        String name,
+        String url,
+        boolean looping,
+        int serverVolume,
+        long startedAtMs,
+        long firstTriggerAtMs,
+        long lastTriggerAtMs,
+        int triggerCount,
+        String lastServerMessage,
+        boolean active,
+        boolean fadingOut
+    ) {}
 
     // --- WebSocket Listener ---
 

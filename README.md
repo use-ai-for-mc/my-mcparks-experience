@@ -20,6 +20,14 @@ from MyMusic+, cleaning up the HUD, and making long ride sessions comfortable.
 - **Auto-connect** when the client joins an MCParks server — no manual step needed.
 - Per-client volume control (0–100).
 - Commands: `/audioconnect`, `/audiodisconnect`, `/audioreconnect`, `/volume <n>`.
+- **Diagnostics:**
+  - `/audiolist` — shows every currently-playing track with loop/oneshot kind,
+    how long it's been playing, how many times the server triggered it, the
+    raw server message, and a short diagnosis (e.g. "server sent one loop
+    command; will play until server says stop").
+  - `/audiostop <name>` — client-side mute for a specific track, without
+    disconnecting the audio session. Useful when the server leaves a stale
+    loop running or layers conflicting area music on top of a ride.
 
 ### Ride Quality-of-Life
 - **Cursor release on ride** — frees the mouse cursor the moment you're a
