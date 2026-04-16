@@ -1,0 +1,31 @@
+# gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# eclipse
+*.launch
+
+# idea
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# vscode
+.vscode/
+
+# fabric
+run/
+config/my-mcparks-experience/
+
+# jvm crash logs
+hs_err_pid*.log
+replay_pid*.log
+
+# claude code local settings
+.claude/
+
+# macos
+.DS_Store

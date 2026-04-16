@@ -1,0 +1,33 @@
+{
+    "schemaVersion": 1,
+    "id": "my-mcparks-experience",
+    "version": "${version}",
+    "name": "My MCParks Experience",
+    "description": "Connects to MCParks MyMusic+ audio service to play in-park audio while visiting the MCParks Minecraft server.",
+    "authors": [
+        "Weikeng Chen"
+    ],
+    "license": "CC0-1.0",
+    "environment": "client",
+    "entrypoints": {
+        "client": [
+            "com.chenweikeng.mcparks.MCParksExperienceClient"
+        ],
+        "modmenu": [
+            "com.chenweikeng.mcparks.config.ModMenuApiImpl"
+        ]
+    },
+    "mixins": [
+        "my-mcparks-experience.mixins.json"
+    ],
+    "depends": {
+        "fabricloader": ">=0.14.8",
+        "minecraft": "~1.19",
+        "java": ">=17",
+        "fabric": "*",
+        "cloth-config": "*"
+    },
+    "suggests": {
+        "modmenu": "*"
+    }
+}
