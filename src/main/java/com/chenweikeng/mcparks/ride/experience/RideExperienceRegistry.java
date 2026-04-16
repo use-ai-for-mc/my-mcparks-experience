@@ -1,6 +1,8 @@
 package com.chenweikeng.mcparks.ride.experience;
 
 import com.chenweikeng.mcparks.ride.experience.rides.DisneylandRailroad;
+import com.chenweikeng.mcparks.ride.experience.rides.GreatMomentsWithMrLincoln;
+import com.chenweikeng.mcparks.ride.experience.rides.HauntedMansion;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -22,6 +24,8 @@ public final class RideExperienceRegistry {
 
     private RideExperienceRegistry() {
         register(new DisneylandRailroad());
+        register(new GreatMomentsWithMrLincoln());
+        register(new HauntedMansion());
     }
 
     public void register(RideExperience experience) {
