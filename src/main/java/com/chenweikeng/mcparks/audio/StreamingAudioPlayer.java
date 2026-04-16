@@ -40,6 +40,7 @@ public class StreamingAudioPlayer {
 
     private Thread playbackThread;
     private SourceDataLine line;
+    private volatile Runnable onComplete;
 
     public StreamingAudioPlayer(String url, int serverVolume, float userVolumeMultiplier,
                                 boolean loop, boolean fadeIn, double seekSeconds,
@@ -63,6 +64,14 @@ public class StreamingAudioPlayer {
 
     public boolean isActive() {
         return playing;
+    }
+
+    /** Runs once on the playback thread after the decoder finishes (natural end,
+     *  fade-out completion, or forceStop). Used by MCParksAudioService to drop
+     *  stale entries from activeSounds/trackStats so one-shot voiceovers don't
+     *  linger in /audiolist. */
+    public void setOnComplete(Runnable onComplete) {
+        this.onComplete = onComplete;
     }
 
     public boolean isFadingOut() {
@@ -101,7 +110,18 @@ public class StreamingAudioPlayer {
         } while (looping && playing && !fadingOut);
 
         LOGGER.debug("Playback loop exited for: {}", url);
+        // A one-shot that finishes naturally leaves `playing=true` — mark it
+        // done so isActive()/isPlaying() stop reporting this as live.
+        playing = false;
         cleanup();
+        Runnable cb = onComplete;
+        if (cb != null) {
+            try {
+                cb.run();
+            } catch (Exception e) {
+                LOGGER.debug("onComplete callback threw for {}", url, e);
+            }
+        }
     }
 
     private void playMp3() throws Exception {

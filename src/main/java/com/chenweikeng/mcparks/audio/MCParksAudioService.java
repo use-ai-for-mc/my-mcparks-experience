@@ -279,6 +279,15 @@ public class MCParksAudioService {
         StreamingAudioPlayer player = new StreamingAudioPlayer(
             url, serverVolume, userMultiplier, loop, fadeIn, seekSeconds, scheduler
         );
+        // Remove this entry from the maps when the playback thread exits.
+        // Uses remove(key, value) so we only touch the entry if it still points
+        // to this exact player — avoids racing with a replacement trigger.
+        player.setOnComplete(() -> {
+            if (activeSounds.remove(name, player)) {
+                trackStats.remove(name);
+                LOGGER.debug("Removed finished track from activeSounds: {}", name);
+            }
+        });
         activeSounds.put(name, player);
         player.start();
     }
