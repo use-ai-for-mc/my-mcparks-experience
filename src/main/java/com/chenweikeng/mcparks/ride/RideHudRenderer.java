@@ -26,20 +26,19 @@ public class RideHudRenderer extends GuiComponent {
             return;
         }
 
-        RideRegistry.Ride ride = rideDetector.getCurrentRide();
-        if (ride == null) {
+        String rideName = rideDetector.getRideDisplayName();
+        int totalSeconds = rideDetector.getRideTimeSeconds();
+        if (rideName == null || totalSeconds <= 0) {
             return;
         }
 
         int remainingSeconds = rideDetector.getRemainingSeconds();
         int elapsedSeconds = rideDetector.getElapsedSeconds();
-        int totalSeconds = ride.rideTimeSeconds;
 
         // Calculate progress percentage
         int progress = Math.min(100, (elapsedSeconds * 100) / totalSeconds);
 
         // Format the display text
-        String rideName = ride.name;
         String timeLeft = formatDuration(remainingSeconds);
         String displayText = String.format("%s (%d%%, %s left)", rideName, progress, timeLeft);
 

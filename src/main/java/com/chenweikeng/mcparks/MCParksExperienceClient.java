@@ -9,6 +9,7 @@ import com.chenweikeng.mcparks.fullbright.DayTimeHandler;
 import com.chenweikeng.mcparks.ride.RideDetector;
 import com.chenweikeng.mcparks.ride.RideHudRenderer;
 import com.chenweikeng.mcparks.ride.RideRegistry;
+import com.chenweikeng.mcparks.ride.experience.ParkTracker;
 import com.chenweikeng.mcparks.skincache.TextureCache;
 import com.chenweikeng.mcparks.skincache.TextureRegistrar;
 import com.chenweikeng.mcparks.subtitle.SubtitleManager;
@@ -150,6 +151,7 @@ public class MCParksExperienceClient implements ClientModInitializer {
         rideDetector.reset();
         SubtitleManager.clear();
         TextureRegistrar.clear();
+        ParkTracker.getInstance().reset();
         lastDimension = null;
     }
 

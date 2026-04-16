@@ -134,10 +134,36 @@ For a plain build without deploying:
 |---|---|---|
 | `GuiMixin` | `net.minecraft.client.gui.Gui` | Hide health / vehicle-health / XP bar; suppress mount overlay |
 | `LivingEntityMixin` | `net.minecraft.world.entity.LivingEntity` | Inject `NIGHT_VISION` effect for fullbright |
+| `ClientPacketListenerMixin` | `net.minecraft.client.multiplayer.ClientPacketListener` | Clamp incoming day-time to noon so fullbright never blinks dark |
 | `MinecraftMixin` | `net.minecraft.client.Minecraft` | Tick hooks, speed multiplier |
-| `ChatComponentMixin` | Chat component | Subtitle / chat filtering hooks |
+| `ChatComponentMixin` | Chat component | Park tracking, per-ride subtitle routing, generic subtitle hooks |
 | `SoundOptionsScreenMixin` | Sound-options screen | MyMusic+ volume integration |
 | `SkinCacheHttpTextureMixin` / `SkinCacheSkullBlockRendererMixin` | Skin pipeline | Persistent skin cache |
+
+---
+
+## Ride Experience System
+
+Each named ride is represented by a dedicated class under
+`ride/experience/rides/` implementing the `RideExperience` interface. Every
+experience declares:
+
+- **`park()`** — MCParks park filter (e.g. `"Disneyland Resort"`), matched
+  against the park name parsed from the server's
+  `"Traveling to <rideId> in <park>"` chat announcement by `ParkTracker`.
+- **`isActive(ctx)`** — a programmable predicate over the
+  `ExperienceContext` (park, ride id, vehicle, nearby armor-stand models,
+  dimension, passenger status).
+- **`captureSubtitle(message)`** — optional hook that inspects incoming chat
+  messages while the ride is active and turns them into subtitles
+  (e.g. Disneyland Railroad strips the `[Narrator] ` prefix and sends the
+  rest through `SubtitleManager`).
+- **`rideTimeSeconds()` / `onBoard()` / `onDismount()`** — HUD metadata and
+  lifecycle hooks.
+
+Experiences take precedence over the JSON-backed `RideRegistry` for HUD name
+and ride-time display; the JSON registry remains the fallback for rides
+without a dedicated class.
 
 ---
 
@@ -153,6 +179,7 @@ src/main/java/com/chenweikeng/mcparks/
 ├── fullbright/                    # Fullbright mode + day-time lock
 ├── mixin/                         # All mixins (see table above)
 ├── ride/                          # Ride registry, detector, HUD renderer
+│   └── experience/                # Programmable per-ride filters (RideExperience + rides/)
 ├── skincache/                     # Persistent skin texture cache
 └── subtitle/                      # Subtitle manager + renderer
 ```
