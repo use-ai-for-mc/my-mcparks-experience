@@ -54,8 +54,15 @@ public final class ExperienceContext {
         boolean isPassenger = vehicle != null;
 
         ResourceLocation dim = mc.level != null ? mc.level.dimension().location() : null;
-        String park = ParkTracker.getInstance().currentPark();
-        String rideId = ParkTracker.getInstance().currentRideId();
+
+        // If ParkTracker hasn't seen a "Traveling to" chat yet (e.g. player
+        // just connected), try reading the park code from the sidebar scoreboard.
+        ParkTracker tracker = ParkTracker.getInstance();
+        if (tracker.currentPark() == null) {
+            tracker.tryReadFromScoreboard(mc);
+        }
+        String park = tracker.currentPark();
+        String rideId = tracker.currentRideId();
 
         return new ExperienceContext(
             mc, player, vehicle, isPassenger,
