@@ -40,14 +40,18 @@ public final class ParkTracker {
      * Maps the short park code shown in the sidebar (e.g. "WDW") to the full
      * park name used in {@code "Traveling to X in Y"} announcements. Extend
      * this map as we encounter new parks in the logs.
+     *
+     * <p>Disneyland Resort leaves the code <em>empty</em> on the sidebar
+     * ({@code "Park: "} with no suffix), so the empty-string key maps to it.
      */
-    private static final Map<String, String> PARK_CODE_MAP = Map.of(
-        "WDW",  "Walt Disney World Resort",
-        "DL",   "Disneyland Resort",
-        "UOR",  "Universal Orlando Resort",
-        "DLP",  "Disneyland Paris",
-        "USH",  "Universal Studios Hollywood",
-        "TDR",  "Tokyo Disney Resort"
+    private static final Map<String, String> PARK_CODE_MAP = Map.ofEntries(
+        Map.entry("",     "Disneyland Resort"),   // DL shows "Park: " with no code
+        Map.entry("WDW",  "Walt Disney World Resort"),
+        Map.entry("DL",   "Disneyland Resort"),   // in case they add it later
+        Map.entry("UOR",  "Universal Orlando Resort"),
+        Map.entry("DLP",  "Disneyland Paris"),
+        Map.entry("USH",  "Universal Studios Hollywood"),
+        Map.entry("TDR",  "Tokyo Disney Resort")
     );
 
     private static final String PARK_PREFIX = "Park: ";
