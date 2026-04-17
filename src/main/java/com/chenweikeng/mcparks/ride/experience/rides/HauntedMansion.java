@@ -32,7 +32,10 @@ import net.minecraft.network.chat.Style;
  * guest boards a Doom Buggy. Once the player does board, the HUD ride-time
  * counter kicks in via {@code scanForRideModels}.
  *
- * <p>Backend dimension is {@code minecraft:dlnew} on the WDW server.
+ * <p>MCParks runs all parks in {@code minecraft:overworld} on the 1.19
+ * backend &mdash; the dimension is useless as a park discriminator.
+ * {@link com.chenweikeng.mcparks.ride.experience.ParkTracker ParkTracker}
+ * (parsing {@code "Traveling to X in Y"}) is the only reliable filter.
  *
  * <p>If we later want to distinguish between the WDW / Disneyland / DLP / Tokyo
  * variants (different dialogue tracks), add sibling classes with park-specific
