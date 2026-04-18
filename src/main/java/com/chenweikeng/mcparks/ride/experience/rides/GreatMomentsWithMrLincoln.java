@@ -7,8 +7,9 @@ import net.minecraft.network.chat.Component;
 
 /**
  * Great Moments with Mr. Lincoln &mdash; the Audio-Animatronic stage show in
- * the Disneyland Opera House on Main Street USA. MCParks announces it as
- * {@code "Traveling to Lincoln in Disneyland Resort"}.
+ * the Disneyland Opera House on Main Street USA. Detected via the
+ * {@code "Current Ride"} sidebar scoreboard entry containing "Lincoln" or
+ * "Great Moments".
  *
  * <p>Two speaker prefixes show up in chat: {@code [Narrator]} for the pre-show
  * / framing narration, and {@code [Abraham Lincoln]} for the title figure's
@@ -16,8 +17,8 @@ import net.minecraft.network.chat.Component;
  *
  * <p>Not gated on {@code isPassenger} &mdash; this is a seated theater show,
  * not a vehicle ride. The {@code [Narrator]} prefix is also used on the
- * Disneyland Railroad, so the {@code rideId == "Lincoln"} check is what keeps
- * this and {@link DisneylandRailroad} from fighting over the same lines.
+ * Disneyland Railroad, so the ride-name match is what keeps this and
+ * {@link DisneylandRailroad} from fighting over the same lines.
  *
  * <p>No HUD ride-timer: show runtime varies and there's no vehicle-boarding
  * event to anchor a countdown to.
@@ -26,7 +27,6 @@ public class GreatMomentsWithMrLincoln implements RideExperience {
 
     private static final String NAME = "Great Moments with Mr. Lincoln";
     private static final String PARK = "Disneyland Resort";
-    private static final String RIDE_ID = "Lincoln";
     private static final String[] SPEAKER_PREFIXES = {
         "[Narrator] ",
         "[Abraham Lincoln] "
@@ -38,7 +38,7 @@ public class GreatMomentsWithMrLincoln implements RideExperience {
     @Override
     public boolean isActive(ExperienceContext ctx) {
         if (!PARK.equals(ctx.currentPark)) return false;
-        return RIDE_ID.equalsIgnoreCase(ctx.currentRideId);
+        return ctx.rideNameMatchesAny("Lincoln", "Great Moments");
     }
 
     @Override

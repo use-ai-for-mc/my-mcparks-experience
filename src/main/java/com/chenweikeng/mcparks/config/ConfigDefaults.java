@@ -10,6 +10,11 @@ public final class ConfigDefaults {
     public static final boolean HIDE_HEALTH_BAR = false;
     public static final boolean HIDE_EXPERIENCE_LEVEL = false;
     public static final FullbrightMode FULLBRIGHT_MODE = FullbrightMode.NONE;
+    public static final boolean HIDE_JOIN_LEAVE_MESSAGES = false;
+    public static final boolean HIDE_SCOREBOARD = false;
+    public static final boolean HIDE_CHAT = false;
+    public static final boolean HIDE_HOTBAR = false;
+    public static final boolean HIDE_PLAYER_ON_RIDE = false;
 
     private ConfigDefaults() {}
 }

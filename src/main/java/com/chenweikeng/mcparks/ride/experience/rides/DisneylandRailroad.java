@@ -10,11 +10,10 @@ import net.minecraft.network.chat.Component;
  * stopping at Main Street, New Orleans Square, Mickey's Toontown, and
  * Tomorrowland, with a narrated trip through the Grand Canyon / Primeval World.
  *
- * <p>Detection: player is a passenger in "Disneyland Resort" and the last
- * teleport announcement landed them at one of the four station ride-ids. This
- * is deliberately loose &mdash; we don't have the train car's item/damage
- * pinned down yet, and the Narrator chat lines are what we actually want to
- * subtitle.
+ * <p>Detection: player is a passenger in "Disneyland Resort" and the sidebar
+ * scoreboard's "Current Ride" entry contains "Railroad" or "Train". This is
+ * deliberately loose &mdash; we don't have the train car's item/damage pinned
+ * down yet, and the Narrator chat lines are what we actually want to subtitle.
  *
  * <p>Subtitles: strip the {@code "[Narrator] "} prefix MCParks uses for train
  * announcements and feed the rest to {@code SubtitleManager}. Other Disneyland
@@ -27,15 +26,6 @@ public class DisneylandRailroad implements RideExperience {
     private static final String PARK = "Disneyland Resort";
     private static final String NARRATOR_PREFIX = "[Narrator] ";
 
-    // Ride ids seen in the MCParks "Traveling to <id> in <park>" chat message
-    // when boarding the railroad at any of its four stations.
-    private static final String[] STATION_RIDE_IDS = {
-        "MainStreetStation",
-        "NewOrleansSquareStation",
-        "ToontownDepot",
-        "TomorrowlandStation"
-    };
-
     @Override public String name() { return NAME; }
     @Override public String park() { return PARK; }
 
@@ -46,7 +36,7 @@ public class DisneylandRailroad implements RideExperience {
     public boolean isActive(ExperienceContext ctx) {
         if (!ctx.isPassenger) return false;
         if (!PARK.equals(ctx.currentPark)) return false;
-        return ctx.rideIdMatchesAny(STATION_RIDE_IDS);
+        return ctx.rideNameMatchesAny("Railroad", "Train");
     }
 
     @Override

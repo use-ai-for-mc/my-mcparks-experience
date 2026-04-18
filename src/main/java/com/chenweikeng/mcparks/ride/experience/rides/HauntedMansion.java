@@ -8,8 +8,8 @@ import net.minecraft.network.chat.Style;
 
 /**
  * Haunted Mansion &mdash; 999 happy haunts, with room for one more. The
- * Magic Kingdom (WDW) variant; MCParks announces it as
- * {@code "Traveling to hm in Walt Disney World Resort"}.
+ * Magic Kingdom (WDW) variant; detected via the {@code "Current Ride"}
+ * sidebar scoreboard entry or the doom buggy vehicle model.
  *
  * <p>Vehicle: invisible armor stand with {@code iron_axe:95}
  * ({@code vehicles/doombuggy} in the resource pack).
@@ -45,7 +45,6 @@ public class HauntedMansion implements RideExperience {
 
     private static final String NAME = "Haunted Mansion";
     private static final String PARK = "Walt Disney World Resort";
-    private static final String RIDE_ID = "hm";
 
     /** Doom Buggy: iron_axe with damage 95. */
     private static final String VEHICLE_ITEM = "iron_axe";
@@ -66,14 +65,14 @@ public class HauntedMansion implements RideExperience {
     @Override public String name() { return NAME; }
     @Override public String park() { return PARK; }
 
-    /** Full doom-buggy cycle: 8 min 10 sec (confirmed from log). */
-    @Override public int rideTimeSeconds() { return 8 * 60 + 10; }
+    /** Full doom-buggy cycle: 7 min 3 sec (confirmed from log). */
+    @Override public int rideTimeSeconds() { return 7 * 60 + 3; }
 
     @Override
     public boolean isActive(ExperienceContext ctx) {
         if (!PARK.equals(ctx.currentPark)) return false;
-        // Primary: rideId from teleport message
-        if (RIDE_ID.equalsIgnoreCase(ctx.currentRideId)) return true;
+        // Primary: ride name from sidebar scoreboard
+        if (ctx.rideNameMatchesAny("Haunted Mansion")) return true;
         // Fallback: player is riding a doom buggy (handles mid-session mod load)
         for (ExperienceContext.NearbyModel m : ctx.nearbyModels) {
             if (m.matches(VEHICLE_ITEM, VEHICLE_DAMAGE)) return true;

@@ -21,6 +21,15 @@ public class RideDetector {
     private static final Logger LOGGER = LoggerFactory.getLogger("MCParksRide");
     private static final double SCAN_RADIUS = 5.0;
 
+    private static RideDetector instance;
+
+    /** Get the active RideDetector instance (set during client init). */
+    public static RideDetector getInstance() { return instance; }
+
+    public RideDetector() {
+        instance = this;
+    }
+
     private boolean wasPassenger = false;
     private int lastVehicleId = -1;
     private long boardingTimeMs = 0;
@@ -120,8 +129,8 @@ public class RideDetector {
         ExperienceContext ctx = ExperienceContext.current(nearbyModels);
         currentExperience = RideExperienceRegistry.getInstance().findActive(ctx).orElse(null);
         if (currentExperience != null) {
-            LOGGER.info("Matched ride experience: {} (park={}, rideId={})",
-                currentExperience.name(), ctx.currentPark, ctx.currentRideId);
+            LOGGER.info("Matched ride experience: {} (park={}, rideName={})",
+                currentExperience.name(), ctx.currentPark, ctx.currentRideName);
             try {
                 currentExperience.onBoard(ctx);
             } catch (Exception e) {

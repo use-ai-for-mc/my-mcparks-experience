@@ -27,18 +27,27 @@ verify_jar() {
     unzip -tq "${jar_file}" 2>/dev/null
 }
 
+# Atomic deploy: write to a temp file on the same volume, then rename.
+# POSIX rename(2) is atomic — the running JVM keeps its open handle to the
+# old inode, while new launches pick up the new file.  This avoids the
+# "invalid zip signature" crash caused by truncate-and-rewrite via cp.
+TEMP_JAR="${TARGET_JAR}.new"
+
 MAX_RETRIES=3
 RETRY_COUNT=0
 
 while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
-    echo "Copying jar to ${TARGET_DIR}..."
-    cp -f "${SOURCE_JAR}" "${TARGET_JAR}"
+    echo "Copying jar to staging file..."
+    cp "${SOURCE_JAR}" "${TEMP_JAR}"
 
-    echo "Verifying copied jar integrity..."
-    if verify_jar "${TARGET_JAR}"; then
+    echo "Verifying staged jar integrity..."
+    if verify_jar "${TEMP_JAR}"; then
         echo "Jar verification successful!"
+        echo "Atomically swapping into ${TARGET_DIR}..."
+        mv -f "${TEMP_JAR}" "${TARGET_JAR}"
         break
     else
+        rm -f "${TEMP_JAR}"
         RETRY_COUNT=$((RETRY_COUNT + 1))
         if [ $RETRY_COUNT -lt $MAX_RETRIES ]; then
             echo "Warning: Jar verification failed (attempt $RETRY_COUNT/$MAX_RETRIES). Retrying..."

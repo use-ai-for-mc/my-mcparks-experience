@@ -1,10 +1,10 @@
 package com.chenweikeng.mcparks.mixin;
 
-import com.chenweikeng.mcparks.ride.experience.ExperienceContext;
-import com.chenweikeng.mcparks.ride.experience.ParkTracker;
+import com.chenweikeng.mcparks.config.ModConfig;
+import com.chenweikeng.mcparks.ride.RideDetector;
 import com.chenweikeng.mcparks.ride.experience.RideExperience;
-import com.chenweikeng.mcparks.ride.experience.RideExperienceRegistry;
 import com.chenweikeng.mcparks.subtitle.SubtitleManager;
+import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.Optional;
 import net.minecraft.client.gui.components.ChatComponent;
 import net.minecraft.network.chat.Component;
@@ -16,21 +16,37 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ChatComponent.class)
 public class ChatComponentMixin {
 
+    /**
+     * Hides the chat overlay rendering when the option is enabled.
+     */
+    @Inject(method = "render", at = @At("HEAD"), cancellable = true)
+    private void mcparks$onRender(PoseStack poseStack, int tickCount, CallbackInfo ci) {
+        if (ModConfig.currentSetting.hideChat) {
+            ci.cancel();
+        }
+    }
+
     @Inject(method = "addMessage(Lnet/minecraft/network/chat/Component;)V",
             at = @At("HEAD"), cancellable = true)
     private void onAddMessage(Component message, CallbackInfo ci) {
-        // 1. Every message updates the park/ride-id tracker first. This is a
-        //    passive observer — it reads "Traveling to X in Y" but never
-        //    cancels, so travel confirmations still show in chat.
-        ParkTracker.getInstance().observe(message);
+        String text = message.getString();
 
-        // 2. Give the currently-active ride experience a chance to claim the
-        //    message as a subtitle (e.g. Disneyland Railroad's [Narrator]
-        //    lines). First match wins and the message is hidden from chat.
-        ExperienceContext ctx = ExperienceContext.current();
-        if (ctx != null) {
-            for (RideExperience exp : RideExperienceRegistry.getInstance().all()) {
-                if (!exp.isActive(ctx)) continue;
+        // 0. Optionally suppress player join/leave messages:
+        //    "[+] Welcome Back, <name>" and "[-] Thanks For Visiting! <name>"
+        if (ModConfig.currentSetting.hideJoinLeaveMessages
+                && (text.startsWith("[+] ") || text.startsWith("[-] "))) {
+            ci.cancel();
+            return;
+        }
+
+        // 1. If the player is on a ride with an active experience (matched at
+        //    boarding time by RideDetector), let that experience try to capture
+        //    the message as a subtitle. This uses the already-matched experience
+        //    rather than re-evaluating isActive() with an incomplete context.
+        RideDetector detector = RideDetector.getInstance();
+        if (detector != null) {
+            RideExperience exp = detector.getCurrentExperience();
+            if (exp != null) {
                 Optional<String> caption = exp.captureSubtitle(message);
                 if (caption.isPresent()) {
                     SubtitleManager.setCaption(caption.get());
@@ -40,11 +56,5 @@ public class ChatComponentMixin {
             }
         }
 
-        // 3. Fall back to the existing aqua-styled subtitle detection used by
-        //    other MCParks audio cues.
-        if (SubtitleManager.isSubtitleMessage(message)) {
-            SubtitleManager.setCaption(message.getString());
-            ci.cancel();
-        }
     }
 }

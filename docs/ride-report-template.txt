@@ -1,0 +1,39 @@
+Ride Report Template
+====================
+Fill this in while riding, then hand it off to build the RideExperience class.
+
+Ride name: <official name, e.g. "Haunted Mansion">
+Park: <full park name as shown in sidebar, e.g. "Walt Disney World Resort">
+Park code: <sidebar code, e.g. "WDW", or empty for DL>
+Scoreboard ride name: <exactly as shown under "Current Ride" in sidebar, if available>
+
+Vehicles (if any):
+  <item:damage>  <model path from /nearby>
+  ...
+  (run /nearby while on the ride to capture these)
+
+Chat speaker prefixes:
+  [X] — <who/role, e.g. "[Ghost Host] — pre-show + ride narration">
+  [Y] — <who/role>
+  ...
+
+Unprefixed ambient text:
+  - Style? <e.g. "green italic", "aqua", "white">
+  - Examples: <e.g. "*Ghost sounds*", "Let me out of here!">
+  - How to distinguish from player chat? <e.g. "no › separator">
+
+Ride time: <MM:SS, from boarding to dismount — check log for exact duration>
+
+Passenger gating:
+  - Requires isPassenger for detection? <yes/no>
+    (no for theater shows like Lincoln; yes for vehicle rides)
+  - Requires isPassenger for subtitles? <yes/no>
+    (no if pre-show dialogue starts before boarding, like HM Ghost Host)
+
+Other notes:
+  - Multi-park variant? <e.g. "WDW + DL + DLP + Tokyo — dialogue may differ">
+  - Music cues? <track names from /audiolist if ride-specific>
+  - Multi-segment? <e.g. "queue → pre-show → ride → exit">
+  - Queue announcements? <any chat messages before boarding>
+  - Dismount message? <anything special on exit>
+  - Anything weird? <unusual detection needs, timing, etc.>

@@ -13,7 +13,7 @@ public class SubtitleRenderer extends GuiComponent {
     private static final int FADE_TICKS = 10; // 0.5 seconds at 20 TPS
     private static final int TEXT_COLOR = 0xFFFFFF;
     private static final int SHADOW_COLOR = 0x3F3F3F;
-    private static final float SCALE = 2.0f;
+    private static final float SCALE = 1.5f;
 
     private static final int[][] OUTLINE_DIRECTIONS = {
         {-1, -1}, {0, -1}, {1, -1},
@@ -51,8 +51,8 @@ public class SubtitleRenderer extends GuiComponent {
             return;
         }
 
-        // Wrap text to fit 60% of screen width
-        int maxWidth = (int)(screenWidth * 0.6f / SCALE);
+        // Wrap text to fit 80% of screen width
+        int maxWidth = (int)(screenWidth * 0.8f / SCALE);
         List<FormattedCharSequence> lines = font.split(Component.literal(subtitle), maxWidth);
 
         if (lines.isEmpty()) {
@@ -69,7 +69,7 @@ public class SubtitleRenderer extends GuiComponent {
         // Draw 8-direction outline first
         for (int[] dir : OUTLINE_DIRECTIONS) {
             poseStack.pushPose();
-            poseStack.translate(screenWidth / 2.0f + dir[0] * 1.5f, screenHeight / 2.0f + dir[1] * 1.5f, 0);
+            poseStack.translate(screenWidth / 2.0f + dir[0] * 1.5f, screenHeight * 2.0f / 3.0f + dir[1] * 1.5f, 0);
             poseStack.scale(SCALE, SCALE, 1.0f);
 
             int y = -totalHeight / 2;
@@ -83,9 +83,9 @@ public class SubtitleRenderer extends GuiComponent {
             poseStack.popPose();
         }
 
-        // Draw main text centered on screen
+        // Draw main text centered horizontally, lower third vertically
         poseStack.pushPose();
-        poseStack.translate(screenWidth / 2.0f, screenHeight / 2.0f, 0);
+        poseStack.translate(screenWidth / 2.0f, screenHeight * 2.0f / 3.0f, 0);
         poseStack.scale(SCALE, SCALE, 1.0f);
 
         int y = -totalHeight / 2;

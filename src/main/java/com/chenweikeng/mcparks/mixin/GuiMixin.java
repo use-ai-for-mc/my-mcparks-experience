@@ -11,6 +11,7 @@ import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.contents.TranslatableContents;
+import net.minecraft.world.scores.Objective;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -79,6 +80,36 @@ public class GuiMixin {
     @Inject(method = "renderExperienceBar", at = @At("HEAD"), cancellable = true)
     private void mcparks$onRenderExperienceBar(PoseStack poseStack, int x, CallbackInfo ci) {
         if (isMCParksServer() && ModConfig.currentSetting.hideExperienceLevel) {
+            ci.cancel();
+        }
+    }
+
+    /**
+     * Hides the crosshair while the player is riding a vehicle on MCParks.
+     */
+    @Inject(method = "renderCrosshair", at = @At("HEAD"), cancellable = true)
+    private void mcparks$onRenderCrosshair(PoseStack poseStack, CallbackInfo ci) {
+        if (isMCParksServer() && minecraft.player != null && minecraft.player.isPassenger()) {
+            ci.cancel();
+        }
+    }
+
+    /**
+     * Hides the scoreboard sidebar when the option is enabled.
+     */
+    @Inject(method = "displayScoreboardSidebar", at = @At("HEAD"), cancellable = true)
+    private void mcparks$onDisplayScoreboardSidebar(PoseStack poseStack, Objective objective, CallbackInfo ci) {
+        if (isMCParksServer() && ModConfig.currentSetting.hideScoreboard) {
+            ci.cancel();
+        }
+    }
+
+    /**
+     * Hides the hotbar when the option is enabled.
+     */
+    @Inject(method = "renderHotbar", at = @At("HEAD"), cancellable = true)
+    private void mcparks$onRenderHotbar(float tickDelta, PoseStack poseStack, CallbackInfo ci) {
+        if (isMCParksServer() && ModConfig.currentSetting.hideHotbar) {
             ci.cancel();
         }
     }

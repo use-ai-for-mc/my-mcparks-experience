@@ -3,6 +3,9 @@ package com.chenweikeng.mcparks.ride.experience;
 import com.chenweikeng.mcparks.ride.experience.rides.DisneylandRailroad;
 import com.chenweikeng.mcparks.ride.experience.rides.GreatMomentsWithMrLincoln;
 import com.chenweikeng.mcparks.ride.experience.rides.HauntedMansion;
+import com.chenweikeng.mcparks.ride.experience.rides.JourneyIntoImagination;
+import com.chenweikeng.mcparks.ride.experience.rides.LivingWithTheLand;
+import com.chenweikeng.mcparks.ride.experience.rides.PeopleMover;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -26,6 +29,9 @@ public final class RideExperienceRegistry {
         register(new DisneylandRailroad());
         register(new GreatMomentsWithMrLincoln());
         register(new HauntedMansion());
+        register(new JourneyIntoImagination());
+        register(new LivingWithTheLand());
+        register(new PeopleMover());
     }
 
     public void register(RideExperience experience) {

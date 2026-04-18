@@ -8,6 +8,7 @@ import com.chenweikeng.mcparks.fly.FlyManager;
 import com.chenweikeng.mcparks.fullbright.DayTimeHandler;
 import com.chenweikeng.mcparks.ride.RideDetector;
 import com.chenweikeng.mcparks.ride.RideHudRenderer;
+import com.chenweikeng.mcparks.ride.RidePathRecorder;
 import com.chenweikeng.mcparks.ride.RideRegistry;
 import com.chenweikeng.mcparks.ride.experience.ParkTracker;
 import com.chenweikeng.mcparks.skincache.TextureCache;
@@ -53,6 +54,7 @@ public class MCParksExperienceClient implements ClientModInitializer {
     private final FlyManager flyManager = new FlyManager();
     private final DayTimeHandler dayTimeHandler = new DayTimeHandler();
     private final RideDetector rideDetector = new RideDetector();
+    private final RidePathRecorder ridePathRecorder = new RidePathRecorder();
     private final RideHudRenderer rideHudRenderer = new RideHudRenderer(rideDetector);
     private final SubtitleRenderer subtitleRenderer = new SubtitleRenderer();
     private ResourceKey<Level> lastDimension = null;
@@ -96,6 +98,7 @@ public class MCParksExperienceClient implements ClientModInitializer {
         cursorManager.tick(client);
         flyManager.tick(client);
         rideDetector.tick(client);
+        ridePathRecorder.tick(client);
         dayTimeHandler.tick(client);
         SubtitleManager.tick();
 
@@ -112,15 +115,17 @@ public class MCParksExperienceClient implements ClientModInitializer {
     }
 
     private void onServerJoin(Minecraft client) {
-        if (!ModConfig.currentSetting.autoConnect) return;
-
         String serverIp = resolveServerHost(client);
         if (serverIp == null) return;
 
         if (serverIp.toLowerCase().contains("mcparks")) {
-            LOGGER.info("Joined MCParks server: {}, auto-connecting audio", serverIp);
-            String username = client.getUser().getName();
-            CompletableFuture.runAsync(() -> MCParksAudioService.getInstance().connect(username));
+            MacosDockIconHandler.apply();
+
+            if (ModConfig.currentSetting.autoConnect) {
+                LOGGER.info("Joined MCParks server: {}, auto-connecting audio", serverIp);
+                String username = client.getUser().getName();
+                CompletableFuture.runAsync(() -> MCParksAudioService.getInstance().connect(username));
+            }
         }
     }
 
@@ -145,10 +150,12 @@ public class MCParksExperienceClient implements ClientModInitializer {
     }
 
     private void onServerDisconnect() {
+        MacosDockIconHandler.reset();
         MCParksAudioService.getInstance().dispose();
         cursorManager.reset();
         flyManager.reset();
         rideDetector.reset();
+        ridePathRecorder.reset();
         SubtitleManager.clear();
         TextureRegistrar.clear();
         ParkTracker.getInstance().reset();

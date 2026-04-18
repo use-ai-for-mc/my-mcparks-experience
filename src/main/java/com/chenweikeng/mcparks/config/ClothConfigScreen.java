@@ -98,9 +98,49 @@ public class ClothConfigScreen {
             .setSaveConsumer(newValue -> config.fullbrightMode = (FullbrightMode) newValue)
             .build());
 
+        // --- Chat category ---
+        ConfigCategory chat = builder.getOrCreateCategory(
+            Component.translatable("config.mcparks.category.chat"));
+
+        chat.addEntry(entryBuilder
+            .startBooleanToggle(
+                Component.translatable("config.mcparks.hideJoinLeaveMessages"),
+                config.hideJoinLeaveMessages)
+            .setDefaultValue(ConfigDefaults.HIDE_JOIN_LEAVE_MESSAGES)
+            .setTooltip(Component.translatable("config.mcparks.hideJoinLeaveMessages.tooltip"))
+            .setSaveConsumer(newValue -> config.hideJoinLeaveMessages = newValue)
+            .build());
+
         // --- UI Hiding category ---
         ConfigCategory uiHiding = builder.getOrCreateCategory(
             Component.translatable("config.mcparks.category.uiHiding"));
+
+        uiHiding.addEntry(entryBuilder
+            .startBooleanToggle(
+                Component.translatable("config.mcparks.hideScoreboard"),
+                config.hideScoreboard)
+            .setDefaultValue(ConfigDefaults.HIDE_SCOREBOARD)
+            .setTooltip(Component.translatable("config.mcparks.hideScoreboard.tooltip"))
+            .setSaveConsumer(newValue -> config.hideScoreboard = newValue)
+            .build());
+
+        uiHiding.addEntry(entryBuilder
+            .startBooleanToggle(
+                Component.translatable("config.mcparks.hideChat"),
+                config.hideChat)
+            .setDefaultValue(ConfigDefaults.HIDE_CHAT)
+            .setTooltip(Component.translatable("config.mcparks.hideChat.tooltip"))
+            .setSaveConsumer(newValue -> config.hideChat = newValue)
+            .build());
+
+        uiHiding.addEntry(entryBuilder
+            .startBooleanToggle(
+                Component.translatable("config.mcparks.hideHotbar"),
+                config.hideHotbar)
+            .setDefaultValue(ConfigDefaults.HIDE_HOTBAR)
+            .setTooltip(Component.translatable("config.mcparks.hideHotbar.tooltip"))
+            .setSaveConsumer(newValue -> config.hideHotbar = newValue)
+            .build());
 
         uiHiding.addEntry(entryBuilder
             .startBooleanToggle(
@@ -118,6 +158,15 @@ public class ClothConfigScreen {
             .setDefaultValue(ConfigDefaults.HIDE_EXPERIENCE_LEVEL)
             .setTooltip(Component.translatable("config.mcparks.hideExperienceLevel.tooltip"))
             .setSaveConsumer(newValue -> config.hideExperienceLevel = newValue)
+            .build());
+
+        uiHiding.addEntry(entryBuilder
+            .startBooleanToggle(
+                Component.translatable("config.mcparks.hidePlayerOnRide"),
+                config.hidePlayerOnRide)
+            .setDefaultValue(ConfigDefaults.HIDE_PLAYER_ON_RIDE)
+            .setTooltip(Component.translatable("config.mcparks.hidePlayerOnRide.tooltip"))
+            .setSaveConsumer(newValue -> config.hidePlayerOnRide = newValue)
             .build());
 
         return builder.build();

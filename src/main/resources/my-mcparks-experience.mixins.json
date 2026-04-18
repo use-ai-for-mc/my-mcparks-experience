@@ -8,6 +8,7 @@
         "ChatComponentMixin",
         "ClientPacketListenerMixin",
         "GuiMixin",
+        "ItemInHandRendererMixin",
         "LivingEntityMixin",
         "MinecraftMixin",
         "SkinCacheHttpTextureMixin",
