@@ -5,6 +5,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FormattedCharSequence;
 
 import java.util.List;
@@ -13,7 +15,11 @@ public class SubtitleRenderer extends GuiComponent {
     private static final int FADE_TICKS = 10; // 0.5 seconds at 20 TPS
     private static final int TEXT_COLOR = 0xFFFFFF;
     private static final int SHADOW_COLOR = 0x3F3F3F;
-    private static final float SCALE = 1.5f;
+    private static final float SCALE = 2.0f;
+
+    /** Custom font for subtitles: Nunito Sans via TTF provider. */
+    private static final ResourceLocation SUBTITLE_FONT =
+            new ResourceLocation("my-mcparks-experience", "subtitle");
 
     private static final int[][] OUTLINE_DIRECTIONS = {
         {-1, -1}, {0, -1}, {1, -1},
@@ -51,9 +57,13 @@ public class SubtitleRenderer extends GuiComponent {
             return;
         }
 
+        // Style the subtitle text with our custom Nunito Sans font
+        Component styledText = Component.literal(subtitle)
+                .withStyle(Style.EMPTY.withFont(SUBTITLE_FONT));
+
         // Wrap text to fit 80% of screen width
         int maxWidth = (int)(screenWidth * 0.8f / SCALE);
-        List<FormattedCharSequence> lines = font.split(Component.literal(subtitle), maxWidth);
+        List<FormattedCharSequence> lines = font.split(styledText, maxWidth);
 
         if (lines.isEmpty()) {
             return;
@@ -69,7 +79,7 @@ public class SubtitleRenderer extends GuiComponent {
         // Draw 8-direction outline first
         for (int[] dir : OUTLINE_DIRECTIONS) {
             poseStack.pushPose();
-            poseStack.translate(screenWidth / 2.0f + dir[0] * 1.5f, screenHeight * 2.0f / 3.0f + dir[1] * 1.5f, 0);
+            poseStack.translate(screenWidth / 2.0f + dir[0] * 1.5f, screenHeight * 3.0f / 4.0f + dir[1] * 1.5f, 0);
             poseStack.scale(SCALE, SCALE, 1.0f);
 
             int y = -totalHeight / 2;
@@ -83,9 +93,9 @@ public class SubtitleRenderer extends GuiComponent {
             poseStack.popPose();
         }
 
-        // Draw main text centered horizontally, lower third vertically
+        // Draw main text centered horizontally, lower 3/4 vertically
         poseStack.pushPose();
-        poseStack.translate(screenWidth / 2.0f, screenHeight * 2.0f / 3.0f, 0);
+        poseStack.translate(screenWidth / 2.0f, screenHeight * 3.0f / 4.0f, 0);
         poseStack.scale(SCALE, SCALE, 1.0f);
 
         int y = -totalHeight / 2;

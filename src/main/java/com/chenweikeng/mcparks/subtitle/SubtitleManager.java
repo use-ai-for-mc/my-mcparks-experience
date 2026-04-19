@@ -14,6 +14,13 @@ public class SubtitleManager {
     private static int displayTicks = 0;
     private static int delayCounter = 0;
 
+    /**
+     * When true, a {@link com.chenweikeng.mcparks.subtitle.TimedSubtitlePlayer}
+     * is driving the display. Chat-based captions are suppressed while timed
+     * subtitles are active.
+     */
+    private static boolean timedMode = false;
+
     public static boolean isSubtitleMessage(Component message) {
         for (Component sibling : message.getSiblings()) {
             Style style = sibling.getStyle();
@@ -30,6 +37,9 @@ public class SubtitleManager {
     }
 
     public static void setCaption(String subtitle) {
+        // When a timed subtitle player is active, ignore chat-based captions
+        if (timedMode) return;
+
         if (currentCaption == null) {
             // Nothing showing — display immediately
             currentCaption = subtitle;
@@ -44,6 +54,29 @@ public class SubtitleManager {
             delayCounter = DELAY_TICKS;
             displayTicks = DEFAULT_DISPLAY_TICKS;
         }
+    }
+
+    /**
+     * Set a caption from the timed subtitle player. Bypasses queuing —
+     * replaces the current display immediately.
+     */
+    public static void setTimedCaption(String text) {
+        timedMode = true;
+        currentCaption = text;
+        pendingCaption = null;
+        displayTicks = DEFAULT_DISPLAY_TICKS;
+        delayCounter = 0;
+    }
+
+    /**
+     * Clear the timed caption (gap between entries). The display will
+     * fade naturally via the tick countdown.
+     */
+    public static void clearTimedCaption() {
+        currentCaption = null;
+        pendingCaption = null;
+        displayTicks = 0;
+        delayCounter = 0;
     }
 
     public static void tick() {
@@ -88,5 +121,6 @@ public class SubtitleManager {
         pendingCaption = null;
         displayTicks = 0;
         delayCounter = 0;
+        timedMode = false;
     }
 }

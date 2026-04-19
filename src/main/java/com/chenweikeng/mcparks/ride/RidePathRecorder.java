@@ -100,10 +100,14 @@ public final class RidePathRecorder {
     private void writeSample(LocalPlayer player) {
         if (writer == null) return;
         try {
+            // Use vehicle position for seat-independent path data
+            net.minecraft.world.entity.Entity target = player.getVehicle();
+            if (target == null) target = player;
+
             double elapsed = (System.currentTimeMillis() - startTimeMs) / 1000.0;
             writer.write(String.format("%.1f,%.3f,%.3f,%.3f,%.1f,%.1f",
                     elapsed,
-                    player.getX(), player.getY(), player.getZ(),
+                    target.getX(), target.getY(), target.getZ(),
                     player.getYRot(), player.getXRot()));
             writer.newLine();
             writer.flush();

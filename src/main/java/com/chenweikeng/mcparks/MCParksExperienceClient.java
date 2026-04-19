@@ -9,12 +9,15 @@ import com.chenweikeng.mcparks.fullbright.DayTimeHandler;
 import com.chenweikeng.mcparks.ride.RideDetector;
 import com.chenweikeng.mcparks.ride.RideHudRenderer;
 import com.chenweikeng.mcparks.ride.RidePathRecorder;
+import com.chenweikeng.mcparks.ride.RideSessionRecorder;
 import com.chenweikeng.mcparks.ride.RideRegistry;
 import com.chenweikeng.mcparks.ride.experience.ParkTracker;
 import com.chenweikeng.mcparks.skincache.TextureCache;
 import com.chenweikeng.mcparks.skincache.TextureRegistrar;
 import com.chenweikeng.mcparks.subtitle.SubtitleManager;
 import com.chenweikeng.mcparks.subtitle.SubtitleRenderer;
+import com.chenweikeng.mcparks.subtitle.TimedSubtitlePlayer;
+import com.chenweikeng.mcparks.ride.experience.RideExperience;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.DoubleArgumentType;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
@@ -55,16 +58,26 @@ public class MCParksExperienceClient implements ClientModInitializer {
     private final DayTimeHandler dayTimeHandler = new DayTimeHandler();
     private final RideDetector rideDetector = new RideDetector();
     private final RidePathRecorder ridePathRecorder = new RidePathRecorder();
+    private static final RideSessionRecorder sessionRecorder = new RideSessionRecorder();
     private final RideHudRenderer rideHudRenderer = new RideHudRenderer(rideDetector);
+
+    /** Static accessor for the session recorder (used by ChatComponentMixin). */
+    public static RideSessionRecorder getSessionRecorder() { return sessionRecorder; }
+    private final TimedSubtitlePlayer timedSubtitlePlayer = new TimedSubtitlePlayer();
     private final SubtitleRenderer subtitleRenderer = new SubtitleRenderer();
     private ResourceKey<Level> lastDimension = null;
     private net.minecraft.client.gui.screens.Screen pendingScreen = null;
+    /** Tracks whether the timed subtitle player was active last tick. */
+    private boolean timedSubsActive = false;
 
     @Override
     public void onInitializeClient() {
         ModConfig.load();
         TextureCache.init();
         LOGGER.info("My MCParks Experience client initialized");
+
+        // Wire the timed subtitle player into the HUD renderer for audio-based progress
+        rideHudRenderer.setTimedSubtitlePlayer(timedSubtitlePlayer);
 
         MCParksAudioService.getInstance().setUserVolumeInternal(
             ModConfig.currentSetting.volume
@@ -99,7 +112,24 @@ public class MCParksExperienceClient implements ClientModInitializer {
         flyManager.tick(client);
         rideDetector.tick(client);
         ridePathRecorder.tick(client);
+        sessionRecorder.tick(client);
         dayTimeHandler.tick(client);
+
+        // Timed subtitle player: start/stop based on current ride experience
+        RideExperience currentExp = rideDetector.getCurrentExperience();
+        if (currentExp != null && currentExp.subtitleResource() != null) {
+            if (!timedSubsActive) {
+                // Ride with timed subtitles just started — load the data
+                timedSubtitlePlayer.load(currentExp.subtitleResource());
+                timedSubsActive = true;
+            }
+            timedSubtitlePlayer.tick();
+        } else if (timedSubsActive) {
+            // Ride ended — reset the player
+            timedSubtitlePlayer.reset();
+            timedSubsActive = false;
+        }
+
         SubtitleManager.tick();
 
         // Stop all audio on world change
@@ -156,6 +186,9 @@ public class MCParksExperienceClient implements ClientModInitializer {
         flyManager.reset();
         rideDetector.reset();
         ridePathRecorder.reset();
+        sessionRecorder.reset();
+        timedSubtitlePlayer.reset();
+        timedSubsActive = false;
         SubtitleManager.clear();
         TextureRegistrar.clear();
         ParkTracker.getInstance().reset();

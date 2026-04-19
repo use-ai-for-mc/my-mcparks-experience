@@ -1,0 +1,545 @@
+{
+  "totalRideTimeSec": 781,
+  "tracks": {
+    "TheLand/LWTL/spiel": {
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 2000,
+          "text": "Welcome to Living with the Land."
+        },
+        {
+          "startMs": 2200,
+          "endMs": 5980,
+          "text": "As you board the boat, please lower your head and watch your step."
+        },
+        {
+          "startMs": 6660,
+          "endMs": 12920,
+          "text": "For your safety, remain seated with your hands, arms, feet, and legs inside the boat at all time."
+        },
+        {
+          "startMs": 13120,
+          "endMs": 21180,
+          "text": "Parents, please supervise your children, and refrain from flash photography or using video light until we reach the greenhouse. Thank you!"
+        },
+        {
+          "startMs": 21400,
+          "endMs": 25560,
+          "text": "Now, sit back, relax, and enjoy Living with the Land."
+        }
+      ],
+      "rideOffsetMs": 0
+    },
+    "lwtl/intro-storm": {
+      "entries": [
+        {
+          "startMs": 10900,
+          "endMs": 19300,
+          "text": "Welcome to a voyage of discovery and awareness of the richness, the diversity, and the often surprising nature of living with the land."
+        },
+        {
+          "startMs": 22560,
+          "endMs": 27160,
+          "text": "Our journey begins as dramatic and sudden changes are sweeping over the land."
+        },
+        {
+          "startMs": 27400,
+          "endMs": 34100,
+          "text": "The approaching storm may seem violent and destructive to us, but to nature, it's a new beginning in the cycle of life."
+        }
+      ],
+      "rideOffsetMs": 19900
+    },
+    "lwtl/roots": {
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 7460,
+          "text": "Beneath the surface of the land, roots trap water from the flowing mud--extracting precious nutrients and minerals."
+        },
+        {
+          "startMs": 7840,
+          "endMs": 13300,
+          "text": "These elements, when combined with sunlight, create the diverse living systems of our planet."
+        }
+      ],
+      "rideOffsetMs": 89900
+    },
+    "lwtl/rainforest": {
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 7180,
+          "text": "One of those living systems is the rainforest--home to the most amazing concentration of life on our planet."
+        },
+        {
+          "startMs": 7800,
+          "endMs": 13200,
+          "text": "These dense and beautiful forests cover only a tiny portion of the Earth's surface,"
+        },
+        {
+          "startMs": 13600,
+          "endMs": 17300,
+          "text": "but they contain more than half of its plant and animal species."
+        },
+        {
+          "startMs": 17480,
+          "endMs": 27420,
+          "text": "Rainforests are also extremely rich in productive living systems, providing us with oxygen, food, medicine, and other elements essential to our lives."
+        }
+      ],
+      "rideOffsetMs": 123900
+    },
+    "lwtl/desert": {
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 5640,
+          "text": "In the desert, nature has created a very different, but no less beautiful, living system."
+        },
+        {
+          "startMs": 6160,
+          "endMs": 10920,
+          "text": "And while this arid landscape may seem lifeless, it is very much alive."
+        },
+        {
+          "startMs": 11700,
+          "endMs": 21240,
+          "text": "The plants and animals that have learned to survive in these harsh conditions made use of what little water they could find and avoid the scorching rays of the relentless sun."
+        }
+      ],
+      "rideOffsetMs": 161900
+    },
+    "lwtl/prairie": {
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 3400,
+          "text": "The American prairie once appeared as desolate as the desert,"
+        },
+        {
+          "startMs": 3800,
+          "endMs": 9380,
+          "text": "but over time, rainwater and nutrients gradually penetrated the hard surface of this land."
+        },
+        {
+          "startMs": 9580,
+          "endMs": 16260,
+          "text": "Even the hooves of the mighty buffalo helped create the rich soil that would one day become home to the American farm."
+        }
+      ],
+      "rideOffsetMs": 199900
+    },
+    "lwtl/humans": {
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 5640,
+          "text": "Of all the forces at work on the land, humans have had one of the most profound effects."
+        },
+        {
+          "startMs": 5760,
+          "endMs": 12860,
+          "text": "The need to produce food for the growing world led to the enormous use--and sometimes overuse--of the land"
+        },
+        {
+          "startMs": 13100,
+          "endMs": 19820,
+          "text": "In our search for more efficient ways to grow food, we often failed to realize the impact of our methods."
+        }
+      ],
+      "rideOffsetMs": 249900
+    },
+    "lwtl/live-with-the-land": {
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 2920,
+          "text": "Today, we're learning to live with the land--"
+        },
+        {
+          "startMs": 3220,
+          "endMs": 9080,
+          "text": "discovering better ways to grow food that will assure both human and environmental wellbeing."
+        }
+      ],
+      "rideOffsetMs": 279900
+    },
+    "lwtl/barn_narration": {
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 4880,
+          "text": "In Japan, we’re learning that by mixing leaves and other living materials into our soil,"
+        },
+        {
+          "startMs": 5000,
+          "endMs": 8700,
+          "text": "we can make farmland more fertile without the need for chemicals."
+        },
+        {
+          "startMs": 10220,
+          "endMs": 20280,
+          "text": "Here at EPCOT, we’re learning to reduce the need for chemical pesticides by breeding and using natural predators like ladybugs and wasps to control pests."
+        },
+        {
+          "startMs": 20280,
+          "endMs": 30260,
+          "text": "In the farmlands across America, we’re learning that by plowing under vegetation containing natural fertilizers, we can enrich the soil without the use of chemicals."
+        },
+        {
+          "startMs": 31940,
+          "endMs": 40200,
+          "text": "In Arab regions, we’re learning to produce food on desert seacoasts by developing and planting crops that thrive on saltwater."
+        },
+        {
+          "startMs": 40880,
+          "endMs": 47060,
+          "text": "Here at EPCOT, we’re learning to reduce the need for chemical pesticides by breeding and using natural predators"
+        }
+      ],
+      "rideOffsetMs": 289900
+    },
+    "lwtl/pre-greenhouse": {
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 6100,
+          "text": "How will we meet tomorrow's growing need for food production, yet still respect the needs of the land?"
+        },
+        {
+          "startMs": 6340,
+          "endMs": 9100,
+          "text": "Some of the answers are being discovered just ahead."
+        },
+        {
+          "startMs": 9620,
+          "endMs": 17380,
+          "text": "To help us maintain these carefully controlled ecosystems (and for your safety), please remain seated in your boat at all times."
+        }
+      ],
+      "rideOffsetMs": 345900
+    },
+    "lwtl/greenhouse-welcome": {
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 2180,
+          "text": "Welcome to our living laboratory,"
+        },
+        {
+          "startMs": 2360,
+          "endMs": 11780,
+          "text": "where scientists from EPCOT and the U.S. Department of Agriculture are exploring innovative ways to produce bountiful harvests—now and into the future."
+        }
+      ],
+      "rideOffsetMs": 381900
+    },
+    "lwtl/tropics": {
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 4140,
+          "text": "The tropics are home to the greatest diversity of plants on the planet."
+        },
+        {
+          "startMs": 4800,
+          "endMs": 11080,
+          "text": "Many of these--like papaya, bananas, cacao, coffee, and rice--are well-known around the world."
+        },
+        {
+          "startMs": 12700,
+          "endMs": 19000,
+          "text": "These are just a few of the edible plants that have been an important source of nutrition for people living in the tropics."
+        },
+        {
+          "startMs": 19380,
+          "endMs": 26060,
+          "text": "Many are rich in vitamins and minerals, while others are well-adapted to growing in less-than-ideal conditions."
+        },
+        {
+          "startMs": 27760,
+          "endMs": 36420,
+          "text": "Some, like the waterlily, thrive in wet, swampy areas and waterways. All parts of this plant--even the flower petals--are edible."
+        },
+        {
+          "startMs": 36960,
+          "endMs": 41320,
+          "text": "The starchy root of the plant has long been used to make flour for baking."
+        },
+        {
+          "startMs": 42640,
+          "endMs": 50000,
+          "text": "One day, many of these lesser-known tropical plants may be as important as the bananas growing on both sides of the boat."
+        },
+        {
+          "startMs": 52000,
+          "endMs": 58880,
+          "text": "More than 28 million tons of bananas are eaten annually, making it the most popular fruit in the world."
+        }
+      ],
+      "rideOffsetMs": 401900
+    },
+    "lwtl/aquaculture": {
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 3940,
+          "text": "When we mention farming, you probably don't think of fish--"
+        },
+        {
+          "startMs": 4080,
+          "endMs": 9940,
+          "text": "but fish farming, or aquaculture, accounts for nearly half of all the seafood consumed globally."
+        },
+        {
+          "startMs": 10080,
+          "endMs": 18000,
+          "text": "Tilapia, bass, and catfish, like the ones you see here, are three of the more popular crops raised by fish farmers."
+        },
+        {
+          "startMs": 18260,
+          "endMs": 22920,
+          "text": "The sustainable system we're using here recycles the water in the tanks."
+        },
+        {
+          "startMs": 22920,
+          "endMs": 27220,
+          "text": "As a result, we're able to save millions of gallons each year."
+        },
+        {
+          "startMs": 28440,
+          "endMs": 36220,
+          "text": "Our small fish farm produces nearly 5,000 pounds of fish each year to serve in restaurants around Walt Disney World."
+        },
+        {
+          "startMs": 37200,
+          "endMs": 45800,
+          "text": "Innovations like this one can play an important role in our efforts to produce bountiful harvests and still protect natural resources."
+        }
+      ],
+      "rideOffsetMs": 475900
+    },
+    "lwtl/common-grains": {
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 4180,
+          "text": "While there are more than 50,000 edible plant species in the world,"
+        },
+        {
+          "startMs": 4360,
+          "endMs": 8900,
+          "text": "most of us are only familiar with the handful that make up our everyday diet."
+        },
+        {
+          "startMs": 9120,
+          "endMs": 14800,
+          "text": "The common grains growing here--wheat, maize, sorghum, and millet (plus rice)--"
+        },
+        {
+          "startMs": 14900,
+          "endMs": 18260,
+          "text": "account for nearly two-thirds of our global food consumption."
+        },
+        {
+          "startMs": 18500,
+          "endMs": 24320,
+          "text": "Learning how to increase yields of these staples is an important goal of research around the world."
+        }
+      ],
+      "rideOffsetMs": 531900
+    },
+    "lwtl/going-up-pesticides": {
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 3120,
+          "text": "These plants are definitely on their way up!"
+        },
+        {
+          "startMs": 3360,
+          "endMs": 6660,
+          "text": "Innovative growing techniques like these increase yield,"
+        },
+        {
+          "startMs": 6740,
+          "endMs": 11400,
+          "text": "while more efficiently using resources like water, fertilizer, and pesticides."
+        },
+        {
+          "startMs": 11660,
+          "endMs": 16060,
+          "text": "Another innovation at work here is our integrated pest-management program."
+        },
+        {
+          "startMs": 16200,
+          "endMs": 22840,
+          "text": "By populating our greenhouses with beneficial insects that prey on harmful pests like aphids and flies,"
+        },
+        {
+          "startMs": 22840,
+          "endMs": 27160,
+          "text": "we are significantly reducing our reliance on conventional pesticides."
+        }
+      ],
+      "rideOffsetMs": 569900
+    },
+    "lwtl/nutrient-film": {
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 3260,
+          "text": "We're growing these crops using our nutrient film system."
+        },
+        {
+          "startMs": 3440,
+          "endMs": 7880,
+          "text": "This technique precisely controls and recycles water and nutrients."
+        },
+        {
+          "startMs": 8120,
+          "endMs": 13840,
+          "text": "With it, we can produce over 27,000 heads of lettuce a year in this one small area."
+        }
+      ],
+      "rideOffsetMs": 601900
+    },
+    "lwtl/trees": {
+      "entries": [
+        {
+          "startMs": 2200,
+          "endMs": 8580,
+          "text": "Some of our best ideas have been inspired by nature, like these fruit and vegetable trees."
+        },
+        {
+          "startMs": 8620,
+          "endMs": 14660,
+          "text": "By growing these ground plants vertically, we can increase yield and better control diseases."
+        },
+        {
+          "startMs": 14960,
+          "endMs": 17660,
+          "text": "These crops taste as good as they look--"
+        },
+        {
+          "startMs": 17900,
+          "endMs": 25140,
+          "text": "in fact, we serve more than 15 tons of produce from our greenhouses in restaurants here at The Land every year."
+        }
+      ],
+      "rideOffsetMs": 613900
+    },
+    "lwtl/verticalaquaponics": {
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 5420,
+          "text": "The future of agriculture may include innovative ideas like this vertical growing system."
+        },
+        {
+          "startMs": 5660,
+          "endMs": 11200,
+          "text": "Plants grown in this way use a fraction of the space required by traditional growing methods."
+        },
+        {
+          "startMs": 11320,
+          "endMs": 14020,
+          "text": "That saves water and increases production."
+        },
+        {
+          "startMs": 14100,
+          "endMs": 19120,
+          "text": "The aquaponics system on your left combines hydroponics with aquaculture."
+        },
+        {
+          "startMs": 19220,
+          "endMs": 26140,
+          "text": "The fish provide a natural source of fertilizer for the plants, and the plants help keep the water clean for the fish."
+        },
+        {
+          "startMs": 26140,
+          "endMs": 30140,
+          "text": "It’s another great way to produce more while using less."
+        }
+      ],
+      "rideOffsetMs": 647900
+    },
+    "lwtl/labs": {
+      "entries": [
+        {
+          "startMs": 7620,
+          "endMs": 14540,
+          "text": "In our lab, EPCOT scientists are working with the U.S. Department of Agriculture on a number of innovative projects."
+        },
+        {
+          "startMs": 14800,
+          "endMs": 19380,
+          "text": "The goal of these efforts is to produce higher-yielding and better-quality plants."
+        }
+      ],
+      "rideOffsetMs": 671900
+    },
+    "lwtl/truly-lwtl": {
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 8160,
+          "text": "Greenhouses represent just a fraction of the work being done worldwide to produce bountiful harvests for our growing population."
+        },
+        {
+          "startMs": 8420,
+          "endMs": 17300,
+          "text": "Scientists, farmers, and even backyard gardeners are doing their part to improve the quantity and quality of foods that we all rely upon."
+        },
+        {
+          "startMs": 18220,
+          "endMs": 25800,
+          "text": "Together we can continue to find more ways to increase food production and protect our precious natural environment."
+        },
+        {
+          "startMs": 26960,
+          "endMs": 30860,
+          "text": "Only then, will we truly be living with the land."
+        }
+      ],
+      "rideOffsetMs": 705900
+    },
+    "lwtl/seeds_tour": {
+      "entries": [
+        {
+          "startMs": 320,
+          "endMs": 6760,
+          "text": "On behalf of Walt Disney World, we hope you’ve enjoyed this unique journey through our living laboratories."
+        },
+        {
+          "startMs": 6880,
+          "endMs": 11340,
+          "text": "If you’d like a closer look, then check out the Behind the Seeds walking tour."
+        },
+        {
+          "startMs": 11500,
+          "endMs": 18100,
+          "text": "It’s a chance for the whole family to get up close and personal with the plants and growing techniques in our laboratory."
+        },
+        {
+          "startMs": 19680,
+          "endMs": 25780,
+          "text": "Please keep your hands and feet inside the boat, and remain seated until the boat comes to a complete stop."
+        }
+      ],
+      "rideOffsetMs": 743900
+    },
+    "lwtl/get-out": {
+      "entries": [
+        {
+          "startMs": 1440,
+          "endMs": 6600,
+          "text": "Please gather all your personal belongings. Lower your head, and watch your step as you exit."
+        }
+      ],
+      "rideOffsetMs": 771900
+    }
+  }
+}

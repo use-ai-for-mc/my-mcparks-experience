@@ -42,9 +42,29 @@ public interface RideExperience {
      * a subtitle, return the text to display. Only consulted while
      * {@link #isActive} is {@code true}. Return {@code Optional.empty()} to let
      * the message pass through to normal chat unchanged.
+     *
+     * <p>When {@link #subtitleResource()} is non-null (timed subtitle mode),
+     * this method is still called but the returned text is <b>not</b> displayed
+     * as a subtitle. Returning a value still causes the chat message to be
+     * cancelled (hidden from the chat pane). This lets the experience suppress
+     * narration messages from chat while audio-synced subtitles handle display.
      */
     default Optional<String> captureSubtitle(Component message) {
         return Optional.empty();
+    }
+
+    /**
+     * Classpath resource path to a JSON file containing timed subtitle data
+     * keyed by audio track name. When non-null, the mod uses audio-triggered
+     * subtitles instead of chat-based capture for this ride.
+     *
+     * <p>Format: {@code {"tracks": {"trackName": [{"startMs":0,"endMs":5000,"text":"..."},...]}}}
+     *
+     * @return resource path (e.g. {@code "/assets/my-mcparks-experience/subtitles/lwtl.json"}),
+     *         or {@code null} to use chat-based subtitles
+     */
+    default String subtitleResource() {
+        return null;
     }
 
     /** Fired once when the player transitions onto this ride. */

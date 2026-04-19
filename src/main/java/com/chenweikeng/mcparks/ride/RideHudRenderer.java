@@ -1,5 +1,6 @@
 package com.chenweikeng.mcparks.ride;
 
+import com.chenweikeng.mcparks.subtitle.TimedSubtitlePlayer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -11,9 +12,18 @@ public class RideHudRenderer extends GuiComponent {
     private static final int TIME_COLOR_ENDING = 0xFF5555;  // Red (< 10s)
 
     private final RideDetector rideDetector;
+    private TimedSubtitlePlayer timedSubtitlePlayer;
 
     public RideHudRenderer(RideDetector rideDetector) {
         this.rideDetector = rideDetector;
+    }
+
+    /**
+     * Set the timed subtitle player reference so the HUD can use
+     * audio-based progress estimates when available.
+     */
+    public void setTimedSubtitlePlayer(TimedSubtitlePlayer player) {
+        this.timedSubtitlePlayer = player;
     }
 
     public void render(PoseStack poseStack, float tickDelta) {
@@ -32,11 +42,32 @@ public class RideHudRenderer extends GuiComponent {
             return;
         }
 
-        int remainingSeconds = rideDetector.getRemainingSeconds();
-        int elapsedSeconds = rideDetector.getElapsedSeconds();
+        int remainingSeconds;
+        int elapsedSeconds;
+
+        // Prefer audio-based estimate from the timed subtitle player
+        if (timedSubtitlePlayer != null && timedSubtitlePlayer.isLoaded()) {
+            int audioRemaining = timedSubtitlePlayer.getEstimatedRemainingSeconds();
+            if (audioRemaining >= 0) {
+                remainingSeconds = audioRemaining;
+                elapsedSeconds = timedSubtitlePlayer.getEstimatedElapsedSeconds();
+                // Use the subtitle data's total ride time for consistency
+                int audioTotal = timedSubtitlePlayer.getTotalRideTimeSec();
+                if (audioTotal > 0) {
+                    totalSeconds = audioTotal;
+                }
+            } else {
+                // No audio estimate yet, fall back to detector timer
+                remainingSeconds = rideDetector.getRemainingSeconds();
+                elapsedSeconds = rideDetector.getElapsedSeconds();
+            }
+        } else {
+            remainingSeconds = rideDetector.getRemainingSeconds();
+            elapsedSeconds = rideDetector.getElapsedSeconds();
+        }
 
         // Calculate progress percentage
-        int progress = Math.min(100, (elapsedSeconds * 100) / totalSeconds);
+        int progress = Math.min(100, (elapsedSeconds * 100) / Math.max(1, totalSeconds));
 
         // Format the display text
         String timeLeft = formatDuration(remainingSeconds);

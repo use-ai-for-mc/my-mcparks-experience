@@ -35,8 +35,13 @@ public class LivingWithTheLand implements RideExperience {
     /** Aqua color value used by MCParks for LWTL narration. */
     private static final int AQUA = 0x55FFFF;  // §b
 
+    /** Timed subtitle data parsed from .ass files for all 22 narration tracks. */
+    private static final String SUBTITLE_RESOURCE =
+            "/assets/my-mcparks-experience/subtitles/lwtl.json";
+
     @Override public String name() { return NAME; }
     @Override public String park() { return PARK; }
+    @Override public String subtitleResource() { return SUBTITLE_RESOURCE; }
 
     /** Full boat cycle: 12 min 56 sec. */
     @Override public int rideTimeSeconds() { return 12 * 60 + 56; }
