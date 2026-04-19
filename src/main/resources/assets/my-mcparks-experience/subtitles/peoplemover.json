@@ -19,7 +19,8 @@
           "text": "Keep your hands, arms, feet, legs, and other appendages inside your car."
         }
       ],
-      "rideOffsetMs": 0
+      "rideOffsetMs": 0,
+      "loopDurationMs": 45051
     },
     "MK/Tomorrowland/TTA/1": {
       "entries": [
@@ -66,7 +67,7 @@
         {
           "startMs": 720,
           "endMs": 8820,
-          "text": "For your safety if you have wings, jet packs or gravity polarizers please do not take flight while on board. Thank you."
+          "text": "For your safety if you have wings, jet packs, or gravity polarizers please do not take flight while on board. Thank you."
         }
       ],
       "rideOffsetMs": 72860
@@ -131,7 +132,7 @@
         {
           "startMs": 6300,
           "endMs": 12640,
-          "text": "I love a good circuit and these are two of the best tracks in the cosmos for a bit of light, speedy, competition."
+          "text": "I love a good circuit and these are two of the best tracks in the cosmos for a bit of light, speedy competition."
         }
       ],
       "rideOffsetMs": 137822
@@ -141,7 +142,7 @@
         {
           "startMs": 0,
           "endMs": 8120,
-          "text": "Attention all visitors from galaxy M-31 please keep forward facing tentacles clear of oncoming vehicles. Thank you."
+          "text": "Attention all visitors from galaxy M-31 please keep forward facing tentacles clear of coming vehicles. Thank you."
         }
       ],
       "rideOffsetMs": 160019
@@ -300,7 +301,7 @@
         {
           "startMs": 17200,
           "endMs": 25200,
-          "text": "Cause now it is the time. Now is the best time to go out explore tomorrow today. See you in the future."
+          "text": "Cause now it is the time. Now is the best time to go out and explore tomorrow today. See you in the future."
         }
       ],
       "rideOffsetMs": 446142
