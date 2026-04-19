@@ -1,5 +1,6 @@
 package com.chenweikeng.mcparks.audio;
 
+import com.chenweikeng.mcparks.audiocache.AudioCache;
 import java.io.BufferedInputStream;
 import java.io.InputStream;
 import java.net.URL;
@@ -60,6 +61,17 @@ public class StreamingAudioPlayer {
 
     public long getPlaybackStartMs() {
         return playbackStartMs;
+    }
+
+    /**
+     * Actual audible playback position in milliseconds, based on frames
+     * consumed by the audio hardware mixer. Returns 0 before the line is
+     * opened (first decoded frame). Includes the initial seek offset.
+     */
+    public long getPlaybackPositionMs() {
+        SourceDataLine l = line;
+        if (l == null) return 0;
+        return l.getMicrosecondPosition() / 1000L + (long) (seekSeconds * 1000);
     }
 
     public boolean isActive() {
@@ -316,7 +328,12 @@ public class StreamingAudioPlayer {
             resolved = "https://" + resolved;
         }
         LOGGER.debug("Opening audio URL: {}", resolved);
-        InputStream stream = new BufferedInputStream(new URL(resolved).openStream(), 16384);
+        InputStream stream;
+        if (resolved.toLowerCase().endsWith(".mp3")) {
+            stream = AudioCache.openStream(resolved);
+        } else {
+            stream = new BufferedInputStream(new URL(resolved).openStream(), 16384);
+        }
         LOGGER.debug("Audio URL opened successfully: {}", resolved);
         return stream;
     }

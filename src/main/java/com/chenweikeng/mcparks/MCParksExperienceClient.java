@@ -1,6 +1,7 @@
 package com.chenweikeng.mcparks;
 
 import com.chenweikeng.mcparks.audio.MCParksAudioService;
+import com.chenweikeng.mcparks.audiocache.AudioCache;
 import com.chenweikeng.mcparks.config.ClothConfigScreen;
 import com.chenweikeng.mcparks.config.ModConfig;
 import com.chenweikeng.mcparks.cursor.CursorManager;
@@ -74,6 +75,7 @@ public class MCParksExperienceClient implements ClientModInitializer {
     public void onInitializeClient() {
         ModConfig.load();
         TextureCache.init();
+        AudioCache.init();
         LOGGER.info("My MCParks Experience client initialized");
 
         // Wire the timed subtitle player into the HUD renderer for audio-based progress
