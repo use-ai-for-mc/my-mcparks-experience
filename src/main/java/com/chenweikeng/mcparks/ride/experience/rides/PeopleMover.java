@@ -29,8 +29,13 @@ public class PeopleMover implements RideExperience {
     private static final String VEHICLE_ITEM = "iron_axe";
     private static final int VEHICLE_DAMAGE = 22;
 
+    /** Timed subtitle data parsed from .ass files for the boarding loop plus 18 narration tracks. */
+    private static final String SUBTITLE_RESOURCE =
+            "/assets/my-mcparks-experience/subtitles/peoplemover.json";
+
     @Override public String name() { return NAME; }
     @Override public String park() { return PARK; }
+    @Override public String subtitleResource() { return SUBTITLE_RESOURCE; }
 
     /** Full loop: 8 min 11 sec. */
     @Override public int rideTimeSeconds() { return 8 * 60 + 11; }

@@ -1,0 +1,309 @@
+{
+  "totalRideTimeSec": 491,
+  "tracks": {
+    "MK/Tomorrowland/TTA/Boardingloop": {
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 4460,
+          "text": "Please step carefully onto the moving platform, then step into the car."
+        },
+        {
+          "startMs": 4460,
+          "endMs": 7760,
+          "text": "For your safety, remain seated at all times."
+        },
+        {
+          "startMs": 7860,
+          "endMs": 13600,
+          "text": "Keep your hands, arms, feet, legs, and other appendages inside your car."
+        }
+      ],
+      "rideOffsetMs": 0
+    },
+    "MK/Tomorrowland/TTA/1": {
+      "entries": [
+        {
+          "startMs": 2360,
+          "endMs": 6980,
+          "text": "This is the TTA blue line, nonstop service around Tomorrowland."
+        }
+      ],
+      "rideOffsetMs": 35176
+    },
+    "MK/Tomorrowland/TTA/2": {
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 5020,
+          "text": "Greetings intergalactic travelers. Welcome aboard the PeopleMover, presented by Enterprise."
+        },
+        {
+          "startMs": 5080,
+          "endMs": 9380,
+          "text": "I am ORAC-5, your guide aboard this highway in the sky."
+        },
+        {
+          "startMs": 9380,
+          "endMs": 12380,
+          "text": "The absolute best way to see Tomorrowland."
+        },
+        {
+          "startMs": 12380,
+          "endMs": 15060,
+          "text": "And my stars is there ever a lot to see."
+        },
+        {
+          "startMs": 15160,
+          "endMs": 20100,
+          "text": "From spacecraft to monster laughs there's really nothing like today in Tomorrowland."
+        }
+      ],
+      "rideOffsetMs": 51159
+    },
+    "MK/Tomorrowland/TTA/3": {
+      "entries": [
+        {
+          "startMs": 720,
+          "endMs": 8820,
+          "text": "For your safety if you have wings, jet packs or gravity polarizers please do not take flight while on board. Thank you."
+        }
+      ],
+      "rideOffsetMs": 72860
+    },
+    "MK/Tomorrowland/TTA/4": {
+      "entries": [
+        {
+          "startMs": 900,
+          "endMs": 8440,
+          "text": "The next station is- Tomorrowland Urban Planning and Star Traders Transfer to Green and Red Lines."
+        },
+        {
+          "startMs": 8720,
+          "endMs": 15000,
+          "text": "Don't worry, your express train keeps on rolling towards the future. Right by two of my favorite spots."
+        }
+      ],
+      "rideOffsetMs": 85476
+    },
+    "MK/Tomorrowland/TTA/5": {
+      "entries": [
+        {
+          "startMs": 1100,
+          "endMs": 7300,
+          "text": "First up, Progress City, Walt Disney's amazing dream for a community of tomorrow."
+        },
+        {
+          "startMs": 7300,
+          "endMs": 14200,
+          "text": "Did you know Progress City inspired EPCOT, and a lot of the visionary ideas throughout Walt Disney World."
+        },
+        {
+          "startMs": 14260,
+          "endMs": 19860,
+          "text": "Look, there's even a tiny PeopleMover- I wonder if there's a tiny ORAC."
+        }
+      ],
+      "rideOffsetMs": 106821
+    },
+    "MK/Tomorrowland/TTA/6": {
+      "entries": [
+        {
+          "startMs": 1480,
+          "endMs": 5700,
+          "text": "On your right is Star Traders, home to the greatest goods in the galaxy."
+        },
+        {
+          "startMs": 5860,
+          "endMs": 9100,
+          "text": "Except the actual stars, those are no longer sold."
+        }
+      ],
+      "rideOffsetMs": 125002
+    },
+    "MK/Tomorrowland/TTA/7": {
+      "entries": [
+        {
+          "startMs": 1780,
+          "endMs": 6140,
+          "text": "Now approaching, Tomorrowland Speedway and Tron Lightcycle Run."
+        },
+        {
+          "startMs": 6300,
+          "endMs": 12640,
+          "text": "I love a good circuit and these are two of the best tracks in the cosmos for a bit of light, speedy, competition."
+        }
+      ],
+      "rideOffsetMs": 137822
+    },
+    "MK/Tomorrowland/TTA/8": {
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 8120,
+          "text": "Attention all visitors from galaxy M-31 please keep forward facing tentacles clear of oncoming vehicles. Thank you."
+        }
+      ],
+      "rideOffsetMs": 160019
+    },
+    "MK/Tomorrowland/TTA/9": {
+      "entries": [
+        {
+          "startMs": 1680,
+          "endMs": 6680,
+          "text": "This is Starport 75, or as we locals call it, Space Mountain---"
+        },
+        {
+          "startMs": 6680,
+          "endMs": 10540,
+          "text": "our highspeed rocket port to distant deep space destinations."
+        }
+      ],
+      "rideOffsetMs": 190027
+    },
+    "MK/Tomorrowland/TTA/10": {
+      "entries": [
+        {
+          "startMs": 3520,
+          "endMs": 14600,
+          "text": "Let relaxation wash over you at the most refreshing retreat in the galaxy, the Coral Wounds of Pisces 7. You H2-owed it to yourself. Book today!"
+        }
+      ],
+      "rideOffsetMs": 213721
+    },
+    "MK/Tomorrowland/TTA/11": {
+      "entries": [
+        {
+          "startMs": 100,
+          "endMs": 8140,
+          "text": "Paging Mr. Morrow, Mr. Tom Morrow. Please contact Mr. Johnson in the control tower to confirm your flight to the moon. Thank you!"
+        }
+      ],
+      "rideOffsetMs": 281028
+    },
+    "MK/Tomorrowland/TTA/12": {
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 8960,
+          "text": "Attention all visitors from Galaxy M31. Please keep forward facing tentacles clear of coming vehicles. Thank you!"
+        }
+      ],
+      "rideOffsetMs": 298678
+    },
+    "MK/Tomorrowland/TTA/13": {
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 6380,
+          "text": "To your right is the Astro Orbiter, our celestial symbol of interplanetary harmony and fellowship."
+        },
+        {
+          "startMs": 6380,
+          "endMs": 11220,
+          "text": "Hop aboard and launch high above Tomorrowland for a spin amongst the planets."
+        }
+      ],
+      "rideOffsetMs": 325820
+    },
+    "MK/Tomorrowland/TTA/14": {
+      "entries": [
+        {
+          "startMs": 1400,
+          "endMs": 5160,
+          "text": "The next station is Walt Disney's Carousel of Progress."
+        },
+        {
+          "startMs": 5380,
+          "endMs": 9460,
+          "text": "As usual we will keep moving ahead and so does the carousel."
+        },
+        {
+          "startMs": 9460,
+          "endMs": 12760,
+          "text": "Like progress itself this theater never stops,"
+        },
+        {
+          "startMs": 12760,
+          "endMs": 17940,
+          "text": "aspiring new generations to dream of a great big beautiful tomorrow."
+        }
+      ],
+      "rideOffsetMs": 352643
+    },
+    "MK/Tomorrowland/TTA/15": {
+      "entries": [
+        {
+          "startMs": 1000,
+          "endMs": 6320,
+          "text": "Calling all space rangers. Report to your star cruiser and join me on this daring space mission—"
+        },
+        {
+          "startMs": 6320,
+          "endMs": 9120,
+          "text": "against the evil Emperor Zurg!"
+        },
+        {
+          "startMs": 9120,
+          "endMs": 12900,
+          "text": "Affirmative! We are on it, Buzz. You can count on us."
+        }
+      ],
+      "rideOffsetMs": 394129
+    },
+    "MK/Tomorrowland/TTA/16": {
+      "entries": [],
+      "rideOffsetMs": 403396
+    },
+    "MK/Tomorrowland/TTA/17": {
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 3720,
+          "text": "Now approaching Monsters Incorporated Laugh Floor."
+        },
+        {
+          "startMs": 3800,
+          "endMs": 9360,
+          "text": "Mike Wazowski has brought in some real monsters for comedy, whether you have one eye or nine,"
+        },
+        {
+          "startMs": 9360,
+          "endMs": 11580,
+          "text": "take the time to see the show."
+        }
+      ],
+      "rideOffsetMs": 427514
+    },
+    "MK/Tomorrowland/TTA/18": {
+      "entries": [
+        {
+          "startMs": 920,
+          "endMs": 4300,
+          "text": "Now approaching Tomorrowland Transit Authority station."
+        },
+        {
+          "startMs": 4400,
+          "endMs": 10080,
+          "text": "My fellow sentient life forms, our PeopleMover journey has nearly come full orbit."
+        },
+        {
+          "startMs": 10180,
+          "endMs": 15200,
+          "text": "Thanks for riding with us. It has been a pleasure to have you aboard and even though we are concluded."
+        },
+        {
+          "startMs": 15200,
+          "endMs": 17200,
+          "text": "This is always my favorite part."
+        },
+        {
+          "startMs": 17200,
+          "endMs": 25200,
+          "text": "Cause now it is the time. Now is the best time to go out explore tomorrow today. See you in the future."
+        }
+      ],
+      "rideOffsetMs": 446142
+    }
+  }
+}
