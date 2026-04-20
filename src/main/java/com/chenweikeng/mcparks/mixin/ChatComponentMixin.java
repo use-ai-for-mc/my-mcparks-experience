@@ -2,6 +2,7 @@ package com.chenweikeng.mcparks.mixin;
 
 import com.chenweikeng.mcparks.MCParksExperienceClient;
 import com.chenweikeng.mcparks.config.ModConfig;
+import com.chenweikeng.mcparks.emoji.EmojiTransformer;
 import com.chenweikeng.mcparks.ride.RideDetector;
 import com.chenweikeng.mcparks.ride.RideSessionRecorder;
 import com.chenweikeng.mcparks.ride.experience.RideExperience;
@@ -15,6 +16,7 @@ import net.minecraft.network.chat.Component;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ChatComponent.class)
@@ -83,5 +85,21 @@ public class ChatComponentMixin {
         if (cancelled) {
             ci.cancel();
         }
+    }
+
+    /**
+     * Rewrites the received message so that ":shortcode:" sequences and
+     * literal Unicode emoji are replaced by PUA characters styled with the
+     * {@code my-mcparks-experience:emoji} bitmap font. Declared after the
+     * {@link #onAddMessage(Component, CallbackInfo)} injection so the
+     * subtitle-capture path still sees the original, unmodified message.
+     */
+    @ModifyVariable(
+        method = "addMessage(Lnet/minecraft/network/chat/Component;)V",
+        at = @At("HEAD"),
+        argsOnly = true
+    )
+    private Component mcparks$emojifyAddMessage(Component original) {
+        return EmojiTransformer.transform(original);
     }
 }

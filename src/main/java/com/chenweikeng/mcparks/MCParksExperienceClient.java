@@ -5,6 +5,7 @@ import com.chenweikeng.mcparks.audiocache.AudioCache;
 import com.chenweikeng.mcparks.config.ClothConfigScreen;
 import com.chenweikeng.mcparks.config.ModConfig;
 import com.chenweikeng.mcparks.cursor.CursorManager;
+import com.chenweikeng.mcparks.emoji.EmojiAssets;
 import com.chenweikeng.mcparks.fly.FlyManager;
 import com.chenweikeng.mcparks.fullbright.DayTimeHandler;
 import com.chenweikeng.mcparks.ride.RideDetector;
@@ -76,6 +77,7 @@ public class MCParksExperienceClient implements ClientModInitializer {
         ModConfig.load();
         TextureCache.init();
         AudioCache.init();
+        EmojiAssets.load();
         LOGGER.info("My MCParks Experience client initialized");
 
         // Wire the timed subtitle player into the HUD renderer for audio-based progress

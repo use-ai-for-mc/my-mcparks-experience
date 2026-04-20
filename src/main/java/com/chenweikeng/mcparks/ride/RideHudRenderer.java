@@ -27,7 +27,10 @@ public class RideHudRenderer extends GuiComponent {
     }
 
     public void render(PoseStack poseStack, float tickDelta) {
-        if (!rideDetector.hasRideTime()) {
+        // Only render when actually on the ride — skip the preshow window
+        // where a RideExperience is matched via boarding-loop audio but the
+        // player hasn't boarded yet.
+        if (!rideDetector.isOnRide() || !rideDetector.hasRideTime()) {
             return;
         }
 

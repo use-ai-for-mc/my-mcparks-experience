@@ -36,8 +36,16 @@ public final class TimedSubtitlePlayer {
     /** A single timed subtitle entry within an audio track. */
     private record SubEntry(long startMs, long endMs, String text) {}
 
-    /** Subtitle entries plus ride offset for one audio track. */
-    private record TrackData(List<SubEntry> entries, long rideOffsetMs) {}
+    /**
+     * Subtitle entries plus ride offset for one audio track.
+     *
+     * <p>{@code loopDurationMs} is only meaningful for looping tracks (e.g.
+     * boarding-loop audio). When {@code > 0}, the player wraps the track's
+     * playback position by this value before matching entries, so the
+     * subtitles replay on each loop. 0 means "do not wrap" (fallback
+     * behaviour; entries stop matching after their last {@code endMs}).
+     */
+    private record TrackData(List<SubEntry> entries, long rideOffsetMs, long loopDurationMs) {}
 
     /** Audio track name -> subtitle + offset data. */
     private Map<String, TrackData> trackData = Collections.emptyMap();
@@ -55,7 +63,7 @@ public final class TimedSubtitlePlayer {
     private long clearAtMs;
 
     /** How long to keep the last subtitle visible after its entry ends (ms). */
-    private static final long LINGER_MS = 500;
+    private static final long LINGER_MS = 5000;
 
     // ---- Progress estimation ----
 
@@ -114,6 +122,12 @@ public final class TimedSubtitlePlayer {
                     rideOffsetMs = trackObj.get("rideOffsetMs").getAsLong();
                 }
 
+                // Parse optional loop duration (for looping tracks)
+                long loopDurationMs = 0;
+                if (trackObj.has("loopDurationMs")) {
+                    loopDurationMs = trackObj.get("loopDurationMs").getAsLong();
+                }
+
                 // Parse subtitle entries
                 JsonArray arr = trackObj.getAsJsonArray("entries");
                 List<SubEntry> entries = new ArrayList<>(arr.size());
@@ -127,7 +141,7 @@ public final class TimedSubtitlePlayer {
 
                 // Sort by start time (should already be sorted, but ensure)
                 entries.sort(Comparator.comparingLong(SubEntry::startMs));
-                parsed.put(trackName, new TrackData(entries, rideOffsetMs));
+                parsed.put(trackName, new TrackData(entries, rideOffsetMs, loopDurationMs));
                 totalEntries += entries.size();
             }
 
@@ -176,7 +190,17 @@ public final class TimedSubtitlePlayer {
             TrackData data = trackData.get(track.name());
             if (data == null) continue;
 
-            long elapsedMs = now - track.startedAtMs();
+            // Prefer the audio mixer's actual playback position; fall back to
+            // wall clock before the line opens (positionMs == 0 at startup).
+            long elapsedMs = track.positionMs() > 0
+                    ? track.positionMs()
+                    : now - track.startedAtMs();
+
+            // Looping tracks (e.g. boarding loop) need their position wrapped
+            // so subtitles replay on each iteration.
+            if (track.looping() && data.loopDurationMs > 0) {
+                elapsedMs = elapsedMs % data.loopDurationMs;
+            }
 
             // -- Progress estimation --
             // Use the most recently started track for the best estimate

@@ -12,7 +12,6 @@ import net.minecraft.network.Connection;
 
 public class DayTimeHandler {
     private static final long NOON = 6000L;
-    private static final long SUNSET_START = 12000L;
 
     public void tick(Minecraft client) {
         ClientLevel level = client.level;
@@ -39,8 +38,10 @@ public class DayTimeHandler {
             return;
         }
 
-        long time = level.getDayTime() % 24000L;
-        if (time >= SUNSET_START) {
+        // Unconditional snap: any non-noon value (morning, evening, night)
+        // is reset to NOON so the stored state doesn't drift between the
+        // packet-side and render-side clamps.
+        if (level.getDayTime() != NOON) {
             level.getLevelData().setDayTime(NOON);
         }
     }

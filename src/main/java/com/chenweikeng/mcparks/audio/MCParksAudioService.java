@@ -347,7 +347,8 @@ public class MCParksAudioService {
                 s != null ? s.triggerCount : 1,
                 s != null ? s.lastMessage : name,
                 p.isActive(),
-                p.isFadingOut()
+                p.isFadingOut(),
+                p.getPlaybackPositionMs()
             ));
         }
         out.sort(Comparator.comparing(t -> t.name));
@@ -407,7 +408,9 @@ public class MCParksAudioService {
         int triggerCount,
         String lastServerMessage,
         boolean active,
-        boolean fadingOut
+        boolean fadingOut,
+        /** Actual audible playback position in ms (0 before line opens). */
+        long positionMs
     ) {}
 
     // --- WebSocket Listener ---

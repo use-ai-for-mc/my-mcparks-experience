@@ -7,8 +7,10 @@
     "client": [
         "ChatComponentMixin",
         "ClientPacketListenerMixin",
+        "ClientPacketListenerOpenScreenMixin",
         "GuiMixin",
         "ItemInHandRendererMixin",
+        "LevelMixin",
         "LivingEntityMixin",
         "MinecraftMixin",
         "SkinCacheHttpTextureMixin",

@@ -1,0 +1,495 @@
+{
+  "totalRideTimeSec": 999,
+  "tracks": {
+    "sse/script/AncientGreeksScene": {
+      "entries": [
+        {
+          "startMs": 180,
+          "endMs": 3180,
+          "text": "The ancient Greeks were great inventors of the future."
+        },
+        {
+          "startMs": 3480,
+          "endMs": 9880,
+          "text": "First they established public schools, and then begin teaching an intriguing new subject called mathematics."
+        },
+        {
+          "startMs": 10220,
+          "endMs": 16900,
+          "text": "And with math comes mechanical technology and the birth of a high tech life we enjoy today."
+        }
+      ],
+      "rideOffsetMs": 315972
+    },
+    "sse/script/CameraPicture": {
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 5860,
+          "text": "Now locate the monitor overhead to the right, make sure your face is visible, and wait for the flash!"
+        }
+      ],
+      "rideOffsetMs": 91945
+    },
+    "sse/script/CaveWalls": {
+      "entries": [
+        {
+          "startMs": 140,
+          "endMs": 6600,
+          "text": "It takes 15,000 years to come up with the next bright idea, recording our knowledge on cave walls."
+        },
+        {
+          "startMs": 6880,
+          "endMs": 12000,
+          "text": "There was only one problem, when we moved, the recorded knowledge stayed behind."
+        }
+      ],
+      "rideOffsetMs": 197943
+    },
+    "sse/script/CreatingAFuture": {
+      "entries": [
+        {
+          "startMs": 240,
+          "endMs": 3120,
+          "text": "Let's have some fun creating the future, shall we?"
+        },
+        {
+          "startMs": 3820,
+          "endMs": 6900,
+          "text": "On your computer screen, answer a few questions for us."
+        },
+        {
+          "startMs": 7060,
+          "endMs": 13720,
+          "text": "Then, we'll show you a new world, custom made, just for you! Ready?"
+        }
+      ],
+      "rideOffsetMs": 763978
+    },
+    "sse/script/EarthScene": {
+      "entries": [
+        {
+          "startMs": 240,
+          "endMs": 4640,
+          "text": "After 30,000 years of time travel, here we are."
+        },
+        {
+          "startMs": 4900,
+          "endMs": 12080,
+          "text": "A truly global community, poised to shape the future of this, our Spaceship Earth."
+        }
+      ],
+      "rideOffsetMs": 649980
+    },
+    "sse/script/EgyptSpeech1": {
+      "entries": [
+        {
+          "startMs": 180,
+          "endMs": 7420,
+          "text": "Now let's move ahead to Ancient Egypt because something is about to happen here that will change the future forever."
+        }
+      ],
+      "rideOffsetMs": 221942
+    },
+    "sse/script/EuropeMonks": {
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 8500,
+          "text": "In the meantime, here in Europe monks toil endlessly recording these books by hand, but that is about to change."
+        }
+      ],
+      "rideOffsetMs": 407972
+    },
+    "sse/script/FinishQuestions": {
+      "entries": [
+        {
+          "startMs": 1720,
+          "endMs": 8600,
+          "text": "Well done! Now along with your answers, let's add in some amazing new technology that we happen to know about."
+        }
+      ],
+      "rideOffsetMs": 823990
+    },
+    "sse/script/FutureReady": {
+      "entries": [
+        {
+          "startMs": 60,
+          "endMs": 5500,
+          "text": "And now I believe your future is just about ready. Let's take a look, shall we?"
+        }
+      ],
+      "rideOffsetMs": 879983
+    },
+    "sse/script/GuideIntroduction": {
+      "entries": [
+        {
+          "startMs": 200,
+          "endMs": 2520,
+          "text": "Good, sending photo to the future!"
+        },
+        {
+          "startMs": 2700,
+          "endMs": 6000,
+          "text": "All systems are go, linking you now to your guide."
+        }
+      ],
+      "rideOffsetMs": 99947
+    },
+    "sse/script/IntroSpeech": {
+      "entries": [
+        {
+          "startMs": 80,
+          "endMs": 6280,
+          "text": "Like a grand and miraculous spaceship, our planet has sailed through the universe of time;"
+        },
+        {
+          "startMs": 6560,
+          "endMs": 10560,
+          "text": "and for a brief moment we have been among its passengers."
+        },
+        {
+          "startMs": 11140,
+          "endMs": 15200,
+          "text": "But where are we going? And what kind of future will we discover there?"
+        },
+        {
+          "startMs": 15380,
+          "endMs": 18780,
+          "text": "Surprisingly, the answers lie in our past."
+        },
+        {
+          "startMs": 19320,
+          "endMs": 24400,
+          "text": "Since the dawn of recorded history, we've been inventing the future one step at a time."
+        },
+        {
+          "startMs": 24680,
+          "endMs": 27520,
+          "text": "So let's travel back in time together."
+        },
+        {
+          "startMs": 27800,
+          "endMs": 35940,
+          "text": "I'll show you how our ancestors created the world we know today, and then it will be your turn to create the world of tomorrow."
+        }
+      ],
+      "rideOffsetMs": 109942
+    },
+    "sse/script/MammothScene": {
+      "entries": [
+        {
+          "startMs": 220,
+          "endMs": 3600,
+          "text": "Here in this hostile world is where our story begins."
+        },
+        {
+          "startMs": 3960,
+          "endMs": 9820,
+          "text": "We are alone, struggling to survive until we learn to communicate with one another."
+        },
+        {
+          "startMs": 10320,
+          "endMs": 14360,
+          "text": "Now we can hunt as a team and survive together."
+        }
+      ],
+      "rideOffsetMs": 155947
+    },
+    "sse/script/MiddleEast": {
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 7140,
+          "text": "It turns out there were copies of some of these books in the libraries of the Middle East, being watched over by Arab and Jewish scholars."
+        },
+        {
+          "startMs": 7300,
+          "endMs": 14580,
+          "text": "Call it, the first backup system. The books are saved, and with them: our dreams of the future."
+        }
+      ],
+      "rideOffsetMs": 385978
+    },
+    "sse/script/MoonLanding": {
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 7840,
+          "text": "By now, we're all communicating from anywhere on Earth, and in 1969, from somewhere else..."
+        },
+        {
+          "startMs": 8840,
+          "endMs": 14960,
+          "text": "That's one small step for a man, one giant leap for mankind."
+        },
+        {
+          "startMs": 16540,
+          "endMs": 23600,
+          "text": "To send a man to the moon, we had to invent a new language, spoken not by man, but by computers."
+        },
+        {
+          "startMs": 23880,
+          "endMs": 28720,
+          "text": "At first very large, very expensive computers, but we see the potential."
+        }
+      ],
+      "rideOffsetMs": 515976
+    },
+    "sse/script/OutroSpeech": {
+      "entries": [
+        {
+          "startMs": 920,
+          "endMs": 5480,
+          "text": "So here’s to the next 30,000 years on Spaceship Earth."
+        },
+        {
+          "startMs": 6000,
+          "endMs": 16260,
+          "text": "While no one knows for sure what we’ll see or do, I do know it will be quite an adventure—an adventure that we’ll take and make together."
+        },
+        {
+          "startMs": 16880,
+          "endMs": 18320,
+          "text": "See you in the future!"
+        }
+      ],
+      "rideOffsetMs": 979980
+    },
+    "sse/script/PapyrusSpeech": {
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 6160,
+          "text": "This unknown Egyptian pounding reeds flat is inventing Papyrus, a sort of paper."
+        },
+        {
+          "startMs": 6540,
+          "endMs": 13860,
+          "text": "Papyrus in turn creates better record keeping of plans, designs, and unfortunately taxes."
+        },
+        {
+          "startMs": 14200,
+          "endMs": 18860,
+          "text": "But it also brings with it, the dawn of great civilizations."
+        }
+      ],
+      "rideOffsetMs": 245953
+    },
+    "sse/script/PersonalComputers": {
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 5000,
+          "text": "What if everyone could have one of these amazing machines in their own house?"
+        },
+        {
+          "startMs": 5520,
+          "endMs": 8360,
+          "text": "There's just one problem: They're as big as a house."
+        },
+        {
+          "startMs": 8720,
+          "endMs": 12520,
+          "text": "The solution comes in of all places, a garage in California."
+        },
+        {
+          "startMs": 12820,
+          "endMs": 18900,
+          "text": "Young people with a passion for shaping the future put the power of the computer in everyone's hands."
+        }
+      ],
+      "rideOffsetMs": 555980
+    },
+    "sse/script/PheoniciansScene": {
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 6120,
+          "text": "At this point each civilization has its own a form of writing, which none of the others can understand."
+        },
+        {
+          "startMs": 6580,
+          "endMs": 10580,
+          "text": "But the Phoenicians, who trade with all of them, have a solution."
+        },
+        {
+          "startMs": 10740,
+          "endMs": 15700,
+          "text": "They create a simple, common alphabet, adaptable to most languages."
+        },
+        {
+          "startMs": 16000,
+          "endMs": 22000,
+          "text": "Remember how easy it was to learn your ABCs? Thank the Phoenicians, they invented them."
+        }
+      ],
+      "rideOffsetMs": 289975
+    },
+    "sse/script/PrintingPress": {
+      "entries": [
+        {
+          "startMs": 300,
+          "endMs": 5040,
+          "text": "In 1450, Gutenberg invents the movable type printing press."
+        },
+        {
+          "startMs": 5220,
+          "endMs": 9980,
+          "text": "Now, knowledge can travel as fast as these new books, and travel they do!"
+        },
+        {
+          "startMs": 10040,
+          "endMs": 19500,
+          "text": "Books make it easier to invent the future in every field, and the result is an incredible explosion of innovation we call the Renaissance."
+        }
+      ],
+      "rideOffsetMs": 419974
+    },
+    "sse/script/RomansScene1": {
+      "entries": [
+        {
+          "startMs": 160,
+          "endMs": 4680,
+          "text": "With lessons learned from the Greeks, the Romans create a powerful empire."
+        },
+        {
+          "startMs": 5000,
+          "endMs": 9940,
+          "text": "To move their armies around, they build a system of roads all over the known world."
+        },
+        {
+          "startMs": 10440,
+          "endMs": 16320,
+          "text": "Rome built the first World Wide Web, and it's leading us into the future."
+        }
+      ],
+      "rideOffsetMs": 335971
+    },
+    "sse/script/RomeFalls": {
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 7120,
+          "text": "But then we hit a road block: Rome falls, and the great Library of Alexandria in Egypt is burned."
+        },
+        {
+          "startMs": 7340,
+          "endMs": 13120,
+          "text": "Much of our learning is destroyed... lost forever... or so we think."
+        }
+      ],
+      "rideOffsetMs": 365978
+    },
+    "sse/script/WelcomeAboard": {
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 5020,
+          "text": "This is Spaceship Earth Control. On behalf of Siemens, welcome aboard!"
+        },
+        {
+          "startMs": 5020,
+          "endMs": 10100,
+          "text": "On the map in front of you, please show us where you’re from while we input your time-travel coordinates."
+        }
+      ],
+      "rideOffsetMs": 71945
+    },
+    "sse/future/welcomeToFuture": {
+      "entries": [
+        {
+          "startMs": 500,
+          "endMs": 5500,
+          "text": "Welcome to the future! ...Or should I say, YOUR future?"
+        }
+      ],
+      "rideOffsetMs": 887983
+    },
+    "sse/future/theEnd": {
+      "entries": [
+        {
+          "startMs": 580,
+          "endMs": 6200,
+          "text": "The end...or should I say, the beginning? Of your future!"
+        }
+      ],
+      "rideOffsetMs": 959983
+    },
+    "sse/future/leisure/0sea": {
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 4980,
+          "text": "You'll travel quickly and safely to places you can't imagine visiting today."
+        },
+        {
+          "startMs": 5360,
+          "endMs": 12140,
+          "text": "And the moment you arrive at your ultimate vacation destination, you can dive right in...to the future!"
+        }
+      ],
+      "rideOffsetMs": 943978
+    },
+    "sse/future/leisure/1plan": {
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 8200,
+          "text": "You've already planned the trip with your virtual travel agent. Hotels...check! Restaurants? Check! Guided tours...check!"
+        }
+      ],
+      "rideOffsetMs": 919982
+    },
+    "sse/future/leisure/2journey": {
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 6820,
+          "text": "Getting there is half the fun, so your family car will be equipped with virtual tools to teach you about the world outside your window!"
+        }
+      ],
+      "rideOffsetMs": 931983
+    },
+    "sse/future/leisure/3city": {
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 7320,
+          "text": "You'll leave your city home in an ultra-light, ultra-powerful, totally-networked family car--that can take you anywhere!"
+        }
+      ],
+      "rideOffsetMs": 911977
+    },
+    "sse/future/leisure/4pet": {
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 5300,
+          "text": "You won't have to worry about your pets while you are gone, thanks to handy household robots!"
+        }
+      ],
+      "rideOffsetMs": 905978
+    },
+    "sse/future/leisure/5solar": {
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 3940,
+          "text": "And with solar power from your home fueling station, you're off!"
+        }
+      ],
+      "rideOffsetMs": 901976
+    },
+    "sse/future/leisure/leisureIntro": {
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 8660,
+          "text": "Here in your future, getting away on vacation is a breeze! Your smart suitcase knows where you're going, and what you'll need."
+        }
+      ],
+      "rideOffsetMs": 893981
+    }
+  }
+}

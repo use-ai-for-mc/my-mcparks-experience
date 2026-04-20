@@ -64,9 +64,45 @@ public class RideDetector {
 
         if (!isPassenger) {
             lastVehicleId = -1;
+            // Preshow poll: while idle, check if any RideExperience activates
+            // on audio alone (e.g. boarding-loop narration before the rider
+            // boards a car). Fires onBoard/onDismount on transitions so the
+            // client can load/unload the TimedSubtitlePlayer.
+            pollIdleExperience();
         }
 
         wasPassenger = isPassenger;
+    }
+
+    private void pollIdleExperience() {
+        ExperienceContext ctx = ExperienceContext.current(toNearbyModels());
+        if (ctx == null) return;
+        RideExperience matched = RideExperienceRegistry.getInstance().findActive(ctx).orElse(null);
+        if (matched == currentExperience) return;
+
+        if (currentExperience != null) {
+            long dur = boardingTimeMs > 0
+                    ? System.currentTimeMillis() - boardingTimeMs : 0;
+            try {
+                currentExperience.onDismount(ctx, dur);
+            } catch (Exception e) {
+                LOGGER.warn("onDismount threw for {}", currentExperience.name(), e);
+            }
+        }
+        currentExperience = matched;
+        if (matched != null) {
+            // Don't set boardingTimeMs — that starts the HUD timer.
+            // Real boarding sets it in the passenger branch of tick().
+            LOGGER.info("Preshow experience matched: {} (park={}, rideName={})",
+                    matched.name(), ctx.currentPark, ctx.currentRideName);
+            try {
+                matched.onBoard(ctx);
+            } catch (Exception e) {
+                LOGGER.warn("onBoard threw for {}", matched.name(), e);
+            }
+        } else {
+            boardingTimeMs = 0;
+        }
     }
 
     private boolean vehicleChanged(LocalPlayer player) {
@@ -127,14 +163,27 @@ public class RideDetector {
         // takes precedence over the JSON entry for HUD + lifecycle hooks.
         List<ExperienceContext.NearbyModel> nearbyModels = toNearbyModels();
         ExperienceContext ctx = ExperienceContext.current(nearbyModels);
-        currentExperience = RideExperienceRegistry.getInstance().findActive(ctx).orElse(null);
-        if (currentExperience != null) {
-            LOGGER.info("Matched ride experience: {} (park={}, rideName={})",
-                currentExperience.name(), ctx.currentPark, ctx.currentRideName);
-            try {
-                currentExperience.onBoard(ctx);
-            } catch (Exception e) {
-                LOGGER.warn("onBoard threw for {}", currentExperience.name(), e);
+        RideExperience matched = RideExperienceRegistry.getInstance().findActive(ctx).orElse(null);
+        if (matched != currentExperience) {
+            // Fire onDismount for any previous preshow match that didn't survive boarding.
+            if (currentExperience != null) {
+                long dur = boardingTimeMs > 0
+                        ? System.currentTimeMillis() - boardingTimeMs : 0;
+                try {
+                    currentExperience.onDismount(ctx, dur);
+                } catch (Exception e) {
+                    LOGGER.warn("onDismount threw for {}", currentExperience.name(), e);
+                }
+            }
+            currentExperience = matched;
+            if (matched != null) {
+                LOGGER.info("Matched ride experience: {} (park={}, rideName={})",
+                        matched.name(), ctx.currentPark, ctx.currentRideName);
+                try {
+                    matched.onBoard(ctx);
+                } catch (Exception e) {
+                    LOGGER.warn("onBoard threw for {}", matched.name(), e);
+                }
             }
         }
 

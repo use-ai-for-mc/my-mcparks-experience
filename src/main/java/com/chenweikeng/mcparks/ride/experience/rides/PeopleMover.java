@@ -1,8 +1,10 @@
 package com.chenweikeng.mcparks.ride.experience.rides;
 
+import com.chenweikeng.mcparks.audio.MCParksAudioService;
 import com.chenweikeng.mcparks.ride.experience.ExperienceContext;
 import com.chenweikeng.mcparks.ride.experience.RideExperience;
 import java.util.Optional;
+import java.util.Set;
 import net.minecraft.network.chat.Component;
 
 /**
@@ -29,6 +31,15 @@ public class PeopleMover implements RideExperience {
     private static final String VEHICLE_ITEM = "iron_axe";
     private static final int VEHICLE_DAMAGE = 22;
 
+    /**
+     * Audio tracks that indicate the rider is standing on the boarding
+     * platform (not yet a passenger). While any of these is playing the
+     * ride is treated as "active" so the boarding-loop subtitles display.
+     */
+    private static final Set<String> PRESHOW_TRACKS = Set.of(
+            "MK/Tomorrowland/TTA/Boardingloop"
+    );
+
     /** Timed subtitle data parsed from .ass files for the boarding loop plus 18 narration tracks. */
     private static final String SUBTITLE_RESOURCE =
             "/assets/my-mcparks-experience/subtitles/peoplemover.json";
@@ -42,14 +53,21 @@ public class PeopleMover implements RideExperience {
 
     @Override
     public boolean isActive(ExperienceContext ctx) {
-        if (!ctx.isPassenger) return false;
         if (!PARK.equals(ctx.currentPark)) return false;
-        // Primary: ride name from sidebar scoreboard
-        if (ctx.rideNameMatchesAny("TTA", "PeopleMover",
-                "Tomorrowland Transit Authority PeopleMover")) return true;
-        // Fallback: player is riding the PeopleMover vehicle
-        for (ExperienceContext.NearbyModel m : ctx.nearbyModels) {
-            if (m.matches(VEHICLE_ITEM, VEHICLE_DAMAGE)) return true;
+        if (ctx.isPassenger) {
+            // Primary: ride name from sidebar scoreboard
+            if (ctx.rideNameMatchesAny("TTA", "PeopleMover",
+                    "Tomorrowland Transit Authority PeopleMover")) return true;
+            // Fallback: player is riding the PeopleMover vehicle
+            for (ExperienceContext.NearbyModel m : ctx.nearbyModels) {
+                if (m.matches(VEHICLE_ITEM, VEHICLE_DAMAGE)) return true;
+            }
+            return false;
+        }
+        // Preshow: activate when the boarding-loop audio is playing so the
+        // platform subtitles display before the player boards a car.
+        for (MCParksAudioService.ActiveTrack t : MCParksAudioService.getInstance().snapshotActive()) {
+            if (t.active() && PRESHOW_TRACKS.contains(t.name())) return true;
         }
         return false;
     }

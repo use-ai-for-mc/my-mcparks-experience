@@ -6,6 +6,7 @@ import com.chenweikeng.mcparks.ride.experience.rides.HauntedMansion;
 import com.chenweikeng.mcparks.ride.experience.rides.JourneyIntoImagination;
 import com.chenweikeng.mcparks.ride.experience.rides.LivingWithTheLand;
 import com.chenweikeng.mcparks.ride.experience.rides.PeopleMover;
+import com.chenweikeng.mcparks.ride.experience.rides.SpaceshipEarth;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -32,6 +33,7 @@ public final class RideExperienceRegistry {
         register(new JourneyIntoImagination());
         register(new LivingWithTheLand());
         register(new PeopleMover());
+        register(new SpaceshipEarth());
     }
 
     public void register(RideExperience experience) {

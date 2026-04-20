@@ -22,7 +22,11 @@ public class StreamingAudioPlayer {
     private final String url;
     private final boolean looping;
     private final boolean fadeInEnabled;
-    private final double seekSeconds;
+    // Mutable so looping tracks only honour the server-supplied seek on the
+    // FIRST pass. Subsequent loop iterations must play from the start of the
+    // file, otherwise a mid-track seek (e.g. loop-23136-Boardingloop) would
+    // skip the same head region forever.
+    private volatile double seekSeconds;
     private final ScheduledExecutorService scheduler;
 
     private static final long FADE_IN_DURATION_MS = 2000;
@@ -113,6 +117,9 @@ public class StreamingAudioPlayer {
                 }
                 LOGGER.debug("Playback pass finished for: {} (playing={}, looping={}, fadingOut={})",
                         url, playing, looping, fadingOut);
+                // Honour the initial seek only once; loop iterations start
+                // at 0 so the head of the file is audible every cycle.
+                seekSeconds = 0;
             } catch (Exception e) {
                 if (playing) {
                     LOGGER.error("Audio playback error for {}", url, e);
