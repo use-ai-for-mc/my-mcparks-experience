@@ -60,10 +60,13 @@ jobs:
 
       - uses: gradle/actions/wrapper-validation@v4
 
+      # Fabric Loom 1.16 requires Java 21+ to run Gradle, even though the
+      # mod's bytecode target stays at Java 17 (set via options.release in
+      # build.gradle).
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: 17
+          java-version: 21
 
       - uses: gradle/actions/setup-gradle@v4
 
