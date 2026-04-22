@@ -7,18 +7,26 @@ import net.minecraft.network.chat.Component;
 
 /**
  * Great Moments with Mr. Lincoln &mdash; the Audio-Animatronic stage show in
- * the Disneyland Opera House on Main Street USA. Detected via the
- * {@code "Current Ride"} sidebar scoreboard entry containing "Lincoln" or
- * "Great Moments".
+ * the Disneyland Opera House on Main Street USA.
  *
- * <p>Two speaker prefixes show up in chat: {@code [Narrator]} for the pre-show
- * / framing narration, and {@code [Abraham Lincoln]} for the title figure's
- * lines during the address itself. Both are captured into subtitles.
+ * <p><b>Currently disabled.</b> The earlier detection gate depended on a
+ * {@code "Current Ride"} sidebar scoreboard entry that MCParks does not
+ * publish, so {@link #isActive} has been returning {@code false} since
+ * inception. As a seated theater show with no vehicle, this ride has no
+ * obvious vehicle marker to use as a first-class signal. Re-enable once we
+ * have either:
+ * <ul>
+ *   <li>A distinctive audio track allowlist (e.g. the Lincoln address
+ *       recording) &mdash; gate via
+ *       {@link com.chenweikeng.mcparks.audio.MCParksAudioService} the same
+ *       way {@link PeopleMover} does for its boarding loop.</li>
+ *   <li>A location-based check (player inside the Opera House bounding box
+ *       in Disneyland Resort).</li>
+ * </ul>
  *
- * <p>Not gated on {@code isPassenger} &mdash; this is a seated theater show,
- * not a vehicle ride. The {@code [Narrator]} prefix is also used on the
- * Disneyland Railroad, so the ride-name match is what keeps this and
- * {@link DisneylandRailroad} from fighting over the same lines.
+ * <p>Chat capture is already wired for the {@code [Narrator] } and
+ * {@code [Abraham Lincoln] } speaker prefixes. Once {@link #isActive} is
+ * fixed, subtitles will work without further changes.
  *
  * <p>No HUD ride-timer: show runtime varies and there's no vehicle-boarding
  * event to anchor a countdown to.
@@ -37,8 +45,8 @@ public class GreatMomentsWithMrLincoln implements RideExperience {
 
     @Override
     public boolean isActive(ExperienceContext ctx) {
-        if (!PARK.equals(ctx.currentPark)) return false;
-        return ctx.rideNameMatchesAny("Lincoln", "Great Moments");
+        // TODO: re-enable once we have audio-track or location-based detection.
+        return false;
     }
 
     @Override

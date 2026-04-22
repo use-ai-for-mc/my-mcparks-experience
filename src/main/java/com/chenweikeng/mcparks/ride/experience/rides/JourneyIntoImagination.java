@@ -52,10 +52,6 @@ public class JourneyIntoImagination implements RideExperience {
     public boolean isActive(ExperienceContext ctx) {
         if (!ctx.isPassenger) return false;
         if (!PARK.equals(ctx.currentPark)) return false;
-        // Primary: ride name from sidebar scoreboard
-        if (ctx.rideNameMatchesAny("Figment", "JII",
-                "Journey Into Imagination", "Journey Into Imagination With Figment")) return true;
-        // Fallback: player is riding the vehicle
         for (ExperienceContext.NearbyModel m : ctx.nearbyModels) {
             if (m.matches(VEHICLE_ITEM, VEHICLE_DAMAGE)) return true;
         }

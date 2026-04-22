@@ -10,15 +10,26 @@ import net.minecraft.network.chat.Component;
  * stopping at Main Street, New Orleans Square, Mickey's Toontown, and
  * Tomorrowland, with a narrated trip through the Grand Canyon / Primeval World.
  *
- * <p>Detection: player is a passenger in "Disneyland Resort" and the sidebar
- * scoreboard's "Current Ride" entry contains "Railroad" or "Train". This is
- * deliberately loose &mdash; we don't have the train car's item/damage pinned
- * down yet, and the Narrator chat lines are what we actually want to subtitle.
+ * <p><b>Currently disabled.</b> The earlier detection gate depended on a
+ * {@code "Current Ride"} sidebar scoreboard entry that MCParks does not
+ * publish, so {@link #isActive} has been returning {@code false} since
+ * inception. Leave the class in place and unregister it until a first-class
+ * detection signal is available. Likely paths:
+ * <ul>
+ *   <li>Vehicle marker &mdash; the resource pack defines
+ *       {@code diamond_axe:17} (ckholliday_engine),
+ *       {@code diamond_axe:18} (ckholliday_passengercar), and
+ *       {@code diamond_axe:19} (ckholliday_tender). Observe in-game to
+ *       confirm which slot holds the item and whether other DL trains
+ *       (Fred Gurley, E.P. Ripley, Ernest S. Marsh) use different damages.</li>
+ *   <li>Narration audio track allowlist &mdash; if the DL narration plays on
+ *       named audio tracks, gate via {@link com.chenweikeng.mcparks.audio.MCParksAudioService}
+ *       the same way {@link WaltDisneyWorldRailroad} does for its depot spiels.</li>
+ * </ul>
  *
- * <p>Subtitles: strip the {@code "[Narrator] "} prefix MCParks uses for train
- * announcements and feed the rest to {@code SubtitleManager}. Other Disneyland
- * attractions (e.g. Great Moments with Mr. Lincoln) also use the Narrator
- * prefix, so park/rideId gating is what keeps this from firing in the theater.
+ * <p>Chat capture is already wired for the {@code [Narrator] } prefix MCParks
+ * uses for DL train announcements. Once {@link #isActive} is fixed and the
+ * class re-registered, subtitles will work without further changes.
  */
 public class DisneylandRailroad implements RideExperience {
 
@@ -34,9 +45,8 @@ public class DisneylandRailroad implements RideExperience {
 
     @Override
     public boolean isActive(ExperienceContext ctx) {
-        if (!ctx.isPassenger) return false;
-        if (!PARK.equals(ctx.currentPark)) return false;
-        return ctx.rideNameMatchesAny("Railroad", "Train");
+        // TODO: re-enable once we have vehicle-marker or audio-track detection.
+        return false;
     }
 
     @Override

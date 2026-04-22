@@ -107,8 +107,8 @@ public class RideDetector {
         if (matched != null) {
             // Don't set boardingTimeMs — that starts the HUD timer.
             // Real boarding sets it in the passenger branch of tick().
-            LOGGER.info("Preshow experience matched: {} (park={}, rideName={})",
-                    matched.name(), ctx.currentPark, ctx.currentRideName);
+            LOGGER.info("Preshow experience matched: {} (park={})",
+                    matched.name(), ctx.currentPark);
             try {
                 matched.onBoard(ctx);
             } catch (Exception e) {
@@ -197,8 +197,8 @@ public class RideDetector {
             }
             currentExperience = matched;
             if (matched != null) {
-                LOGGER.info("Matched ride experience: {} (park={}, rideName={})",
-                        matched.name(), ctx.currentPark, ctx.currentRideName);
+                LOGGER.info("Matched ride experience: {} (park={})",
+                        matched.name(), ctx.currentPark);
                 try {
                     matched.onBoard(ctx);
                 } catch (Exception e) {

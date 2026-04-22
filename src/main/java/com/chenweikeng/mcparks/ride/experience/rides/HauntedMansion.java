@@ -8,8 +8,7 @@ import net.minecraft.network.chat.Style;
 
 /**
  * Haunted Mansion &mdash; 999 happy haunts, with room for one more. The
- * Magic Kingdom (WDW) variant; detected via the {@code "Current Ride"}
- * sidebar scoreboard entry or the doom buggy vehicle model.
+ * Magic Kingdom (WDW) variant; detected via the doom buggy vehicle marker.
  *
  * <p>Vehicle: invisible armor stand with {@code iron_axe:95}
  * ({@code vehicles/doombuggy} in the resource pack).
@@ -29,13 +28,15 @@ import net.minecraft.network.chat.Style;
  *
  * <p>Detection is deliberately <em>not</em> gated on {@code isPassenger}: the
  * Ghost Host narration starts in the pre-show stretching room before the
- * guest boards a Doom Buggy. Once the player does board, the HUD ride-time
- * counter kicks in via {@code scanForRideModels}.
+ * guest boards a Doom Buggy. However, because the stretching room has no
+ * nearby doom-buggy armor stands, detection only fires once the guest is
+ * close to the loading platform. Fixing stretching-room activation requires
+ * a pre-show audio-track gate like {@link PeopleMover} uses.
  *
  * <p>MCParks runs all parks in {@code minecraft:overworld} on the 1.19
  * backend &mdash; the dimension is useless as a park discriminator.
  * {@link com.chenweikeng.mcparks.ride.experience.ParkTracker ParkTracker}
- * (parsing {@code "Traveling to X in Y"}) is the only reliable filter.
+ * (parsing the park code from the sidebar) is the only reliable filter.
  *
  * <p>If we later want to distinguish between the WDW / Disneyland / DLP / Tokyo
  * variants (different dialogue tracks), add sibling classes with park-specific
@@ -71,9 +72,11 @@ public class HauntedMansion implements RideExperience {
     @Override
     public boolean isActive(ExperienceContext ctx) {
         if (!PARK.equals(ctx.currentPark)) return false;
-        // Primary: ride name from sidebar scoreboard
-        if (ctx.rideNameMatchesAny("Haunted Mansion")) return true;
-        // Fallback: player is riding a doom buggy (handles mid-session mod load)
+        // Doom-buggy marker within scan radius. Note: this means the
+        // stretching-room pre-show doesn't activate the experience
+        // (no nearby buggies there yet) — fix via a pre-show audio-track
+        // gate like {@link PeopleMover} / {@link WaltDisneyWorldRailroad}
+        // once we have the track name.
         for (ExperienceContext.NearbyModel m : ctx.nearbyModels) {
             if (m.matches(VEHICLE_ITEM, VEHICLE_DAMAGE)) return true;
         }

@@ -24,13 +24,11 @@ public final class ExperienceContext {
     public final ResourceLocation dimension;
     /** MCParks park name from the sidebar scoreboard (e.g. "Disneyland Resort"); {@code null} if unknown. */
     public final String currentPark;
-    /** Ride display name from the sidebar "Current Ride" entry (e.g. "Haunted Mansion"); {@code null} if unknown. */
-    public final String currentRideName;
 
     private ExperienceContext(Minecraft mc, LocalPlayer player, Entity vehicle,
                               boolean isPassenger, List<NearbyModel> nearbyModels,
                               ResourceLocation dimension,
-                              String currentPark, String currentRideName) {
+                              String currentPark) {
         this.mc = mc;
         this.player = player;
         this.vehicle = vehicle;
@@ -38,7 +36,6 @@ public final class ExperienceContext {
         this.nearbyModels = nearbyModels;
         this.dimension = dimension;
         this.currentPark = currentPark;
-        this.currentRideName = currentRideName;
     }
 
     /**
@@ -55,32 +52,21 @@ public final class ExperienceContext {
 
         ResourceLocation dim = mc.level != null ? mc.level.dimension().location() : null;
 
-        // Always re-read the sidebar scoreboard so we pick up park/ride changes.
+        // Always re-read the sidebar scoreboard so we pick up park changes.
         ParkTracker tracker = ParkTracker.getInstance();
         tracker.tryReadFromScoreboard(mc);
         String park = tracker.currentPark();
-        String rideName = tracker.currentRideName();
 
         return new ExperienceContext(
             mc, player, vehicle, isPassenger,
             nearbyModels != null ? nearbyModels : Collections.emptyList(),
-            dim, park, rideName
+            dim, park
         );
     }
 
     /** Convenience overload when no nearby scan has been done this tick. */
     public static ExperienceContext current() {
         return current(Collections.emptyList());
-    }
-
-    /** Does the current ride name contain any of the given substrings (case-insensitive)? */
-    public boolean rideNameMatchesAny(String... substrings) {
-        if (currentRideName == null) return false;
-        String lower = currentRideName.toLowerCase();
-        for (String s : substrings) {
-            if (lower.contains(s.toLowerCase())) return true;
-        }
-        return false;
     }
 
     /** An invisible armor-stand model near the player's vehicle, keyed by item + damage. */

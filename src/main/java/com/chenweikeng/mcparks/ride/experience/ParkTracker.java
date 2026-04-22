@@ -13,21 +13,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Tracks the player's current park and ride from the sidebar scoreboard.
+ * Tracks the player's current park from the sidebar scoreboard.
  *
- * <p>The sidebar typically contains two useful entries:
- * <ul>
- *   <li>{@code "Park: <code>"} &mdash; the short park code (e.g. {@code "WDW"},
- *       or empty for Disneyland Resort). Mapped to a full name via
- *       {@link #PARK_CODE_MAP}.</li>
- *   <li>{@code "Current Ride"} label &mdash; the next entry below it holds the
- *       ride's display name (e.g. {@code "Splash Mountain"},
- *       {@code "Haunted Mansion"}).</li>
- * </ul>
+ * <p>The only useful entry is {@code "Park: <code>"} &mdash; a short park
+ * code (e.g. {@code "WDW"}, or empty for Disneyland Resort), mapped to a
+ * full display name via {@link #PARK_CODE_MAP}. Read every time
+ * {@link #tryReadFromScoreboard} is called (once per
+ * {@link ExperienceContext#current()} build).
  *
- * <p>Both are read every time {@link #tryReadFromScoreboard} is called (once
- * per {@link ExperienceContext#current()} build). When the park code changes
- * the stale ride name is cleared automatically.
+ * <p><b>There is no "Current Ride" entry on MCParks.</b> Earlier iterations
+ * of this code assumed one existed (it's a common convention on other
+ * server-ride mods), but MCParks' sidebar does not publish the currently-
+ * loaded ride's name &mdash; every RideExperience must detect its state via
+ * vehicle markers, audio tracks, or other first-class signals rather than
+ * trying to scrape the sidebar.
  */
 public final class ParkTracker {
 
@@ -49,7 +48,6 @@ public final class ParkTracker {
     );
 
     private static final String PARK_PREFIX = "Park: ";
-    private static final String CURRENT_RIDE_LABEL = "Current Ride";
 
     private static final ParkTracker INSTANCE = new ParkTracker();
 
@@ -58,8 +56,6 @@ public final class ParkTracker {
     }
 
     private volatile String currentPark;
-    /** Display name of the current ride read from the scoreboard, e.g. "Haunted Mansion". */
-    private volatile String currentRideName;
     /** Raw sidebar code, e.g. "WDW". Stored for change-detection and diagnostics. */
     private volatile String currentParkCode;
     /** True once we've read the scoreboard at least once this session. */
@@ -68,16 +64,14 @@ public final class ParkTracker {
     private ParkTracker() {}
 
     public String currentPark() { return currentPark; }
-    public String currentRideName() { return currentRideName; }
     public String currentParkCode() { return currentParkCode; }
 
     // ---- Scoreboard-based detection ----
 
     /**
-     * Read park and ride name from the sidebar scoreboard. Called every time
-     * {@link ExperienceContext#current()} builds a snapshot. Walks the sidebar
-     * entries looking for {@code "Park: <code>"} and the
-     * {@code "Current Ride"} label (whose next entry is the ride display name).
+     * Read park from the sidebar scoreboard. Called every time
+     * {@link ExperienceContext#current()} builds a snapshot. Walks the
+     * sidebar entries looking for {@code "Park: <code>"}.
      */
     public void tryReadFromScoreboard(Minecraft mc) {
         if (mc.level == null) return;
@@ -99,22 +93,13 @@ public final class ParkTracker {
             entries.sort(Comparator.comparingInt((ScoredEntry e) -> e.score).reversed());
 
             String newParkCode = null;
-            String newRideName = null;
 
-            for (int i = 0; i < entries.size(); i++) {
-                String display = stripDisplayPrefix(entries.get(i).display);
+            for (ScoredEntry e : entries) {
+                String display = stripDisplayPrefix(e.display);
 
                 // Park code: "Park: WDW" or "Park: " (empty = DL)
                 if (display.startsWith(PARK_PREFIX)) {
                     newParkCode = display.substring(PARK_PREFIX.length()).trim();
-                }
-
-                // "Current Ride" label → next non-blank entry below is the ride name
-                if (CURRENT_RIDE_LABEL.equals(display) && i + 1 < entries.size()) {
-                    String next = stripDisplayPrefix(entries.get(i + 1).display);
-                    if (!next.isEmpty()) {
-                        newRideName = next;
-                    }
                 }
             }
 
@@ -134,17 +119,6 @@ public final class ParkTracker {
                         + "Add it to PARK_CODE_MAP.", newParkCode);
                     currentParkCode = newParkCode;
                 }
-            }
-
-            // ---- Update ride name if changed ----
-            if (newRideName != null && !newRideName.equals(currentRideName)) {
-                LOGGER.info("Ride context (scoreboard): '{}'"
-                    + (currentRideName != null ? " (was '{}')" : ""),
-                    newRideName, currentRideName);
-                currentRideName = newRideName;
-            } else if (newRideName == null && currentRideName != null) {
-                LOGGER.info("Ride context (scoreboard): cleared (was '{}')", currentRideName);
-                currentRideName = null;
             }
 
             scoreboardRead = true;
@@ -168,7 +142,6 @@ public final class ParkTracker {
     /** Reset on disconnect. */
     public void reset() {
         currentPark = null;
-        currentRideName = null;
         currentParkCode = null;
         scoreboardRead = false;
     }

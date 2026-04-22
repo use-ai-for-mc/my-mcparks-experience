@@ -51,9 +51,6 @@ public class LivingWithTheLand implements RideExperience {
         if (!ctx.isPassenger) return false;
         // No park gate — LWTL is unique across the entire server, and some
         // EPCOT scoreboards leave the park code blank.
-        // Primary: ride name from sidebar scoreboard
-        if (ctx.rideNameMatchesAny("LWTL", "Living with the Land", "Living With The Land")) return true;
-        // Fallback: player is riding the boat (handles mid-session mod load)
         for (ExperienceContext.NearbyModel m : ctx.nearbyModels) {
             if (m.matches(VEHICLE_ITEM, VEHICLE_DAMAGE)) return true;
         }

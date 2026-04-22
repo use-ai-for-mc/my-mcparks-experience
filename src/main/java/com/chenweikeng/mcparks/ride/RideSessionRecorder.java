@@ -106,7 +106,6 @@ public final class RideSessionRecorder {
         ParkTracker tracker = ParkTracker.getInstance();
         session.parkCode = tracker.currentParkCode();
         session.parkName = tracker.currentPark();
-        session.scoreboardRideName = tracker.currentRideName();
         session.boardedAt = Instant.now().toString();
         session.playerName = client.getUser().getName();
         session.configuredRideTimeSec = exp.rideTimeSeconds();
@@ -451,7 +450,6 @@ public final class RideSessionRecorder {
         String rideClass;
         String parkCode;
         String parkName;
-        String scoreboardRideName;
         String jsonRideName;
         int jsonRideTimeSec;
         int configuredRideTimeSec;

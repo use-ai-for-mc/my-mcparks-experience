@@ -161,14 +161,7 @@ public class WaltDisneyWorldRailroad implements RideExperience {
             }
         }
 
-        // Fallback: scoreboard "Current Ride" entry if the server publishes it.
-        return ctx.rideNameMatchesAny(
-                "Walt Disney World Railroad",
-                "WDW Railroad",
-                "Magic Kingdom Railroad",
-                "MK Railroad",
-                "Railroad",
-                "Train");
+        return false;
     }
 
     /**

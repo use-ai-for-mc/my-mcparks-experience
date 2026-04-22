@@ -55,10 +55,6 @@ public class PeopleMover implements RideExperience {
     public boolean isActive(ExperienceContext ctx) {
         if (!PARK.equals(ctx.currentPark)) return false;
         if (ctx.isPassenger) {
-            // Primary: ride name from sidebar scoreboard
-            if (ctx.rideNameMatchesAny("TTA", "PeopleMover",
-                    "Tomorrowland Transit Authority PeopleMover")) return true;
-            // Fallback: player is riding the PeopleMover vehicle
             for (ExperienceContext.NearbyModel m : ctx.nearbyModels) {
                 if (m.matches(VEHICLE_ITEM, VEHICLE_DAMAGE)) return true;
             }
