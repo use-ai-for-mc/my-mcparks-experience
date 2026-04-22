@@ -1,15 +1,22 @@
 package com.chenweikeng.mcparks.mixin;
 
+import com.chenweikeng.mcparks.chat.CommandTreeAliaser;
 import com.chenweikeng.mcparks.config.ModConfig;
+import com.mojang.brigadier.CommandDispatcher;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.commands.SharedSuggestionProvider;
 import net.minecraft.network.Connection;
+import net.minecraft.network.protocol.game.ClientboundCommandsPacket;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
  * Intercepts incoming {@code ClientboundSetTimePacket} handling so the real
@@ -22,6 +29,18 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 public abstract class ClientPacketListenerMixin {
 
     private static final long NOON = 6000L;
+
+    @Shadow private CommandDispatcher<SharedSuggestionProvider> commands;
+
+    /**
+     * After the vanilla handler builds the Brigadier dispatcher, rename
+     * top-level literals per {@link CommandTreeAliaser} so ImagineFun-style
+     * {@code /msg} and {@code /w} appear in tab completion.
+     */
+    @Inject(method = "handleCommands", at = @At("TAIL"))
+    private void mcparks$renameCommandTreeAliases(ClientboundCommandsPacket packet, CallbackInfo ci) {
+        CommandTreeAliaser.applyIfEnabled(this.commands);
+    }
 
     @ModifyArg(
         method = "handleSetTime",

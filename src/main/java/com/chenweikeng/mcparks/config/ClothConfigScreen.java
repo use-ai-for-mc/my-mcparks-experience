@@ -111,6 +111,15 @@ public class ClothConfigScreen {
             .setSaveConsumer(newValue -> config.hideJoinLeaveMessages = newValue)
             .build());
 
+        chat.addEntry(entryBuilder
+            .startBooleanToggle(
+                Component.translatable("config.mcparks.imagineFunCommandAliases"),
+                config.imagineFunCommandAliases)
+            .setDefaultValue(ConfigDefaults.IMAGINE_FUN_COMMAND_ALIASES)
+            .setTooltip(Component.translatable("config.mcparks.imagineFunCommandAliases.tooltip"))
+            .setSaveConsumer(newValue -> config.imagineFunCommandAliases = newValue)
+            .build());
+
         // --- UI Hiding category ---
         ConfigCategory uiHiding = builder.getOrCreateCategory(
             Component.translatable("config.mcparks.category.uiHiding"));

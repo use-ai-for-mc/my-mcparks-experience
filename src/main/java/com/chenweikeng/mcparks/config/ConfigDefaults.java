@@ -15,6 +15,7 @@ public final class ConfigDefaults {
     public static final boolean HIDE_CHAT = false;
     public static final boolean HIDE_HOTBAR = false;
     public static final boolean HIDE_PLAYER_ON_RIDE = false;
+    public static final boolean IMAGINE_FUN_COMMAND_ALIASES = false;
 
     private ConfigDefaults() {}
 }

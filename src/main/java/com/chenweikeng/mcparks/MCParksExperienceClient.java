@@ -4,6 +4,7 @@ import com.chenweikeng.mcparks.audio.MCParksAudioService;
 import com.chenweikeng.mcparks.audiocache.AudioCache;
 import com.chenweikeng.mcparks.config.ClothConfigScreen;
 import com.chenweikeng.mcparks.config.ModConfig;
+import com.chenweikeng.mcparks.chat.RankBadges;
 import com.chenweikeng.mcparks.cursor.CursorManager;
 import com.chenweikeng.mcparks.emoji.EmojiAssets;
 import com.chenweikeng.mcparks.fly.FlyManager;
@@ -78,6 +79,7 @@ public class MCParksExperienceClient implements ClientModInitializer {
         TextureCache.init();
         AudioCache.init();
         EmojiAssets.load();
+        RankBadges.load();
         LOGGER.info("My MCParks Experience client initialized");
 
         // Wire the timed subtitle player into the HUD renderer for audio-based progress

@@ -1,6 +1,7 @@
 package com.chenweikeng.mcparks.mixin;
 
 import com.chenweikeng.mcparks.MCParksExperienceClient;
+import com.chenweikeng.mcparks.chat.ChatColorRewriter;
 import com.chenweikeng.mcparks.config.ModConfig;
 import com.chenweikeng.mcparks.emoji.EmojiTransformer;
 import com.chenweikeng.mcparks.ride.RideDetector;
@@ -100,6 +101,7 @@ public class ChatComponentMixin {
         argsOnly = true
     )
     private Component mcparks$emojifyAddMessage(Component original) {
-        return EmojiTransformer.transform(original);
+        Component whitened = ChatColorRewriter.rewrite(original);
+        return EmojiTransformer.transform(whitened);
     }
 }

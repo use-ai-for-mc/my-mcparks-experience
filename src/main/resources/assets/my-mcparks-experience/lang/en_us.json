@@ -18,6 +18,8 @@
     "config.mcparks.category.chat": "Chat",
     "config.mcparks.hideJoinLeaveMessages": "Hide Join/Leave Messages",
     "config.mcparks.hideJoinLeaveMessages.tooltip": "Hide the [+] and [-] player join/leave messages from chat to reduce clutter.",
+    "config.mcparks.imagineFunCommandAliases": "ImagineFun Command Aliases",
+    "config.mcparks.imagineFunCommandAliases.tooltip": "Client-side remap MCParks commands to ImagineFun conventions: /msg (whisper) and /w (warp). Outgoing commands, tab-completion, and the local command tree are all rewritten.",
     "config.mcparks.category.uiHiding": "UI Hiding",
     "config.mcparks.hideScoreboard": "Hide Scoreboard",
     "config.mcparks.hideScoreboard.tooltip": "Hide the scoreboard sidebar for a cleaner view while still tracking ride data.",
