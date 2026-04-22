@@ -79,6 +79,22 @@ public final class TimedSubtitlePlayer {
      */
     private long loadedAtMs;
 
+    /**
+     * Boarding-station auto-calibration for closed-loop rides (e.g. WDW
+     * Railroad) where the same audio playlist can be entered at different
+     * points. JSON offsets are authored against one canonical boarding
+     * station; the first matched audio track we see during this ride
+     * session captures its {@link TrackData#rideOffsetMs} here, and every
+     * subsequent progress calculation subtracts it (modulo
+     * {@link #totalRideTimeSec}) so the HUD counts from the <em>player's</em>
+     * boarding point instead of the canonical one.
+     *
+     * <p>{@code -1} means "not yet calibrated". Stays {@code -1} if
+     * {@link #totalRideTimeSec} is not set (can't wrap without a total),
+     * which preserves the legacy linear-ride behaviour.
+     */
+    private long boardingOffsetMs = -1;
+
     // ---- Loading ----
 
     /**
@@ -150,6 +166,7 @@ public final class TimedSubtitlePlayer {
             lastSetText = null;
             clearAtMs = 0;
             estimatedElapsedMs = -1;
+            boardingOffsetMs = -1;
             loadedAtMs = System.currentTimeMillis();
 
             LOGGER.info("Loaded {} subtitle tracks ({} entries, totalTime={}s) from {}",
@@ -202,11 +219,22 @@ public final class TimedSubtitlePlayer {
                 elapsedMs = elapsedMs % data.loopDurationMs;
             }
 
+            // -- Boarding-station auto-calibration --
+            // For closed-loop rides, latch the first matched track's ride
+            // offset so subsequent progress is reported relative to where
+            // the player actually boarded. Only safe to wrap if we know
+            // the total ride duration.
+            if (boardingOffsetMs < 0 && totalRideTimeSec > 0) {
+                boardingOffsetMs = data.rideOffsetMs;
+                LOGGER.info("Boarding calibration: track={} rideOffsetMs={} (totalRideMs={})",
+                        track.name(), data.rideOffsetMs, totalRideTimeSec * 1000L);
+            }
+
             // -- Progress estimation --
             // Use the most recently started track for the best estimate
             if (track.startedAtMs() > bestProgressTrackStart) {
                 bestProgressTrackStart = track.startedAtMs();
-                bestRideElapsedMs = data.rideOffsetMs + elapsedMs;
+                bestRideElapsedMs = adjustedRideOffsetMs(data.rideOffsetMs) + elapsedMs;
             }
 
             // -- Subtitle matching --
@@ -250,6 +278,24 @@ public final class TimedSubtitlePlayer {
                 clearAtMs = 0;
             }
         }
+    }
+
+    /**
+     * Applies boarding-station calibration to a JSON-authored ride offset.
+     * Returns the offset unchanged if no calibration has been captured yet
+     * (or the ride has no total duration), preserving linear-ride behaviour.
+     * Otherwise wraps {@code (offset - boarding) mod totalMs} so a player
+     * who boarded at any point in the loop sees progress counting from
+     * their own start.
+     */
+    private long adjustedRideOffsetMs(long rideOffsetMs) {
+        if (boardingOffsetMs < 0 || totalRideTimeSec <= 0) return rideOffsetMs;
+        long totalMs = totalRideTimeSec * 1000L;
+        long shifted = rideOffsetMs - boardingOffsetMs;
+        // Positive-modulo so tracks that wrap past the ride end come out
+        // in the [0, totalMs) range instead of negative.
+        long wrapped = ((shifted % totalMs) + totalMs) % totalMs;
+        return wrapped;
     }
 
     // ---- Progress queries (for RideHudRenderer) ----
@@ -315,6 +361,7 @@ public final class TimedSubtitlePlayer {
         lastSetText = null;
         clearAtMs = 0;
         estimatedElapsedMs = -1;
+        boardingOffsetMs = -1;
         loadedAtMs = 0;
         totalRideTimeSec = 0;
         trackData = Collections.emptyMap();

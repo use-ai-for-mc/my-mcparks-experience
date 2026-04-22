@@ -1,0 +1,89 @@
+{
+  "tracks": {
+    "TowerOfTerror/TOTPreshow": {
+      "rideOffsetMs": 0,
+      "entries": [
+        {
+          "startMs": 5640,
+          "endMs": 10560,
+          "text": "You unlock this door with the key of imagination. Beyond it is another dimension."
+        },
+        {
+          "startMs": 11060,
+          "endMs": 13280,
+          "text": "A dimension of sound."
+        },
+        {
+          "startMs": 13280,
+          "endMs": 14540,
+          "text": "A dimension of sight."
+        },
+        {
+          "startMs": 15500,
+          "endMs": 16720,
+          "text": "A dimension of mind."
+        },
+        {
+          "startMs": 17500,
+          "endMs": 22120,
+          "text": "You're moving into a land of both shadow and substance, of things and ideas."
+        },
+        {
+          "startMs": 22120,
+          "endMs": 25360,
+          "text": "You've just crossed over into... the Twilight Zone."
+        },
+        {
+          "startMs": 31840,
+          "endMs": 33880,
+          "text": "Hollywood, 1939."
+        },
+        {
+          "startMs": 33980,
+          "endMs": 38460,
+          "text": "Amid the glitz and the glitter of a bustling, young movie town at the height of its golden age,"
+        },
+        {
+          "startMs": 38460,
+          "endMs": 41540,
+          "text": "the Hollywood Tower Hotel was a star in its own right;"
+        },
+        {
+          "startMs": 41820,
+          "endMs": 44100,
+          "text": "a beacon for the show business elite."
+        },
+        {
+          "startMs": 45900,
+          "endMs": 49940,
+          "text": "Now, something is about to happen that will change all that."
+        },
+        {
+          "startMs": 63660,
+          "endMs": 68440,
+          "text": "The time is now, on an evening very much like the one we have just witnessed."
+        },
+        {
+          "startMs": 69300,
+          "endMs": 74300,
+          "text": "Tonight's story on The Twilight Zone is somewhat unique and calls for a different kind of introduction."
+        },
+        {
+          "startMs": 74780,
+          "endMs": 80400,
+          "text": "This, as you may recognize, is a maintenance service elevator, still in operation, waiting for you."
+        },
+        {
+          "startMs": 81060,
+          "endMs": 86880,
+          "text": "We invite you, if you dare, to step aboard, because in tonight's episode, you are the star."
+        },
+        {
+          "startMs": 86880,
+          "endMs": 91660,
+          "text": "And this elevator travels directly to... the Twilight Zone."
+        }
+      ]
+    }
+  }
+}

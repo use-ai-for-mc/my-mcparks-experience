@@ -1,0 +1,750 @@
+{
+  "totalRideTimeSec": 1002,
+  "tracks": {
+    "MK/RR/MainStreet/Depot/LastCall": {
+      "rideOffsetMs": 0,
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 3120,
+          "text": "Your attention please--"
+        },
+        {
+          "startMs": 3520,
+          "endMs": 8360,
+          "text": "last call for the Walt Disney World Railroad,"
+        },
+        {
+          "startMs": 8540,
+          "endMs": 14900,
+          "text": "Now departing for a grand circle tour around the Magic Kingdom."
+        },
+        {
+          "startMs": 15740,
+          "endMs": 17980,
+          "text": "Last Call."
+        },
+        {
+          "startMs": 18220,
+          "endMs": 20380,
+          "text": "Board!"
+        }
+      ]
+    },
+    "MK/RR/MainStreet/Depot/NowBoarding": {
+      "rideOffsetMs": 0,
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 2900,
+          "text": "Your attention please--"
+        },
+        {
+          "startMs": 3360,
+          "endMs": 11760,
+          "text": "The Walt Disney World Railroad now boarding for a scenic trip around the Magic Kingdom."
+        },
+        {
+          "startMs": 12820,
+          "endMs": 14760,
+          "text": "All aboooooard!"
+        }
+      ]
+    },
+    "MK/RR/MainStreet/1": {
+      "rideOffsetMs": 21900,
+      "entries": [
+        {
+          "startMs": 220,
+          "endMs": 5380,
+          "text": "Welcome aboard Folks! We're beginning a grand circle tour of the Magic Kingdom!"
+        },
+        {
+          "startMs": 6140,
+          "endMs": 9500,
+          "text": "With stops along the way in Frontierland and Fantasyland!"
+        },
+        {
+          "startMs": 9740,
+          "endMs": 14600,
+          "text": "Sit tight, and keep your hands, arms, feet, and legs well inside the train."
+        },
+        {
+          "startMs": 14600,
+          "endMs": 20840,
+          "text": "We're currently departing Main Street Station, and if you're missing those friendly faces already, not to worry!"
+        },
+        {
+          "startMs": 20840,
+          "endMs": 25800,
+          "text": "On this train it's never Goodbye. It's always See Ya Real Soon!"
+        },
+        {
+          "startMs": 26360,
+          "endMs": 33340,
+          "text": "Para su seguridad, permanezcan sentados y mantengan las manos, brazos, pies y piernas, dentro del tren."
+        },
+        {
+          "startMs": 33340,
+          "endMs": 35900,
+          "text": "Y cuide a los pequeños. Gracias."
+        }
+      ]
+    },
+    "MK/RR/MainStreet/2": {
+      "rideOffsetMs": 59900,
+      "entries": [
+        {
+          "startMs": 640,
+          "endMs": 3940,
+          "text": "Friends, I'm so delighted you've joined us today."
+        },
+        {
+          "startMs": 4100,
+          "endMs": 8880,
+          "text": "There's nothing I enjoy more than showing folks around this Magic Kingdom!"
+        },
+        {
+          "startMs": 8880,
+          "endMs": 14500,
+          "text": "Especially 'cause it's certified proof that in these parts, dreams really do come true!"
+        },
+        {
+          "startMs": 14800,
+          "endMs": 20480,
+          "text": "See there was a time, not so long ago, that I was just a young fella on Main Street."
+        },
+        {
+          "startMs": 20600,
+          "endMs": 24200,
+          "text": "With a balloon in my hand and a wish in my heart."
+        },
+        {
+          "startMs": 24260,
+          "endMs": 28340,
+          "text": "That someday, I'd be the conductor of this train."
+        },
+        {
+          "startMs": 28760,
+          "endMs": 34420,
+          "text": "And wouldn't you know it. With a bit of gumption and a dash of magic, here I am!"
+        },
+        {
+          "startMs": 34600,
+          "endMs": 39680,
+          "text": "So believe it when I say that around here, anything is possible."
+        }
+      ]
+    },
+    "MK/RR/MainStreet/3": {
+      "rideOffsetMs": 103900,
+      "entries": [
+        {
+          "startMs": 5000,
+          "endMs": 11740,
+          "text": "See what I mean? Hope you packed your compass because that, folks, is the sound of Adventure!"
+        },
+        {
+          "startMs": 11880,
+          "endMs": 14740,
+          "text": "Uhh, Adventureland, I should say."
+        },
+        {
+          "startMs": 14940,
+          "endMs": 22300,
+          "text": "Whether navigating wild jungle rivers, swashbuckling with jolly buccaneers, or even just scaling a towering treehouse."
+        },
+        {
+          "startMs": 22480,
+          "endMs": 27100,
+          "text": "There's always plenty to explore here in Adventureland!"
+        }
+      ]
+    },
+    "MK/RR/MainStreet/4": {
+      "rideOffsetMs": 185900,
+      "entries": [
+        {
+          "startMs": 80,
+          "endMs": 4260,
+          "text": "Now if you're more of the rootin'-tootin' type, then partner saddle up!"
+        },
+        {
+          "startMs": 4260,
+          "endMs": 6540,
+          "text": "'Cause this here's Frontierland!"
+        },
+        {
+          "startMs": 6680,
+          "endMs": 9900,
+          "text": "Home to cowfolks, campfires and country bears."
+        },
+        {
+          "startMs": 10120,
+          "endMs": 14780,
+          "text": "This outpost is full of tall tales, and even taller mountains."
+        },
+        {
+          "startMs": 15320,
+          "endMs": 18880,
+          "text": "Yonder is Big Thunder Mountain and its runaway mine train!"
+        },
+        {
+          "startMs": 19100,
+          "endMs": 24840,
+          "text": "While just ahead is Splash Mountain, where you'll find Br'er Rabbit in his Laughing Place!"
+        },
+        {
+          "startMs": 25040,
+          "endMs": 29660,
+          "text": "So be sure to say \"Hi\", those critters love when folks drop in!"
+        }
+      ]
+    },
+    "MK/RR/MainStreet/5": {
+      "rideOffsetMs": 249900,
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 2840,
+          "text": "We've reached Frontierland Station everyone!"
+        },
+        {
+          "startMs": 2840,
+          "endMs": 7860,
+          "text": "So sit tight, and hold those horses until we come to a complete stop."
+        },
+        {
+          "startMs": 8440,
+          "endMs": 13600,
+          "text": "If you're disembarking, please carry your strollers all the way off the platform before unfolding them."
+        },
+        {
+          "startMs": 13660,
+          "endMs": 16120,
+          "text": "That'll help make room for any new buckaroos!"
+        },
+        {
+          "startMs": 16680,
+          "endMs": 20560,
+          "text": "Watch your step now! This is Frontierland Station!"
+        }
+      ]
+    },
+    "MK/RR/Frontierland/Depot/NowBoarding": {
+      "rideOffsetMs": 283900,
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 2900,
+          "text": "Your attention please--"
+        },
+        {
+          "startMs": 3360,
+          "endMs": 11760,
+          "text": "The Walt Disney World Railroad now boarding for a scenic trip around the Magic Kingdom."
+        },
+        {
+          "startMs": 12820,
+          "endMs": 14760,
+          "text": "All aboooooard!"
+        }
+      ]
+    },
+    "MK/RR/Frontierland/Depot/LastCall": {
+      "rideOffsetMs": 321900,
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 3120,
+          "text": "Your attention please--"
+        },
+        {
+          "startMs": 3520,
+          "endMs": 8360,
+          "text": "last call for the Walt Disney World Railroad,"
+        },
+        {
+          "startMs": 8540,
+          "endMs": 14900,
+          "text": "Now departing for a grand circle tour around the Magic Kingdom."
+        },
+        {
+          "startMs": 15740,
+          "endMs": 17980,
+          "text": "Last Call."
+        },
+        {
+          "startMs": 18220,
+          "endMs": 20380,
+          "text": "Board!"
+        }
+      ]
+    },
+    "MK/RR/Frontierland/1": {
+      "rideOffsetMs": 361900,
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 4200,
+          "text": "Howdy Folks! If you're just joining us, a hearty welcome aboard!"
+        },
+        {
+          "startMs": 4580,
+          "endMs": 10520,
+          "text": "We're heading for our next stop, Fantasyland! Before carrying on to Main Street U.S.A!"
+        },
+        {
+          "startMs": 10960,
+          "endMs": 17100,
+          "text": "Everybody stay seated and keep your hands and arms, feet, and legs safely inside the train."
+        },
+        {
+          "startMs": 17100,
+          "endMs": 20660,
+          "text": "And as always, keep an eye on your little ones."
+        },
+        {
+          "startMs": 20880,
+          "endMs": 27880,
+          "text": "Para su seguridad, permanezcan sentados y mantengan las manos, brazos, pies y piernas, dentro del tren."
+        },
+        {
+          "startMs": 27960,
+          "endMs": 30760,
+          "text": "Y cuide a los pequeños. Gracias."
+        }
+      ]
+    },
+    "MK/RR/Frontierland/2": {
+      "rideOffsetMs": 401900,
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 6600,
+          "text": "Those of you who have been riding with me for a spell, already know how much I love minding this railroad."
+        },
+        {
+          "startMs": 6740,
+          "endMs": 13240,
+          "text": "But for those times I'm fixing for something a bit wilder, Big Thunder Mountain is the place!"
+        },
+        {
+          "startMs": 13240,
+          "endMs": 16080,
+          "text": "'Cause there, the trains have a mind of their own!"
+        }
+      ]
+    },
+    "MK/RR/Frontierland/3": {
+      "rideOffsetMs": 439900,
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 8100,
+          "text": "The change in scenery means we've left the rattle and rumble of that old gold mine behind and entered my favorite leg of the journey!"
+        },
+        {
+          "startMs": 8400,
+          "endMs": 12460,
+          "text": "Lush wilderness, calm waters, and untamed beauty."
+        },
+        {
+          "startMs": 12900,
+          "endMs": 16820,
+          "text": "Folks, we're in nature's wonderland! Isn't it something?"
+        },
+        {
+          "startMs": 17540,
+          "endMs": 22060,
+          "text": "Just think of the extraordinary things to see and do in these woods!"
+        },
+        {
+          "startMs": 22420,
+          "endMs": 26500,
+          "text": "Hiking trails, bird calls, fireflies, and starry nights!"
+        },
+        {
+          "startMs": 26900,
+          "endMs": 32460,
+          "text": "Setting out for adventure at sunrise, and telling the tale around the campfire that night."
+        },
+        {
+          "startMs": 33400,
+          "endMs": 39700,
+          "text": "Considering how wonderful things are out here, I'm fortunate that some of my closest friends call it home!"
+        },
+        {
+          "startMs": 40100,
+          "endMs": 42940,
+          "text": "That village is a truly special place."
+        }
+      ]
+    },
+    "MK/RR/Frontierland/4": {
+      "rideOffsetMs": 503900,
+      "entries": [
+        {
+          "startMs": 320,
+          "endMs": 3540,
+          "text": "Folks, we're just about out of the woods and into the forest!"
+        },
+        {
+          "startMs": 3900,
+          "endMs": 6540,
+          "text": "The enchanted forest of Fantasyland!"
+        },
+        {
+          "startMs": 6940,
+          "endMs": 8040,
+          "text": "Where magic-"
+        },
+        {
+          "startMs": 10160,
+          "endMs": 11020,
+          "text": "Listen..."
+        },
+        {
+          "startMs": 11560,
+          "endMs": 12580,
+          "text": "Hear that?"
+        },
+        {
+          "startMs": 14060,
+          "endMs": 18100,
+          "text": "Peter Pan: There it is! On that big metal snake."
+        },
+        {
+          "startMs": 18300,
+          "endMs": 23160,
+          "text": "Wendy Darling: Oh Peter. That's not a snake. It's a train!"
+        },
+        {
+          "startMs": 23500,
+          "endMs": 30540,
+          "text": "Peter Pan: Train huh? Well I think it's finally time I trained my shadow, to stay put!"
+        },
+        {
+          "startMs": 36600,
+          "endMs": 39940,
+          "text": "Peter Pan: Hey! Get back here shadow!!"
+        },
+        {
+          "startMs": 40420,
+          "endMs": 41540,
+          "text": "Peter Pan: Shadow!!"
+        },
+        {
+          "startMs": 41540,
+          "endMs": 46280,
+          "text": "Wendy Darling: Oh Tinkerbell, we really must find some stronger thread."
+        },
+        {
+          "startMs": 47740,
+          "endMs": 50740,
+          "text": "Told ya it's enchanted! And not just the forest!"
+        },
+        {
+          "startMs": 50980,
+          "endMs": 54860,
+          "text": "From the tips of castle spires, to the sands under the sea."
+        },
+        {
+          "startMs": 55080,
+          "endMs": 60140,
+          "text": "Magic and happily ever afters await around every corner in Fantasyland!"
+        }
+      ]
+    },
+    "MK/RR/Frontierland/5": {
+      "rideOffsetMs": 565900,
+      "entries": [
+        {
+          "startMs": 2200,
+          "endMs": 5620,
+          "text": "Friends! Travelers! Children of all ages!"
+        },
+        {
+          "startMs": 5740,
+          "endMs": 15720,
+          "text": "We're coming down the track and headed straight for the stupendous, the sensational, the spectacularific, Fantasyland Storybook Circus!"
+        },
+        {
+          "startMs": 17000,
+          "endMs": 23500,
+          "text": "This is the place to soar with Dumbo! Or join Goofy and his stunt plane for some airborne acrobatics."
+        },
+        {
+          "startMs": 23840,
+          "endMs": 29220,
+          "text": "This station is also your gateway to the rest of Fantasyland and Tomorrowland."
+        },
+        {
+          "startMs": 29760,
+          "endMs": 33620,
+          "text": "Now please wait until the train has come to a complete stop,"
+        },
+        {
+          "startMs": 33960,
+          "endMs": 37220,
+          "text": "gather your juggling pins, unicycles and other belongings,"
+        },
+        {
+          "startMs": 37540,
+          "endMs": 42020,
+          "text": "and carry your strollers away from that platform before unfolding them."
+        },
+        {
+          "startMs": 42020,
+          "endMs": 45680,
+          "text": "That way we can start loading up for the next leg of our trip."
+        },
+        {
+          "startMs": 46040,
+          "endMs": 53260,
+          "text": "For those disembarking, please watch your step and thanks for traveling with us. I hope you'll join us again real soon!"
+        },
+        {
+          "startMs": 53680,
+          "endMs": 57960,
+          "text": "If you're staying aboard, our next stop is Main Street Station!"
+        }
+      ]
+    },
+    "MK/RR/Fantasyland/Depot/NowBoarding": {
+      "rideOffsetMs": 657900,
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 2900,
+          "text": "Your attention please--"
+        },
+        {
+          "startMs": 3360,
+          "endMs": 11760,
+          "text": "The Walt Disney World Railroad now boarding for a scenic trip around the Magic Kingdom."
+        },
+        {
+          "startMs": 12820,
+          "endMs": 14760,
+          "text": "All aboooooard!"
+        }
+      ]
+    },
+    "MK/RR/Fantasyland/Depot/LastCall": {
+      "rideOffsetMs": 695900,
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 3120,
+          "text": "Your attention please--"
+        },
+        {
+          "startMs": 3520,
+          "endMs": 8360,
+          "text": "last call for the Walt Disney World Railroad,"
+        },
+        {
+          "startMs": 8540,
+          "endMs": 14900,
+          "text": "Now departing for a grand circle tour around the Magic Kingdom."
+        },
+        {
+          "startMs": 15740,
+          "endMs": 17980,
+          "text": "Last Call."
+        },
+        {
+          "startMs": 18220,
+          "endMs": 20380,
+          "text": "Board!"
+        }
+      ]
+    },
+    "MK/RR/Fantasyland/1": {
+      "rideOffsetMs": 735900,
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 5000,
+          "text": "Looks like we're on our way, and I'm so glad to have you with us!"
+        },
+        {
+          "startMs": 5160,
+          "endMs": 9120,
+          "text": "The next leg of our journey takes us to Main Street U.S.A!"
+        },
+        {
+          "startMs": 9340,
+          "endMs": 11940,
+          "text": "We'll head for Frontierland after that."
+        },
+        {
+          "startMs": 11940,
+          "endMs": 18200,
+          "text": "Stay seated, and keep your hands and arms, feet and legs, inside the train at all times."
+        },
+        {
+          "startMs": 18340,
+          "endMs": 21000,
+          "text": "Oh, and please keep an eye on your children."
+        },
+        {
+          "startMs": 21240,
+          "endMs": 28080,
+          "text": "Para su seguridad, permanezcan sentados y mantengan las manos, brazos, pies y piernas, dentro del tren."
+        },
+        {
+          "startMs": 28220,
+          "endMs": 31080,
+          "text": "Y cuide a los pequeños. Gracias."
+        },
+        {
+          "startMs": 31380,
+          "endMs": 36640,
+          "text": "Next up is a place that's always ahead of the curve, and not just because we're on a straightaway."
+        },
+        {
+          "startMs": 37060,
+          "endMs": 40920,
+          "text": "Our metropolis of mechanical marvels, Tomorrowland!"
+        }
+      ]
+    },
+    "MK/RR/Fantasyland/2": {
+      "rideOffsetMs": 781900,
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 5000,
+          "text": "As you know, I love this railroad about as much as a songbird loves the morning,"
+        },
+        {
+          "startMs": 5280,
+          "endMs": 11300,
+          "text": "But I'm still awed by the rockets in Spaceport 75. The technology that-"
+        },
+        {
+          "startMs": 14000,
+          "endMs": 17560,
+          "text": "COMPUTER: Unidentified users detected in upload conduit area."
+        },
+        {
+          "startMs": 18080,
+          "endMs": 18800,
+          "text": "COMPUTER: Scanning..."
+        },
+        {
+          "startMs": 20080,
+          "endMs": 21140,
+          "text": "COMPUTER: Calculating..."
+        },
+        {
+          "startMs": 21940,
+          "endMs": 24400,
+          "text": "COMPUTER: Locomotive maintaining trajectory."
+        },
+        {
+          "startMs": 24900,
+          "endMs": 26540,
+          "text": "COMPUTER: Intervention not required."
+        },
+        {
+          "startMs": 34480,
+          "endMs": 35600,
+          "text": "...innovate..."
+        },
+        {
+          "startMs": 35840,
+          "endMs": 36740,
+          "text": "...brilliant..."
+        },
+        {
+          "startMs": 55120,
+          "endMs": 60060,
+          "text": "And that's the secret that makes intergalactic travel possible!"
+        },
+        {
+          "startMs": 60340,
+          "endMs": 63620,
+          "text": "So simple once you hear it, right? Heh Heh Heh"
+        },
+        {
+          "startMs": 63680,
+          "endMs": 69100,
+          "text": "Yes sir, in this place of boundless optimism, the possibilities are endless!"
+        },
+        {
+          "startMs": 69100,
+          "endMs": 75060,
+          "text": "You might say the sky's the limit, but even that is no obstacle in Tomorrowland!"
+        }
+      ]
+    },
+    "MK/RR/Fantasyland/3": {
+      "rideOffsetMs": 933900,
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 3940,
+          "text": "Our trip around the Magic Kingdom is almost complete."
+        },
+        {
+          "startMs": 4080,
+          "endMs": 7840,
+          "text": "I can't thank you enough for spending part of your day with me,"
+        },
+        {
+          "startMs": 7840,
+          "endMs": 13460,
+          "text": "and I hope you've enjoyed your journey as much as I have appreciated being a part of it."
+        },
+        {
+          "startMs": 14140,
+          "endMs": 19360,
+          "text": "We're now approaching our most charming destination, Main Street U.S.A!"
+        },
+        {
+          "startMs": 19540,
+          "endMs": 24580,
+          "text": "A place where the only thing sweeter than the townsfolk, is the treats!"
+        },
+        {
+          "startMs": 25060,
+          "endMs": 31320,
+          "text": "After our stop, we'll be heading for Frontierland, followed by a visit to Fantasyland!"
+        },
+        {
+          "startMs": 31320,
+          "endMs": 35820,
+          "text": "For now, stay seated until our train comes to a complete stop."
+        },
+        {
+          "startMs": 36080,
+          "endMs": 39240,
+          "text": "Then pick up your belongings and carefully disembark."
+        },
+        {
+          "startMs": 39420,
+          "endMs": 46520,
+          "text": "If you have strollers to unfold, please take them all the way beyond the platform so new passengers can safely hop aboard."
+        },
+        {
+          "startMs": 46740,
+          "endMs": 48700,
+          "text": "It'd be mighty kind of you."
+        },
+        {
+          "startMs": 48920,
+          "endMs": 54840,
+          "text": "And while we're being neighborly, let's say we give our fellow travelers a friendly wave hello!"
+        },
+        {
+          "startMs": 54840,
+          "endMs": 60700,
+          "text": "This is Main Street Station after all. Welcome to Main Street U.S.A!"
+        }
+      ]
+    }
+  }
+}

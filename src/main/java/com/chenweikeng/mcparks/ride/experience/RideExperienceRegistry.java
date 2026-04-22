@@ -7,6 +7,9 @@ import com.chenweikeng.mcparks.ride.experience.rides.JourneyIntoImagination;
 import com.chenweikeng.mcparks.ride.experience.rides.LivingWithTheLand;
 import com.chenweikeng.mcparks.ride.experience.rides.PeopleMover;
 import com.chenweikeng.mcparks.ride.experience.rides.SpaceshipEarth;
+import com.chenweikeng.mcparks.ride.experience.rides.TowerOfTerror;
+import com.chenweikeng.mcparks.ride.experience.rides.TowerOfTerrorPreshow;
+import com.chenweikeng.mcparks.ride.experience.rides.WaltDisneyWorldRailroad;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -34,6 +37,9 @@ public final class RideExperienceRegistry {
         register(new LivingWithTheLand());
         register(new PeopleMover());
         register(new SpaceshipEarth());
+        register(new TowerOfTerror());
+        register(new TowerOfTerrorPreshow());
+        register(new WaltDisneyWorldRailroad());
     }
 
     public void register(RideExperience experience) {

@@ -21,6 +21,20 @@ public class RideDetector {
     private static final Logger LOGGER = LoggerFactory.getLogger("MCParksRide");
     private static final double SCAN_RADIUS = 5.0;
 
+    /**
+     * Equipment slots on an armor-stand marker that we treat as possibly
+     * holding a vehicle item. MCParks' resource pack isn't consistent: some
+     * rides (e.g. WDW Railroad's Lilly Belle engine / mktender_green)
+     * stash the vehicle item in OFFHAND, while others (e.g. mk_passenger_*)
+     * use HEAD. MAINHAND is included for parity. Armor slots
+     * (CHEST/LEGS/FEET) never carry vehicle markers.
+     */
+    private static final EquipmentSlot[] VEHICLE_ITEM_SLOTS = {
+            EquipmentSlot.HEAD,
+            EquipmentSlot.MAINHAND,
+            EquipmentSlot.OFFHAND
+    };
+
     private static RideDetector instance;
 
     /** Get the active RideDetector instance (set during client init). */
@@ -130,10 +144,16 @@ public class RideDetector {
         );
 
         for (ArmorStand armorStand : armorStands) {
-            ItemStack headItem = armorStand.getItemBySlot(EquipmentSlot.HEAD);
-            if (!headItem.isEmpty()) {
-                String itemName = headItem.getItem().toString();
-                int damage = headItem.getDamageValue();
+            // Check HEAD + MAINHAND + OFFHAND so we catch vehicle markers
+            // regardless of which slot the resource-pack author picked.
+            // Multiple non-empty slots on the same stand produce multiple
+            // NearbyModel entries; that's harmless because match checks
+            // short-circuit on the first hit.
+            for (EquipmentSlot slot : VEHICLE_ITEM_SLOTS) {
+                ItemStack stack = armorStand.getItemBySlot(slot);
+                if (stack.isEmpty()) continue;
+                String itemName = stack.getItem().toString();
+                int damage = stack.getDamageValue();
                 double dist = armorStand.distanceTo(vehicle);
 
                 currentRideModels.add(new RideModelInfo(

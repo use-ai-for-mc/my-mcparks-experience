@@ -1,0 +1,110 @@
+{
+  "totalRideTimeSec": 247,
+  "tracks": {
+    "TowerOfTerror/BoilerRoomLoadWarning": {
+      "rideOffsetMs": 0,
+      "entries": [
+        {
+          "startMs": 1440,
+          "endMs": 6280,
+          "text": "To our valued guests, for your safety once onboard,"
+        },
+        {
+          "startMs": 6380,
+          "endMs": 9940,
+          "text": "please remain seated with your seat belts fastened,"
+        },
+        {
+          "startMs": 10080,
+          "endMs": 16100,
+          "text": "keeping your hands, arms, feet, and legs inside the elevator at all times."
+        },
+        {
+          "startMs": 16360,
+          "endMs": 22160,
+          "text": "And do some special care to supervise your children. Thank you!"
+        },
+        {
+          "startMs": 22280,
+          "endMs": 26740,
+          "text": "Estimados huéspedes, por su seguridad,"
+        },
+        {
+          "startMs": 26740,
+          "endMs": 31660,
+          "text": "una vez a bordo, por favor, permanezcan sentados"
+        },
+        {
+          "startMs": 31720,
+          "endMs": 40420,
+          "text": "y mantengan sus manos, brazos, pies y piernas, dentro del elevador, en todo momento,"
+        },
+        {
+          "startMs": 40420,
+          "endMs": 45960,
+          "text": "y por favor, vigile a sus niños, gracias."
+        }
+      ]
+    },
+    "TowerOfTerror/corridor": {
+      "rideOffsetMs": 29900,
+      "entries": [
+        {
+          "startMs": 3600,
+          "endMs": 9920,
+          "text": "You are the passengers on a most uncommon elevator, about to ascend into your very own episode of…"
+        },
+        {
+          "startMs": 10180,
+          "endMs": 11320,
+          "text": "The Twilight Zone."
+        },
+        {
+          "startMs": 50140,
+          "endMs": 55720,
+          "text": "One stormy night long ago, five people stepped through the door of an elevator and into a nightmare."
+        },
+        {
+          "startMs": 60220,
+          "endMs": 64880,
+          "text": "That door is opening once again, and this time, it's opening for you."
+        }
+      ]
+    },
+    "TowerOfTerror/fifth": {
+      "rideOffsetMs": 91900,
+      "entries": [
+        {
+          "startMs": 40580,
+          "endMs": 48180,
+          "text": "You are about to discover what lies beyond the fifth dimension. Beyond the deepest, darkest corner of the imagination…"
+        },
+        {
+          "startMs": 48340,
+          "endMs": 50160,
+          "text": "in the Tower of Terror."
+        }
+      ]
+    },
+    "TowerOfTerror/post": {
+      "rideOffsetMs": 191900,
+      "entries": [
+        {
+          "startMs": 19200,
+          "endMs": 25840,
+          "text": "A warm welcome back to those of you who made it, and a friendly word of warning—something you won't find in any guidebook."
+        },
+        {
+          "startMs": 26220,
+          "endMs": 32860,
+          "text": "The next time you check into a deserted hotel on the dark side of Hollywood, make sure you know just what kind of vacancy you're filling…"
+        },
+        {
+          "startMs": 33040,
+          "endMs": 37160,
+          "text": "or you may find yourself a permanent resident… of the Twilight Zone."
+        }
+      ]
+    }
+  }
+}
