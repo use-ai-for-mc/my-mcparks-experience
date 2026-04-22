@@ -29,3 +29,7 @@ replay_pid*.log
 
 # macos
 .DS_Store
+
+# compiled native helpers (CI + build-and-deploy.sh produce these at build time)
+native/macos/status-helper
+src/main/resources/native/macos/status-helper

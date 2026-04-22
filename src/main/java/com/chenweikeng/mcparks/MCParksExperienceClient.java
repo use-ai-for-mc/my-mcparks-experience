@@ -16,6 +16,7 @@ import com.chenweikeng.mcparks.ride.RideSessionRecorder;
 import com.chenweikeng.mcparks.ride.RideRegistry;
 import com.chenweikeng.mcparks.ride.experience.ParkTracker;
 import com.chenweikeng.mcparks.skincache.TextureCache;
+import com.chenweikeng.mcparks.status.StatusBarController;
 import com.chenweikeng.mcparks.skincache.TextureRegistrar;
 import com.chenweikeng.mcparks.subtitle.SubtitleManager;
 import com.chenweikeng.mcparks.subtitle.SubtitleRenderer;
@@ -117,6 +118,7 @@ public class MCParksExperienceClient implements ClientModInitializer {
         cursorManager.tick(client);
         flyManager.tick(client);
         rideDetector.tick(client);
+        StatusBarController.getInstance().tick(client);
         ridePathRecorder.tick(client);
         sessionRecorder.tick(client);
         dayTimeHandler.tick(client);
@@ -191,6 +193,7 @@ public class MCParksExperienceClient implements ClientModInitializer {
         cursorManager.reset();
         flyManager.reset();
         rideDetector.reset();
+        StatusBarController.getInstance().onDisconnect();
         ridePathRecorder.reset();
         sessionRecorder.reset();
         timedSubtitlePlayer.reset();

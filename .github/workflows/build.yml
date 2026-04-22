@@ -1,0 +1,99 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-macos-native:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build macOS status-helper (universal arm64+x86_64)
+        run: |
+          cd native/macos
+          swiftc -O -target arm64-apple-macosx11.0 -o status-helper-arm64 \
+            StatusHelper.swift -framework AppKit
+          swiftc -O -target x86_64-apple-macosx11.0 -o status-helper-x86_64 \
+            StatusHelper.swift -framework AppKit
+          lipo -create -output status-helper status-helper-arm64 status-helper-x86_64
+          rm status-helper-arm64 status-helper-x86_64
+          file status-helper
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: native-macos
+          path: native/macos/status-helper
+          if-no-files-found: error
+          retention-days: 1
+
+  build:
+    needs: [build-macos-native]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: native-macos
+          path: native-macos
+
+      - name: Assemble native resources
+        run: |
+          mkdir -p src/main/resources/native/macos
+
+          cp native/macos/StatusHelper.swift src/main/resources/native/macos/
+          cp native-macos/status-helper      src/main/resources/native/macos/
+          chmod +x src/main/resources/native/macos/status-helper
+
+          echo "=== Native resources ==="
+          ls -lhR src/main/resources/native/
+
+          echo "=== Verifying key files exist ==="
+          test -f src/main/resources/native/macos/status-helper
+
+      - uses: gradle/actions/wrapper-validation@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Build (release tag)
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: ./gradlew build -Pmod_version=${GITHUB_REF_NAME#v} --stacktrace
+
+      - name: Build (non-tag)
+        if: ${{ !startsWith(github.ref, 'refs/tags/v') }}
+        run: ./gradlew build --stacktrace
+
+      - name: Verify native binary in JAR
+        run: |
+          JAR=$(ls build/libs/my-mcparks-experience-*.jar | grep -v sources | head -1)
+          echo "Checking $JAR"
+          jar tf "$JAR" | grep '^native/' || true
+          jar tf "$JAR" | grep -q '^native/macos/status-helper$'
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: my-mcparks-experience-build
+          path: build/libs/my-mcparks-experience-*.jar
+          if-no-files-found: error
+          retention-days: 14
+
+      - uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/v')
+        with:
+          name: ${{ github.ref_name }}
+          files: build/libs/my-mcparks-experience-*.jar
+          generate_release_notes: true
+          draft: false
+          fail_on_unmatched_files: true

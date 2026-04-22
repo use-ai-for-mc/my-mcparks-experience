@@ -12,6 +12,18 @@ TARGET_JAR="${TARGET_DIR}/${JAR_NAME}"
 
 echo "Building My MCParks Experience mod..."
 cd "${PROJECT_DIR}"
+
+# Build the macOS menu-bar status helper and stage it into resources so the
+# jar produced by gradle includes it (matching what the GitHub Action does).
+if [ "$(uname)" = "Darwin" ]; then
+    echo "Building macOS status-helper..."
+    bash "${PROJECT_DIR}/native/macos/build-status-helper.sh"
+    mkdir -p "${PROJECT_DIR}/src/main/resources/native/macos"
+    cp "${PROJECT_DIR}/native/macos/status-helper" \
+       "${PROJECT_DIR}/src/main/resources/native/macos/status-helper"
+    chmod +x "${PROJECT_DIR}/src/main/resources/native/macos/status-helper"
+fi
+
 ./gradlew build
 
 if [ ! -f "${SOURCE_JAR}" ]; then
