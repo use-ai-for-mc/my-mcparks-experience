@@ -1,0 +1,148 @@
+{
+  "providers": [
+    {
+      "type": "bitmap",
+      "file": "my-mcparks-experience:ranks/executive.png",
+      "ascent": 7,
+      "height": 8,
+      "chars": [
+        "\ue800"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "my-mcparks-experience:ranks/imagineer.png",
+      "ascent": 7,
+      "height": 8,
+      "chars": [
+        "\ue801"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "my-mcparks-experience:ranks/technician.png",
+      "ascent": 7,
+      "height": 8,
+      "chars": [
+        "\ue802"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "my-mcparks-experience:ranks/guest_relations.png",
+      "ascent": 7,
+      "height": 8,
+      "chars": [
+        "\ue803"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "my-mcparks-experience:ranks/parks_experience.png",
+      "ascent": 7,
+      "height": 8,
+      "chars": [
+        "\ue804"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "my-mcparks-experience:ranks/cast_member.png",
+      "ascent": 7,
+      "height": 8,
+      "chars": [
+        "\ue805"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "my-mcparks-experience:ranks/lead.png",
+      "ascent": 7,
+      "height": 8,
+      "chars": [
+        "\ue806"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "my-mcparks-experience:ranks/earning_my_ears.png",
+      "ascent": 7,
+      "height": 8,
+      "chars": [
+        "\ue807"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "my-mcparks-experience:ranks/club_33.png",
+      "ascent": 7,
+      "height": 8,
+      "chars": [
+        "\ue808"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "my-mcparks-experience:ranks/ap.png",
+      "ascent": 7,
+      "height": 8,
+      "chars": [
+        "\ue809"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "my-mcparks-experience:ranks/dvc.png",
+      "ascent": 7,
+      "height": 8,
+      "chars": [
+        "\ue80a"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "my-mcparks-experience:ranks/d23.png",
+      "ascent": 7,
+      "height": 8,
+      "chars": [
+        "\ue80b"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "my-mcparks-experience:ranks/guest.png",
+      "ascent": 7,
+      "height": 8,
+      "chars": [
+        "\ue80c"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "my-mcparks-experience:ranks/retired.png",
+      "ascent": 7,
+      "height": 8,
+      "chars": [
+        "\ue80d"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "my-mcparks-experience:ranks/resistance.png",
+      "ascent": 7,
+      "height": 8,
+      "chars": [
+        "\ue80e"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "my-mcparks-experience:ranks/first_order_officer.png",
+      "ascent": 7,
+      "height": 8,
+      "chars": [
+        "\ue80f"
+      ]
+    }
+  ]
+}

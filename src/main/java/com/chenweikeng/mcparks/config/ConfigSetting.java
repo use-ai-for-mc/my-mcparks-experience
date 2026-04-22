@@ -15,4 +15,11 @@ public class ConfigSetting {
     public boolean hideChat = ConfigDefaults.HIDE_CHAT;
     public boolean hideHotbar = ConfigDefaults.HIDE_HOTBAR;
     public boolean hidePlayerOnRide = ConfigDefaults.HIDE_PLAYER_ON_RIDE;
+    /**
+     * When enabled, remap MCParks' {@code /w} (whisper) and {@code /warp}
+     * commands to the ImagineFun-style aliases: {@code /msg} and {@code /w}.
+     * Outgoing commands, suggestion requests, and the local command tree
+     * are all rewritten client-side so tab-completion works.
+     */
+    public boolean imagineFunCommandAliases = ConfigDefaults.IMAGINE_FUN_COMMAND_ALIASES;
 }

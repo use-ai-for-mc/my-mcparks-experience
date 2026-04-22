@@ -1,0 +1,114 @@
+{
+  "executive": {
+    "display": "Executive",
+    "char": "\ue800",
+    "fill": "#8A2BE2",
+    "text": "#FFFFFF",
+    "width_px": 60
+  },
+  "imagineer": {
+    "display": "Imagineer",
+    "char": "\ue801",
+    "fill": "#FF69B4",
+    "text": "#FFFFFF",
+    "width_px": 62
+  },
+  "technician": {
+    "display": "Technician",
+    "char": "\ue802",
+    "fill": "#00CED1",
+    "text": "#0B1020",
+    "width_px": 66
+  },
+  "guest relations": {
+    "display": "Guest Relations",
+    "char": "\ue803",
+    "fill": "#FF6A00",
+    "text": "#FFFFFF",
+    "width_px": 98
+  },
+  "parks experience": {
+    "display": "Parks Experience",
+    "char": "\ue804",
+    "fill": "#FFB300",
+    "text": "#0B1020",
+    "width_px": 107
+  },
+  "cast member": {
+    "display": "Cast Member",
+    "char": "\ue805",
+    "fill": "#C62828",
+    "text": "#FFFFFF",
+    "width_px": 79
+  },
+  "lead": {
+    "display": "Lead",
+    "char": "\ue806",
+    "fill": "#CD7F32",
+    "text": "#FFFFFF",
+    "width_px": 30
+  },
+  "earning my ears": {
+    "display": "Earning My Ears",
+    "char": "\ue807",
+    "fill": "#4C6EF5",
+    "text": "#FFFFFF",
+    "width_px": 98
+  },
+  "club 33": {
+    "display": "Club 33",
+    "char": "\ue808",
+    "fill": "#DAA520",
+    "text": "#0B1020",
+    "width_px": 45
+  },
+  "ap": {
+    "display": "AP",
+    "char": "\ue809",
+    "fill": "#1E90FF",
+    "text": "#FFFFFF",
+    "width_px": 17
+  },
+  "dvc": {
+    "display": "DVC",
+    "char": "\ue80a",
+    "fill": "#2E8B57",
+    "text": "#FFFFFF",
+    "width_px": 23
+  },
+  "d23": {
+    "display": "D23",
+    "char": "\ue80b",
+    "fill": "#9E9E9E",
+    "text": "#0B1020",
+    "width_px": 22
+  },
+  "guest": {
+    "display": "Guest",
+    "char": "\ue80c",
+    "fill": "#707070",
+    "text": "#FFFFFF",
+    "width_px": 37
+  },
+  "retired": {
+    "display": "Retired",
+    "char": "\ue80d",
+    "fill": "#546E7A",
+    "text": "#FFFFFF",
+    "width_px": 48
+  },
+  "resistance": {
+    "display": "Resistance",
+    "char": "\ue80e",
+    "fill": "#B71C1C",
+    "text": "#FFFFFF",
+    "width_px": 69
+  },
+  "first order officer": {
+    "display": "First Order Officer",
+    "char": "\ue80f",
+    "fill": "#212121",
+    "text": "#FFFFFF",
+    "width_px": 121
+  }
+}
