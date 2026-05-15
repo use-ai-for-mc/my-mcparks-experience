@@ -1,6 +1,7 @@
 package com.chenweikeng.mcparks.config;
 
 import com.chenweikeng.mcparks.audio.MCParksAudioService;
+import com.chenweikeng.mcparks.audiocache.AudioCache;
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigCategory;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
@@ -42,6 +43,19 @@ public class ClothConfigScreen {
             .setSaveConsumer(newValue -> {
                 config.volume = newValue;
                 MCParksAudioService.getInstance().setUserVolumeFromSlider(newValue);
+            })
+            .build());
+
+        audio.addEntry(entryBuilder
+            .startIntSlider(
+                Component.translatable("config.mcparks.audioCacheLimit"),
+                config.audioCacheLimitMb, 50, 2000)
+            .setDefaultValue(ConfigDefaults.AUDIO_CACHE_LIMIT_MB)
+            .setTooltip(Component.translatable("config.mcparks.audioCacheLimit.tooltip"))
+            .setTextGetter(value -> Component.literal(value + " MB"))
+            .setSaveConsumer(newValue -> {
+                config.audioCacheLimitMb = newValue;
+                AudioCache.requestEviction();
             })
             .build());
 
@@ -118,6 +132,28 @@ public class ClothConfigScreen {
             .setDefaultValue(ConfigDefaults.IMAGINE_FUN_COMMAND_ALIASES)
             .setTooltip(Component.translatable("config.mcparks.imagineFunCommandAliases.tooltip"))
             .setSaveConsumer(newValue -> config.imagineFunCommandAliases = newValue)
+            .build());
+
+        // --- Show Times category ---
+        ConfigCategory showTimes = builder.getOrCreateCategory(
+            Component.translatable("config.mcparks.category.showTimes"));
+
+        showTimes.addEntry(entryBuilder
+            .startBooleanToggle(
+                Component.translatable("config.mcparks.showTimesEnhancements"),
+                config.showTimesEnhancements)
+            .setDefaultValue(ConfigDefaults.SHOW_TIMES_ENHANCEMENTS)
+            .setTooltip(Component.translatable("config.mcparks.showTimesEnhancements.tooltip"))
+            .setSaveConsumer(newValue -> config.showTimesEnhancements = newValue)
+            .build());
+
+        showTimes.addEntry(entryBuilder
+            .startStrField(
+                Component.translatable("config.mcparks.showTimesTimezone"),
+                config.showTimesTimezone == null ? "" : config.showTimesTimezone)
+            .setDefaultValue(ConfigDefaults.SHOW_TIMES_TIMEZONE)
+            .setTooltip(Component.translatable("config.mcparks.showTimesTimezone.tooltip"))
+            .setSaveConsumer(newValue -> config.showTimesTimezone = newValue == null ? "" : newValue.trim())
             .build());
 
         // --- UI Hiding category ---

@@ -2,11 +2,16 @@ package com.chenweikeng.mcparks.ride.experience;
 
 import com.chenweikeng.mcparks.ride.experience.rides.DisneylandRailroad;
 import com.chenweikeng.mcparks.ride.experience.rides.GreatMomentsWithMrLincoln;
+import com.chenweikeng.mcparks.ride.experience.rides.HappilyEverAfter;
+import com.chenweikeng.mcparks.ride.experience.rides.HappilyEverAfterPreshow;
 import com.chenweikeng.mcparks.ride.experience.rides.HauntedMansion;
 import com.chenweikeng.mcparks.ride.experience.rides.JourneyIntoImagination;
 import com.chenweikeng.mcparks.ride.experience.rides.LivingWithTheLand;
 import com.chenweikeng.mcparks.ride.experience.rides.PeopleMover;
+import com.chenweikeng.mcparks.ride.experience.rides.RememberDreamsComeTrue;
+import com.chenweikeng.mcparks.ride.experience.rides.RememberDreamsComeTruePreshow;
 import com.chenweikeng.mcparks.ride.experience.rides.SpaceshipEarth;
+import com.chenweikeng.mcparks.ride.experience.rides.TikiRoom;
 import com.chenweikeng.mcparks.ride.experience.rides.TowerOfTerror;
 import com.chenweikeng.mcparks.ride.experience.rides.TowerOfTerrorPreshow;
 import com.chenweikeng.mcparks.ride.experience.rides.WaltDisneyWorldRailroad;
@@ -32,11 +37,16 @@ public final class RideExperienceRegistry {
     private RideExperienceRegistry() {
         register(new DisneylandRailroad());
         register(new GreatMomentsWithMrLincoln());
+        register(new HappilyEverAfter());
+        register(new HappilyEverAfterPreshow());
         register(new HauntedMansion());
         register(new JourneyIntoImagination());
         register(new LivingWithTheLand());
         register(new PeopleMover());
+        register(new RememberDreamsComeTrue());
+        register(new RememberDreamsComeTruePreshow());
         register(new SpaceshipEarth());
+        register(new TikiRoom());
         register(new TowerOfTerror());
         register(new TowerOfTerrorPreshow());
         register(new WaltDisneyWorldRailroad());

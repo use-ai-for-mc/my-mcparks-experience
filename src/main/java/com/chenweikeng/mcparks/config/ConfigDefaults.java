@@ -2,6 +2,7 @@ package com.chenweikeng.mcparks.config;
 
 public final class ConfigDefaults {
     public static final int VOLUME = 100;
+    public static final int AUDIO_CACHE_LIMIT_MB = 500;
     public static final boolean AUTO_CONNECT = true;
     public static final boolean CURSOR_RELEASE_ON_RIDE = true;
     public static final boolean HIDE_MOUNT_MESSAGE_ON_RIDE = true;
@@ -16,6 +17,8 @@ public final class ConfigDefaults {
     public static final boolean HIDE_HOTBAR = false;
     public static final boolean HIDE_PLAYER_ON_RIDE = false;
     public static final boolean IMAGINE_FUN_COMMAND_ALIASES = false;
+    public static final boolean SHOW_TIMES_ENHANCEMENTS = true;
+    public static final String SHOW_TIMES_TIMEZONE = "";
 
     private ConfigDefaults() {}
 }

@@ -12,6 +12,7 @@ import java.util.concurrent.CompletionStage;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import org.slf4j.Logger;
@@ -48,7 +49,28 @@ public class MCParksAudioService {
         return instance;
     }
 
-    private MCParksAudioService() {}
+    private MCParksAudioService() {
+        scheduler.scheduleAtFixedRate(this::logActiveTracksSnapshot, 2, 2, TimeUnit.SECONDS);
+    }
+
+    private void logActiveTracksSnapshot() {
+        try {
+            List<ActiveTrack> snap = snapshotActive();
+            if (snap.isEmpty()) return;
+            StringBuilder sb = new StringBuilder("Active tracks:");
+            for (ActiveTrack t : snap) {
+                sb.append(" [").append(t.name())
+                  .append(" posMs=").append(t.positionMs())
+                  .append(" active=").append(t.active())
+                  .append(" fadingOut=").append(t.fadingOut())
+                  .append(" loop=").append(t.looping())
+                  .append("]");
+            }
+            LOGGER.info(sb.toString());
+        } catch (Exception e) {
+            LOGGER.debug("Sampler error", e);
+        }
+    }
 
     public void connect(String username) {
         if (connected) {
@@ -182,7 +204,7 @@ public class MCParksAudioService {
     private static final int DEFAULT_SERVER_VOLUME = 50;
 
     private void handleMessage(String message) {
-        LOGGER.debug("Audio message received: {}", message);
+        LOGGER.info("Audio message received: {}", message);
 
         if (message.equals("stop")) {
             stopAllSounds();
@@ -211,7 +233,7 @@ public class MCParksAudioService {
                 String url = AUDIO_BASE_URL + name + ".mp3";
                 double seekSec = seekMs / 1000.0;
                 boolean fadeIn = seekMs > 1000;
-                LOGGER.debug("Loop: name={}, url={}, seekSec={}, fadeIn={}", name, url, seekSec, fadeIn);
+                LOGGER.info("Loop: name={}, url={}, seekSec={}, fadeIn={}", name, url, seekSec, fadeIn);
                 recordTrigger(name, message);
                 playSound(name, url, DEFAULT_SERVER_VOLUME, true, fadeIn, seekSec);
             } catch (NumberFormatException e) {
@@ -234,7 +256,7 @@ public class MCParksAudioService {
                 String url = AUDIO_BASE_URL + name + ".mp3";
                 double seekSec = seekMs / 1000.0;
                 boolean fadeIn = seekMs > 1000;
-                LOGGER.debug("Show: name={}, url={}, seekSec={}, fadeIn={}", name, url, seekSec, fadeIn);
+                LOGGER.info("Show: name={}, url={}, seekSec={}, fadeIn={}", name, url, seekSec, fadeIn);
                 recordTrigger(name, message);
                 playSound(name, url, DEFAULT_SERVER_VOLUME, false, fadeIn, seekSec);
             } catch (NumberFormatException e) {
@@ -246,7 +268,7 @@ public class MCParksAudioService {
         // Bare name — play at default volume, no loop, no seek
         String name = message;
         String url = AUDIO_BASE_URL + name + ".mp3";
-        LOGGER.debug("Play (bare name): name={}, url={}", name, url);
+        LOGGER.info("Play (bare name): name={}, url={}", name, url);
         recordTrigger(name, message);
         playSound(name, url, DEFAULT_SERVER_VOLUME, false, false, 0);
     }
@@ -267,7 +289,7 @@ public class MCParksAudioService {
     // --- Sound Management ---
 
     private void playSound(String name, String url, int serverVolume, boolean loop, boolean fadeIn, double seekSeconds) {
-        LOGGER.debug("Playing: name={} url={} vol={} loop={} fadeIn={} seek={}", name, url, serverVolume, loop, fadeIn, seekSeconds);
+        LOGGER.info("Playing: name={} url={} vol={} loop={} fadeIn={} seek={}", name, url, serverVolume, loop, fadeIn, seekSeconds);
 
         // Stop existing sound with same name if any
         StreamingAudioPlayer existing = activeSounds.remove(name);
@@ -285,7 +307,7 @@ public class MCParksAudioService {
         player.setOnComplete(() -> {
             if (activeSounds.remove(name, player)) {
                 trackStats.remove(name);
-                LOGGER.debug("Removed finished track from activeSounds: {}", name);
+                LOGGER.info("Removed finished track from activeSounds: {}", name);
             }
         });
         activeSounds.put(name, player);
@@ -297,7 +319,7 @@ public class MCParksAudioService {
     }
 
     private void stopAllSounds() {
-        LOGGER.debug("Stopping all sounds ({} active)", activeSounds.size());
+        LOGGER.info("Stopping all sounds ({} active)", activeSounds.size());
         // Take a snapshot of current entries and remove them from the map immediately
         // so new sounds added during fade-out won't be orphaned
         var snapshot = new ArrayList<>(activeSounds.entrySet());
@@ -312,10 +334,10 @@ public class MCParksAudioService {
         StreamingAudioPlayer player = activeSounds.remove(name);
         trackStats.remove(name);
         if (player != null) {
-            LOGGER.debug("Stopping sound: {}", name);
+            LOGGER.info("Stopping sound: {}", name);
             player.stopWithFade();
         } else {
-            LOGGER.debug("Stop requested for '{}' but not found. Active: {}", name, activeSounds.keySet());
+            LOGGER.info("Stop requested for '{}' but not found. Active: {}", name, activeSounds.keySet());
         }
     }
 

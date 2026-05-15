@@ -1,14 +1,11 @@
 package com.chenweikeng.mcparks.mixin;
 
+import com.chenweikeng.mcparks.ServerState;
 import com.chenweikeng.mcparks.config.ModConfig;
 import com.chenweikeng.mcparks.cursor.CursorManager;
 import com.mojang.blaze3d.vertex.PoseStack;
-import java.net.InetSocketAddress;
-import java.net.SocketAddress;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
-import net.minecraft.client.multiplayer.ClientPacketListener;
-import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.scores.Objective;
@@ -53,7 +50,7 @@ public class GuiMixin {
      */
     @Inject(method = "renderPlayerHealth", at = @At("HEAD"), cancellable = true)
     private void mcparks$onRenderPlayerHealth(PoseStack poseStack, CallbackInfo ci) {
-        if (!isMCParksServer()) {
+        if (!ServerState.isTargetServer()) {
             return;
         }
         if (ModConfig.currentSetting.hideHealthBar) {
@@ -66,7 +63,7 @@ public class GuiMixin {
      */
     @Inject(method = "renderVehicleHealth", at = @At("HEAD"), cancellable = true)
     private void mcparks$onRenderVehicleHealth(PoseStack poseStack, CallbackInfo ci) {
-        if (!isMCParksServer()) {
+        if (!ServerState.isTargetServer()) {
             return;
         }
         if (ModConfig.currentSetting.hideHealthBar) {
@@ -79,7 +76,7 @@ public class GuiMixin {
      */
     @Inject(method = "renderExperienceBar", at = @At("HEAD"), cancellable = true)
     private void mcparks$onRenderExperienceBar(PoseStack poseStack, int x, CallbackInfo ci) {
-        if (isMCParksServer() && ModConfig.currentSetting.hideExperienceLevel) {
+        if (ServerState.isTargetServer() && ModConfig.currentSetting.hideExperienceLevel) {
             ci.cancel();
         }
     }
@@ -89,7 +86,7 @@ public class GuiMixin {
      */
     @Inject(method = "renderCrosshair", at = @At("HEAD"), cancellable = true)
     private void mcparks$onRenderCrosshair(PoseStack poseStack, CallbackInfo ci) {
-        if (isMCParksServer() && minecraft.player != null && minecraft.player.isPassenger()) {
+        if (ServerState.isTargetServer() && minecraft.player != null && minecraft.player.isPassenger()) {
             ci.cancel();
         }
     }
@@ -99,7 +96,7 @@ public class GuiMixin {
      */
     @Inject(method = "displayScoreboardSidebar", at = @At("HEAD"), cancellable = true)
     private void mcparks$onDisplayScoreboardSidebar(PoseStack poseStack, Objective objective, CallbackInfo ci) {
-        if (isMCParksServer() && ModConfig.currentSetting.hideScoreboard) {
+        if (ServerState.isTargetServer() && ModConfig.currentSetting.hideScoreboard) {
             ci.cancel();
         }
     }
@@ -109,31 +106,9 @@ public class GuiMixin {
      */
     @Inject(method = "renderHotbar", at = @At("HEAD"), cancellable = true)
     private void mcparks$onRenderHotbar(float tickDelta, PoseStack poseStack, CallbackInfo ci) {
-        if (isMCParksServer() && ModConfig.currentSetting.hideHotbar) {
+        if (ServerState.isTargetServer() && ModConfig.currentSetting.hideHotbar) {
             ci.cancel();
         }
     }
 
-    private boolean isMCParksServer() {
-        // Server list path: set when the player clicked a saved server
-        var serverData = minecraft.getCurrentServer();
-        if (serverData != null && serverData.ip != null
-                && serverData.ip.toLowerCase().contains("mcparks")) {
-            return true;
-        }
-        // Direct connect / --server launch arg: getCurrentServer() is null, so
-        // fall back to the live connection's remote hostname.
-        ClientPacketListener listener = minecraft.getConnection();
-        if (listener != null) {
-            Connection conn = listener.getConnection();
-            if (conn != null) {
-                SocketAddress addr = conn.getRemoteAddress();
-                if (addr instanceof InetSocketAddress inet) {
-                    String host = inet.getHostString();
-                    return host != null && host.toLowerCase().contains("mcparks");
-                }
-            }
-        }
-        return false;
-    }
 }

@@ -9,6 +9,7 @@ import net.minecraft.network.chat.ComponentContents;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextColor;
+import net.minecraft.network.chat.contents.LiteralContents;
 
 /**
  * Two things in one pass on chat-style messages (those containing a
@@ -31,6 +32,9 @@ public final class ChatColorRewriter {
     /** Matches a leading {@code [rank]} at the start of accumulated sibling text. */
     private static final Pattern RANK_PREFIX = Pattern.compile("^\\s*\\[([^\\]\\r\\n]{1,40})\\]");
 
+    /** Matches a legacy formatting code: §0–9, §a–f, §k–r (case-insensitive). */
+    private static final Pattern LEGACY_CODE = Pattern.compile("\u00a7[0-9a-fk-orA-FK-OR]");
+
     private ChatColorRewriter() {}
 
     public static Component rewrite(Component in) {
@@ -40,15 +44,23 @@ public final class ChatColorRewriter {
         int arrowIdx = findArrowIndex(siblings);
         if (arrowIdx < 0) return in;
 
-        RankMatch rank = findRankPrefix(siblings, arrowIdx);
+        RankMatch rank = findRankPrefix(in, siblings, arrowIdx);
 
-        MutableComponent out = mutableCopy(in);
+        // When a rank matches we rebuild from a fresh root because the
+        // original root contents may carry the rank prefix as raw legacy-
+        // coded literal text (the "Cast Member" format,
+        // §4[§cCast Member§4]…). For sibling-based ranks the original root
+        // is empty, so this is a no-op aside from the cloned style.
+        MutableComponent out = (rank != null)
+                ? Component.empty().setStyle(in.getStyle())
+                : mutableCopy(in);
         out.getSiblings().clear();
 
         int i = 0;
         if (rank != null) {
-            // Pill badge replaces siblings[0..rank.endIdx]
             out.append(buildBadge(rank.entry));
+            // endIdx is -1 when the prefix lived entirely in root contents
+            // (no siblings consumed); otherwise drop siblings 0..endIdx.
             i = rank.endIdx + 1;
 
             // Recolor username span (between rank close and arrow) with fill colour.
@@ -85,13 +97,38 @@ public final class ChatColorRewriter {
     }
 
     /**
-     * Walk siblings from the start, accumulating their rendered text, until
-     * we've captured a {@code [Rank]} prefix. Returns the matched badge and
-     * the sibling index that contains the closing {@code ]}, or null if no
-     * known rank is present before the arrow.
+     * Look for a {@code [Rank]} prefix in two places, in this order:
+     *
+     * <ol>
+     *   <li>The root component's literal contents — used by MCParks for
+     *       Cast-Member-style messages where the bracket arrives as
+     *       {@code §4[§cCast Member§4]} embedded in root text rather than
+     *       split into styled siblings. Legacy {@code §x} codes are
+     *       stripped before matching.</li>
+     *   <li>The sibling list, accumulated from the start — used by
+     *       Guest/AP/Club 33/etc. messages where the bracket is split
+     *       into per-character styled siblings.</li>
+     * </ol>
+     *
+     * @return a {@link RankMatch} with {@code endIdx == -1} when the
+     *         prefix lived in root contents; with {@code endIdx == i}
+     *         when sibling {@code i} contained the closing {@code ]};
+     *         or {@code null} if no known rank was found before the arrow.
      */
-    private static RankMatch findRankPrefix(List<Component> siblings, int arrowIdx) {
+    private static RankMatch findRankPrefix(Component in, List<Component> siblings, int arrowIdx) {
         if (RankBadges.isEmpty()) return null;
+
+        String rootText = literalText(in);
+        if (!rootText.isEmpty()) {
+            String stripped = LEGACY_CODE.matcher(rootText).replaceAll("");
+            if (stripped.indexOf(']') >= 0) {
+                Matcher m = RANK_PREFIX.matcher(stripped);
+                if (m.find()) {
+                    RankBadges.Entry entry = RankBadges.get(m.group(1));
+                    return entry != null ? new RankMatch(entry, -1) : null;
+                }
+            }
+        }
 
         StringBuilder acc = new StringBuilder();
         for (int i = 0; i <= arrowIdx && i < siblings.size(); i++) {
@@ -104,11 +141,14 @@ public final class ChatColorRewriter {
             RankBadges.Entry entry = RankBadges.get(m.group(1));
             if (entry == null) return null;
 
-            // Require that the closing ']' lives inside this sibling so we can
-            // safely drop everything up to and including i.
             return new RankMatch(entry, i);
         }
         return null;
+    }
+
+    private static String literalText(Component c) {
+        ComponentContents contents = c.getContents();
+        return (contents instanceof LiteralContents lit) ? lit.text() : "";
     }
 
     private static Component buildBadge(RankBadges.Entry entry) {

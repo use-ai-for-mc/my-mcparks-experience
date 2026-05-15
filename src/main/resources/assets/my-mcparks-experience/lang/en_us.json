@@ -1,11 +1,15 @@
 {
     "options.mcparks.volume": "MCParks Audio Volume",
+    "key.categories.my-mcparks-experience": "My MCParks Experience",
+    "key.my-mcparks-experience.cinematic_toggle": "Toggle Cinematic Viewpoint",
     "config.mcparks.title": "My MCParks Experience Settings",
     "config.mcparks.category.audio": "Audio",
     "config.mcparks.autoConnect": "Auto-Connect Audio",
     "config.mcparks.autoConnect.tooltip": "Automatically connect to MCParks audio when joining a MCParks server.",
     "config.mcparks.volume": "Audio Volume",
     "config.mcparks.volume.tooltip": "Master volume for MCParks audio (0-100%).",
+    "config.mcparks.audioCacheLimit": "Audio Cache Size Limit",
+    "config.mcparks.audioCacheLimit.tooltip": "Maximum disk space for the mcparksaudio download cache. When the limit is exceeded, least-recently-used tracks are deleted.",
     "config.mcparks.category.gameplay": "Gameplay",
     "config.mcparks.cursorReleaseOnRide": "Release Cursor on Ride",
     "config.mcparks.cursorReleaseOnRide.tooltip": "Automatically release the mouse cursor when mounting a ride, and re-grab it on dismount.",
@@ -38,5 +42,10 @@
     "config.mcparks.fullbright.none": "Off",
     "config.mcparks.fullbright.only_when_riding": "Only While Riding",
     "config.mcparks.fullbright.only_when_not_riding": "Only While Not Riding",
-    "config.mcparks.fullbright.always": "Always"
+    "config.mcparks.fullbright.always": "Always",
+    "config.mcparks.category.showTimes": "Show Times",
+    "config.mcparks.showTimesEnhancements": "Show Times Enhancements",
+    "config.mcparks.showTimesEnhancements.tooltip": "Add a 'Next show' banner and timezone-converted tooltip lines to the MCParks Show Times chest GUI.",
+    "config.mcparks.showTimesTimezone": "Display Timezone",
+    "config.mcparks.showTimesTimezone.tooltip": "IANA zone id (e.g. America/Los_Angeles, Europe/Berlin). Leave blank to use your system timezone."
 }

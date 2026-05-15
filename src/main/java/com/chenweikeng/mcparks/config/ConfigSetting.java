@@ -2,6 +2,7 @@ package com.chenweikeng.mcparks.config;
 
 public class ConfigSetting {
     public int volume = ConfigDefaults.VOLUME;
+    public int audioCacheLimitMb = ConfigDefaults.AUDIO_CACHE_LIMIT_MB;
     public boolean autoConnect = ConfigDefaults.AUTO_CONNECT;
     public boolean cursorReleaseOnRide = ConfigDefaults.CURSOR_RELEASE_ON_RIDE;
     public boolean hideMountMessageOnRide = ConfigDefaults.HIDE_MOUNT_MESSAGE_ON_RIDE;
@@ -22,4 +23,15 @@ public class ConfigSetting {
      * are all rewritten client-side so tab-completion works.
      */
     public boolean imagineFunCommandAliases = ConfigDefaults.IMAGINE_FUN_COMMAND_ALIASES;
+    /**
+     * When enabled, add timezone-converted tooltip lines and a "Next show"
+     * banner to the MCParks "Show Times" chest GUI.
+     */
+    public boolean showTimesEnhancements = ConfigDefaults.SHOW_TIMES_ENHANCEMENTS;
+    /**
+     * Optional IANA zone id ({@code "America/Los_Angeles"}, {@code "Europe/Berlin"},
+     * ...) used as the display timezone for Show Times. Empty means use the
+     * system default.
+     */
+    public String showTimesTimezone = ConfigDefaults.SHOW_TIMES_TIMEZONE;
 }

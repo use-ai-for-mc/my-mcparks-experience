@@ -1,0 +1,462 @@
+{
+  "totalRideTimeSec": 1123,
+  "tracks": {
+    "RDCT/1": {
+      "rideOffsetMs": 0,
+      "loopDurationMs": 0,
+      "entries": [
+        {
+          "startMs": 36000,
+          "endMs": 39999,
+          "text": "[Julie Andrews] Good evening, this is Julie Andrews."
+        },
+        {
+          "startMs": 40000,
+          "endMs": 47999,
+          "text": "[Julie Andrews] Once upon a time, there was a Magic Kingdom made of hopes and childhood fantasies."
+        },
+        {
+          "startMs": 48000,
+          "endMs": 52999,
+          "text": "[Julie Andrews] A timeless place, where every land was filled with wonder."
+        },
+        {
+          "startMs": 53000,
+          "endMs": 56999,
+          "text": "[Julie Andrews] A place where everyone who entered its gates"
+        },
+        {
+          "startMs": 57000,
+          "endMs": 60999,
+          "text": "[Julie Andrews] Would be given the gift of the young at heart —"
+        },
+        {
+          "startMs": 61000,
+          "endMs": 62999,
+          "text": "[Julie Andrews] The power to wish upon a star"
+        },
+        {
+          "startMs": 63000,
+          "endMs": 65999,
+          "text": "[Julie Andrews] And unlock its magic."
+        },
+        {
+          "startMs": 66000,
+          "endMs": 68999,
+          "text": "[Julie Andrews] Are you ready to wish upon a star?"
+        },
+        {
+          "startMs": 69000,
+          "endMs": 73999,
+          "text": "[Julie Andrews] Then it's time to open your heart and remember…"
+        },
+        {
+          "startMs": 74000,
+          "endMs": 134999,
+          "text": "[Julie Andrews] dreams come true."
+        },
+        {
+          "startMs": 135000,
+          "endMs": 138999,
+          "text": "[Julie Andrews] In 1955, a magical place was born,"
+        },
+        {
+          "startMs": 139000,
+          "endMs": 141999,
+          "text": "[Julie Andrews] And in this marvelous kingdom,"
+        },
+        {
+          "startMs": 142000,
+          "endMs": 146999,
+          "text": "[Julie Andrews] There lived many delightful friends who made our dreams come true."
+        },
+        {
+          "startMs": 147000,
+          "endMs": 168999,
+          "text": "[Julie Andrews] An enchanting place where storybook heroes and daring adventures waited around every corner."
+        },
+        {
+          "startMs": 169000,
+          "endMs": 174999,
+          "text": "[Cinderella] I wish...I could go to the ball."
+        },
+        {
+          "startMs": 175000,
+          "endMs": 185999,
+          "text": "[Snow White] I'm wishing...someday, my prince will come."
+        },
+        {
+          "startMs": 186000,
+          "endMs": 190999,
+          "text": "[Ariel] Ha-ha. I wish...Ohh...I wish I could be part of that world"
+        },
+        {
+          "startMs": 191000,
+          "endMs": 204999,
+          "text": "[Peter Pan] I wish...we'd never have to grow up! Off to Neverland ha-ha!"
+        },
+        {
+          "startMs": 205000,
+          "endMs": 212999,
+          "text": "[Pinocchio] Know what, Jiminy, someday I wish I could be a real boy."
+        },
+        {
+          "startMs": 213000,
+          "endMs": 226999,
+          "text": "[Aladdin] Genie, I wish for your freedom."
+        },
+        {
+          "startMs": 227000,
+          "endMs": 231999,
+          "text": "[Julie Andrews] Tonight, we're going to share a wonderful dream come true together."
+        },
+        {
+          "startMs": 232000,
+          "endMs": 266999,
+          "text": "[Julie Andrews] In 1955, an amazing man named Walt Disney dreamt of a Magic Kingdom."
+        },
+        {
+          "startMs": 267000,
+          "endMs": 273999,
+          "text": "[Walt Disney] To all who come to this happy place, welcome!"
+        },
+        {
+          "startMs": 274000,
+          "endMs": 276999,
+          "text": "[Walt Disney] Disneyland is your land."
+        },
+        {
+          "startMs": 277000,
+          "endMs": 279999,
+          "text": "[Walt Disney] Here age relives fond memories of the past,"
+        },
+        {
+          "startMs": 280000,
+          "endMs": 284999,
+          "text": "[Walt Disney] And here youth may savor the challenge and promise of the future."
+        },
+        {
+          "startMs": 285000,
+          "endMs": 288999,
+          "text": "[Walt Disney] Disneyland is dedicated to the ideals, the dreams, and the hard facts that have created America,"
+        },
+        {
+          "startMs": 289000,
+          "endMs": 291350,
+          "text": "[Walt Disney] With the hope that it will be a source of joy and inspiration for all the world."
+        }
+      ]
+    },
+    "RDCT/2": {
+      "rideOffsetMs": 293000,
+      "loopDurationMs": 0,
+      "entries": [
+        {
+          "startMs": 13000,
+          "endMs": 14499,
+          "text": "[Conductor] Your attention, please!"
+        },
+        {
+          "startMs": 14500,
+          "endMs": 15999,
+          "text": "[Conductor] The Disneyland Limited"
+        },
+        {
+          "startMs": 16000,
+          "endMs": 17499,
+          "text": "[Conductor] Now leaving for a grand circle tour of the Magic Kingdom."
+        },
+        {
+          "startMs": 17500,
+          "endMs": 73813,
+          "text": "[Conductor] Board!"
+        }
+      ]
+    },
+    "RDCT/3": {
+      "rideOffsetMs": 370000,
+      "loopDurationMs": 0,
+      "entries": [
+        {
+          "startMs": 2000,
+          "endMs": 10999,
+          "text": "[José] Ole! Ole! It's showtime!"
+        },
+        {
+          "startMs": 11000,
+          "endMs": 12999,
+          "text": "[José] ♫ All the birds sing words, ♫"
+        },
+        {
+          "startMs": 13000,
+          "endMs": 20999,
+          "text": "[Michael] ♫ And the flowers croon, ♫"
+        },
+        {
+          "startMs": 21000,
+          "endMs": 22999,
+          "text": "[Fritz] Mein goodness!"
+        },
+        {
+          "startMs": 23000,
+          "endMs": 29999,
+          "text": "[Pierre] Mon ami!"
+        },
+        {
+          "startMs": 30000,
+          "endMs": 38999,
+          "text": "[Michael] The gods have been angered by all the celebratin'!"
+        },
+        {
+          "startMs": 39000,
+          "endMs": 75092,
+          "text": "[Sallah] As you enter the Chamber of Destiny, do not look into the eyes of the idol!"
+        }
+      ]
+    },
+    "RDCT/4": {
+      "rideOffsetMs": 447000,
+      "loopDurationMs": 0,
+      "entries": [
+        {
+          "startMs": 2000,
+          "endMs": 7999,
+          "text": "[Ghost Host] Welcome, foolish mortals, to the Haunted Mansion."
+        },
+        {
+          "startMs": 8000,
+          "endMs": 15999,
+          "text": "[Ghost Host] I am your host — your Ghost Host."
+        },
+        {
+          "startMs": 16000,
+          "endMs": 20999,
+          "text": "[Ghost Host] Is this haunted room actually stretching…"
+        },
+        {
+          "startMs": 21000,
+          "endMs": 26999,
+          "text": "[Ghost Host] Or is it your imagination?"
+        },
+        {
+          "startMs": 27000,
+          "endMs": 34999,
+          "text": "[Ghost Host] This chamber has no windows and no doors."
+        },
+        {
+          "startMs": 35000,
+          "endMs": 37999,
+          "text": "[Ghost Host] Which offers you this chilling challenge:"
+        },
+        {
+          "startMs": 38000,
+          "endMs": 44999,
+          "text": "[Ghost Host] To find a way out!"
+        },
+        {
+          "startMs": 45000,
+          "endMs": 59999,
+          "text": "[Ghost Host] Of course, there's always my way."
+        },
+        {
+          "startMs": 60000,
+          "endMs": 63999,
+          "text": "[Madame Leota] Serpents and spiders, tail of a rat,"
+        },
+        {
+          "startMs": 64000,
+          "endMs": 75999,
+          "text": "[Madame Leota] Call in the spirits, wherever they're at!"
+        },
+        {
+          "startMs": 76000,
+          "endMs": 79999,
+          "text": "[Madame Leota] Rap on a table — it's time to respond."
+        },
+        {
+          "startMs": 80000,
+          "endMs": 114999,
+          "text": "[Madame Leota] Let there be music from regions beyond!"
+        },
+        {
+          "startMs": 115000,
+          "endMs": 117999,
+          "text": "[Little Leota] Hurry back."
+        },
+        {
+          "startMs": 118000,
+          "endMs": 120999,
+          "text": "[Little Leota] Hurry back."
+        },
+        {
+          "startMs": 121000,
+          "endMs": 128999,
+          "text": "[Little Leota] Be sure to bring your death certificate"
+        },
+        {
+          "startMs": 129000,
+          "endMs": 133999,
+          "text": "[Pirate Captain] Strike yer colors, ya bloomin' cockroaches!"
+        },
+        {
+          "startMs": 134000,
+          "endMs": 136999,
+          "text": "[Pirate Captain] Stand by at yer guns…"
+        },
+        {
+          "startMs": 137000,
+          "endMs": 141999,
+          "text": "[Pirate Captain] Fire at will!"
+        },
+        {
+          "startMs": 142000,
+          "endMs": 145999,
+          "text": "[Pirate Captain] Avast, ya scurvy scum!"
+        },
+        {
+          "startMs": 146000,
+          "endMs": 151999,
+          "text": "[Pirate Captain] Pound 'em, lads! Pound 'em!"
+        },
+        {
+          "startMs": 152000,
+          "endMs": 169999,
+          "text": "[Pirate Captain] Ay, that'll show the bilge rats!"
+        },
+        {
+          "startMs": 170000,
+          "endMs": 172481,
+          "text": "[Pirate Captain] Another broadside, and ye goes down with the tide!"
+        }
+      ]
+    },
+    "RDCT/5": {
+      "rideOffsetMs": 622000,
+      "loopDurationMs": 0,
+      "entries": [
+        {
+          "startMs": 8000,
+          "endMs": 11999,
+          "text": "[Pirate Captain] Surrender, ya lily-livered lubbers!"
+        },
+        {
+          "startMs": 12000,
+          "endMs": 59999,
+          "text": "[Pirate Captain] Run up yer white flag!"
+        },
+        {
+          "startMs": 60000,
+          "endMs": 67999,
+          "text": "[Peter Pan] C'mon, everybody — here we go!"
+        },
+        {
+          "startMs": 68000,
+          "endMs": 70999,
+          "text": "[Mad Hatter / March Hare] No room! No room! No vacancies! No room!"
+        },
+        {
+          "startMs": 71000,
+          "endMs": 81999,
+          "text": "[Casey Jr.] All aboard! Let's go!"
+        },
+        {
+          "startMs": 82000,
+          "endMs": 96999,
+          "text": "[Mad Hatter / March Hare] A very merry unbirthday to you!"
+        },
+        {
+          "startMs": 97000,
+          "endMs": 99999,
+          "text": "[Benny The Cab] Holy smokes, Roger — we've been dipped!"
+        },
+        {
+          "startMs": 100000,
+          "endMs": 101499,
+          "text": "[Max] Just lead the way, Henry!"
+        },
+        {
+          "startMs": 101500,
+          "endMs": 102999,
+          "text": "[Buff] All right!"
+        },
+        {
+          "startMs": 103000,
+          "endMs": 104499,
+          "text": "[Skunk] Wow, showbiz!"
+        },
+        {
+          "startMs": 104500,
+          "endMs": 107999,
+          "text": "[Tigger] Follow the bouncin' Tigger! Hoo-hoo-hoo-hoo!"
+        },
+        {
+          "startMs": 108000,
+          "endMs": 141441,
+          "text": "[Tigger] Right this way! Hoo-hoo-hoo-hoo!"
+        }
+      ]
+    },
+    "RDCT/6": {
+      "rideOffsetMs": 765000,
+      "loopDurationMs": 0,
+      "entries": [
+        {
+          "startMs": 1000,
+          "endMs": 3999,
+          "text": "[Jack Wagner] Remain seated, please."
+        },
+        {
+          "startMs": 4000,
+          "endMs": 22999,
+          "text": "[Jack Wagner] Permanecer sentados, por favor."
+        },
+        {
+          "startMs": 23000,
+          "endMs": 31999,
+          "text": "[Submarine Tech] Warning light, sir. We've reached maximum depth limit."
+        },
+        {
+          "startMs": 32000,
+          "endMs": 39999,
+          "text": "[Submarine Captain] Ease her back up to 80 fathoms."
+        },
+        {
+          "startMs": 40000,
+          "endMs": 110040,
+          "text": "[Submarine Tech] Eight zero fathoms, aye-aye!"
+        }
+      ]
+    },
+    "RDCT/7": {
+      "rideOffsetMs": 878000,
+      "loopDurationMs": 0,
+      "entries": [
+        {
+          "startMs": 4000,
+          "endMs": 12999,
+          "text": "[Julie Andrews] Today, Walt Disney's Magic Kingdom has grown to become the \"Happiest Place on Earth\" to millions the world over."
+        },
+        {
+          "startMs": 13000,
+          "endMs": 15999,
+          "text": "[Julie Andrews] A place where anything is possible —"
+        },
+        {
+          "startMs": 16000,
+          "endMs": 88999,
+          "text": "[Julie Andrews] where every dreamer may wish upon a star."
+        },
+        {
+          "startMs": 89000,
+          "endMs": 97429,
+          "text": "[Julie Andrews] Remember… dreams come true."
+        }
+      ]
+    },
+    "RDCT/Post": {
+      "rideOffsetMs": 977000,
+      "loopDurationMs": 0,
+      "entries": []
+    }
+  }
+}

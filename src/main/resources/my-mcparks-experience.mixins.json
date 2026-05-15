@@ -6,6 +6,12 @@
     "mixins": [],
     "client": [
         "ChatComponentMixin",
+        "CinematicCameraMixin",
+        "CinematicEntityMixin",
+        "CinematicEntityRenderDispatcherMixin",
+        "CinematicGameRendererMixin",
+        "CinematicGuiMixin",
+        "CinematicMinecraftMixin",
         "ClientPacketListenerMixin",
         "ClientPacketListenerOpenScreenMixin",
         "ClientSuggestionProviderMixin",

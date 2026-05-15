@@ -1,0 +1,54 @@
+{
+  "totalRideTimeSec": 1102,
+  "tracks": {
+    "HEA/1SFX": {
+      "rideOffsetMs": 0,
+      "loopDurationMs": 0,
+      "entries": [
+        {"startMs": 0, "endMs": 146538, "text": "<<TODO: HEA/1SFX>>"}
+      ]
+    },
+    "HEA/2SFX": {
+      "rideOffsetMs": 148000,
+      "loopDurationMs": 0,
+      "entries": [
+        {"startMs": 0, "endMs": 252227, "text": "<<TODO: HEA/2SFX>>"}
+      ]
+    },
+    "HEA/3SFX": {
+      "rideOffsetMs": 402000,
+      "loopDurationMs": 0,
+      "entries": [
+        {"startMs": 0, "endMs": 160754, "text": "<<TODO: HEA/3SFX>>"}
+      ]
+    },
+    "HEA/4SFX": {
+      "rideOffsetMs": 564000,
+      "loopDurationMs": 0,
+      "entries": [
+        {"startMs": 0, "endMs": 156646, "text": "<<TODO: HEA/4SFX>>"}
+      ]
+    },
+    "HEA/5SFX": {
+      "rideOffsetMs": 722000,
+      "loopDurationMs": 0,
+      "entries": [
+        {"startMs": 0, "endMs": 134741, "text": "<<TODO: HEA/5SFX>>"}
+      ]
+    },
+    "HEA/6SFX": {
+      "rideOffsetMs": 859000,
+      "loopDurationMs": 0,
+      "entries": [
+        {"startMs": 0, "endMs": 131612, "text": "<<TODO: HEA/6SFX>>"}
+      ]
+    },
+    "HEA/7SFX": {
+      "rideOffsetMs": 992000,
+      "loopDurationMs": 0,
+      "entries": [
+        {"startMs": 0, "endMs": 108101, "text": "<<TODO: HEA/7SFX>>"}
+      ]
+    }
+  }
+}

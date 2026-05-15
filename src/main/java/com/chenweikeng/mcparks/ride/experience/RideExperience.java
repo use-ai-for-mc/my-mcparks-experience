@@ -30,6 +30,18 @@ public interface RideExperience {
     }
 
     /**
+     * Theater-mode experiences have no boarding event &mdash; the player
+     * stands or sits and watches. Returning {@code true} here lets the
+     * ride HUD and macOS status-bar render a countdown the moment
+     * {@link #isActive} flips on, instead of waiting for
+     * {@code wasPassenger} which never becomes true for these
+     * experiences.
+     */
+    default boolean isTheaterMode() {
+        return false;
+    }
+
+    /**
      * Is the player currently on this ride? Called every tick and on every
      * chat message. Return {@code false} unless every precondition is met
      * (right park, right ride id, player is passenger, etc.) &mdash; the

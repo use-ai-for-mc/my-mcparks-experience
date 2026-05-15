@@ -77,6 +77,7 @@ public class SubtitleManager {
         pendingCaption = null;
         displayTicks = 0;
         delayCounter = 0;
+        timedMode = false;
     }
 
     public static void tick() {

@@ -1,0 +1,19 @@
+{
+  "totalRideTimeSec": 916,
+  "tracks": {
+    "HEA/Preshow10Min": {
+      "rideOffsetMs": 0,
+      "loopDurationMs": 0,
+      "entries": [
+        {"startMs": 0, "endMs": 296655, "text": "<<TODO: HEA/Preshow10Min>>"}
+      ]
+    },
+    "HEA/Preshow5Min": {
+      "rideOffsetMs": 300000,
+      "loopDurationMs": 0,
+      "entries": [
+        {"startMs": 0, "endMs": 297978, "text": "<<TODO: HEA/Preshow5Min>>"}
+      ]
+    }
+  }
+}

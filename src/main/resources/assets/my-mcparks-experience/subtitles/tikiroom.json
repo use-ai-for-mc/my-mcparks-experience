@@ -1,0 +1,1108 @@
+{
+  "totalRideTimeSec": 1042,
+  "tracks": {
+    "TikiRoom/WDWPreshow": {
+      "rideOffsetMs": 0,
+      "entries": [
+        {
+          "startMs": 9000,
+          "endMs": 14800,
+          "text": "[Announcer] Spirits of the tropics, heed our call!"
+        },
+        {
+          "startMs": 15000,
+          "endMs": 31800,
+          "text": "[Announcer] Descend with your rhythms, for one and for all!"
+        },
+        {
+          "startMs": 32000,
+          "endMs": 35800,
+          "text": "[Announcer] Goddess of fire, Pele by name!"
+        },
+        {
+          "startMs": 36000,
+          "endMs": 46800,
+          "text": "[Announcer] Transform our pool to an ocean of flame!"
+        },
+        {
+          "startMs": 47000,
+          "endMs": 52800,
+          "text": "[Announcer] And now from the waters, Citrikua emerge!"
+        },
+        {
+          "startMs": 53000,
+          "endMs": 74800,
+          "text": "[Announcer] Oh great god of health, your secrets we urge!"
+        },
+        {
+          "startMs": 75000,
+          "endMs": 81800,
+          "text": "[Clyde] Wowee! Phew, that's almost as much fun as New Year's Eve in the orange groves!"
+        },
+        {
+          "startMs": 82000,
+          "endMs": 85800,
+          "text": "[Claude] My word! We did get mighty carried away, hah!"
+        },
+        {
+          "startMs": 86000,
+          "endMs": 90800,
+          "text": "[Claude] I say, look out there across the water. It appears to be a bit of company!"
+        },
+        {
+          "startMs": 91000,
+          "endMs": 93800,
+          "text": "[Clyde] Welcome you all!"
+        },
+        {
+          "startMs": 94000,
+          "endMs": 99800,
+          "text": "[Claude] Permit us to introduce ourselves. My name is Claude and my loquacious cousin over here is..."
+        },
+        {
+          "startMs": 100000,
+          "endMs": 109800,
+          "text": "[Clyde] I'll introduce myself if you don't mind. Hi there! I'm uhh, now let me see now. Huh, it's right on the tip of my beak."
+        },
+        {
+          "startMs": 110000,
+          "endMs": 110900,
+          "text": "[Claude] Clyde, birdbrain!"
+        },
+        {
+          "startMs": 111000,
+          "endMs": 113800,
+          "text": "[Clyde] Oh yeah, I'm Clyde Birdbrain!"
+        },
+        {
+          "startMs": 114000,
+          "endMs": 119800,
+          "text": "[Claude] Oh, I say. Perhaps you good people have never conversed with toucan birds before."
+        },
+        {
+          "startMs": 120000,
+          "endMs": 124800,
+          "text": "[Clyde] Well, neither did we. 'Til one day we discovered this magic sunshine pavilion."
+        },
+        {
+          "startMs": 125000,
+          "endMs": 130800,
+          "text": "[Claude] By Jove, yes. I remember just how it happened, uh, many many bird bars ago."
+        },
+        {
+          "startMs": 131000,
+          "endMs": 139800,
+          "text": "[Claude] There we were in an explorer's launch on a mysterious river in deepest Adventureland."
+        },
+        {
+          "startMs": 140000,
+          "endMs": 148800,
+          "text": "[Claude] Off in the distance comes a fierce roar of an African lion!"
+        },
+        {
+          "startMs": 149000,
+          "endMs": 155800,
+          "text": "[Claude] As we round a bend in the river, a huge bull elephant bellows forth in protest of our intrusion!"
+        },
+        {
+          "startMs": 156000,
+          "endMs": 160800,
+          "text": "[Claude] Suddenly, the treetops explode in a frenzy of outraged birds!"
+        },
+        {
+          "startMs": 161000,
+          "endMs": 163800,
+          "text": "[Claude] Oh come come, you can jolly well do better than that!"
+        },
+        {
+          "startMs": 164000,
+          "endMs": 176800,
+          "text": "[Clyde] I can jolly well do one at a time!"
+        },
+        {
+          "startMs": 177000,
+          "endMs": 181800,
+          "text": "[Claude] Meanwhile, shifty-eyed crocodiles lurk by the waters edge."
+        },
+        {
+          "startMs": 182000,
+          "endMs": 184800,
+          "text": "[Clyde] Lurk... Lurk... Lurk..."
+        },
+        {
+          "startMs": 185000,
+          "endMs": 189800,
+          "text": "[Claude] And the giant python slithers down from an overhanging limb."
+        },
+        {
+          "startMs": 190000,
+          "endMs": 191800,
+          "text": "[Clyde] Ahhhhh!"
+        },
+        {
+          "startMs": 192000,
+          "endMs": 193800,
+          "text": "[Claude] What happened? What's wrong?"
+        },
+        {
+          "startMs": 194000,
+          "endMs": 196800,
+          "text": "[Clyde] I can't stand snakes!"
+        },
+        {
+          "startMs": 197000,
+          "endMs": 200800,
+          "text": "[Claude] Don't be ridiculous, I'm only relaying a story!"
+        },
+        {
+          "startMs": 201000,
+          "endMs": 203800,
+          "text": "[Claude] Oh alright Clyde, enough is enough!"
+        },
+        {
+          "startMs": 204000,
+          "endMs": 205800,
+          "text": "[Clyde] That wasn't me! I never even opened my beak!"
+        },
+        {
+          "startMs": 206000,
+          "endMs": 206900,
+          "text": "[Claude] Huh?"
+        },
+        {
+          "startMs": 207000,
+          "endMs": 212800,
+          "text": "[Cast Member] Excuse me guys, I hate to interrupt such an amazing story, but they're calling us for the show."
+        },
+        {
+          "startMs": 213000,
+          "endMs": 215800,
+          "text": "[Clyde] It's already showtime?"
+        },
+        {
+          "startMs": 216000,
+          "endMs": 222800,
+          "text": "[Cast Member] Yes it's already show time, and Claude I believe it's your turn to make the announcements."
+        },
+        {
+          "startMs": 223000,
+          "endMs": 235800,
+          "text": "[Claude] I know. Ahem, ladies and gentlemen, boys and girls, gather up all your cameras, purses, and other articles. And now turn to your left towards the tall door."
+        },
+        {
+          "startMs": 236000,
+          "endMs": 241800,
+          "text": "[Clyde] When the drums begin, they'll open magically to lead you right into the sunshine pavilion!"
+        },
+        {
+          "startMs": 242000,
+          "endMs": 245800,
+          "text": "[Clyde] Is everybody ready?"
+        },
+        {
+          "startMs": 246000,
+          "endMs": 249800,
+          "text": "[Cast Member] Come on, is everybody ready?"
+        },
+        {
+          "startMs": 250000,
+          "endMs": 254000,
+          "text": "[Claude] Have a good show. A real tropical serenade!"
+        }
+      ]
+    },
+    "TikiRoom/WDWIntro": {
+      "rideOffsetMs": 255000,
+      "entries": []
+    },
+    "TikiRoom/WDWIntroFade": {
+      "rideOffsetMs": 255000,
+      "entries": []
+    },
+    "TikiRoom/CM/King": {
+      "rideOffsetMs": 304000,
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 3800,
+          "text": "[Cast Member] Aloha! And welcome to Walt Disney's Enchanted Tiki Room!"
+        },
+        {
+          "startMs": 4000,
+          "endMs": 7800,
+          "text": "[Cast Member] Please feel free to enjoy any food or beverages you brought with you."
+        },
+        {
+          "startMs": 8000,
+          "endMs": 11800,
+          "text": "[Cast Member] And if at anytime during our show you do need to exit, please feel free to warp out."
+        },
+        {
+          "startMs": 12000,
+          "endMs": 17800,
+          "text": "[Cast Member] Now, we have one last thing we need to do: we have to wake up our Master of Ceremonies, Jose!"
+        },
+        {
+          "startMs": 18000,
+          "endMs": 19800,
+          "text": "[Cast Member] All together on the count of three:"
+        },
+        {
+          "startMs": 20000,
+          "endMs": 24000,
+          "text": "[Cast Member] 1... 2... 3... Wake up Jose!"
+        }
+      ]
+    },
+    "TikiRoom/TikiRoom_WDWS1": {
+      "rideOffsetMs": 328000,
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 1800,
+          "text": "[José] Ahhh!"
+        },
+        {
+          "startMs": 2000,
+          "endMs": 6800,
+          "text": "[José] Buenos dias, señorita. My siestas are getting chorter and chorter."
+        },
+        {
+          "startMs": 7000,
+          "endMs": 8800,
+          "text": "[José] Oh, look at all the people!"
+        },
+        {
+          "startMs": 9000,
+          "endMs": 11800,
+          "text": "[José] And welcome to Walt Disney's Enchanted Tiki Room."
+        },
+        {
+          "startMs": 12000,
+          "endMs": 12900,
+          "text": "[José] Hey, Michael, mi amigo!"
+        },
+        {
+          "startMs": 13000,
+          "endMs": 14800,
+          "text": "[José] Pay attention—it's showtime."
+        },
+        {
+          "startMs": 15000,
+          "endMs": 15900,
+          "text": "[Michael] So it is."
+        },
+        {
+          "startMs": 16000,
+          "endMs": 19800,
+          "text": "[Michael] And what darling people I have sittin' under me."
+        },
+        {
+          "startMs": 20000,
+          "endMs": 21800,
+          "text": "[Michael] Pierre, you rascal, you!"
+        },
+        {
+          "startMs": 22000,
+          "endMs": 22900,
+          "text": "[Michael] Let's put on the show."
+        },
+        {
+          "startMs": 23000,
+          "endMs": 28800,
+          "text": "[Pierre] Mon ami, I am always ready, as you say, to put on ze show."
+        },
+        {
+          "startMs": 29000,
+          "endMs": 32800,
+          "text": "[Pierre] Oh pardon, madame, that whistle was for my good friend Fritz."
+        },
+        {
+          "startMs": 33000,
+          "endMs": 36800,
+          "text": "[Fritz] Ach du Lieber! I almost fell out of mein upper perch."
+        },
+        {
+          "startMs": 37000,
+          "endMs": 40800,
+          "text": "[Fritz] Glad to see you all aboard—uh, ashore—or—"
+        },
+        {
+          "startMs": 41000,
+          "endMs": 42800,
+          "text": "[Fritz] Verever you are!"
+        },
+        {
+          "startMs": 43000,
+          "endMs": 45800,
+          "text": "[Fritz] Mein goodness, you're all shtaring at us."
+        },
+        {
+          "startMs": 46000,
+          "endMs": 47800,
+          "text": "[Fritz] We better shtart the show rolling!"
+        },
+        {
+          "startMs": 48000,
+          "endMs": 48900,
+          "text": "[Michael] Wait! Wait!"
+        },
+        {
+          "startMs": 49000,
+          "endMs": 54800,
+          "text": "[Michael] We forgot to wake up the glee club!"
+        },
+        {
+          "startMs": 55000,
+          "endMs": 57800,
+          "text": "[José] Olé! Olé! It's showtime!"
+        },
+        {
+          "startMs": 58000,
+          "endMs": 60800,
+          "text": "♫In the Tiki, Tiki, Tiki, Tiki, Tiki Room,"
+        },
+        {
+          "startMs": 61000,
+          "endMs": 62800,
+          "text": "♫In the Tiki, Tiki, Tiki, Tiki, Tiki Room."
+        },
+        {
+          "startMs": 63000,
+          "endMs": 64800,
+          "text": "[José] All the birds sing words,"
+        },
+        {
+          "startMs": 65000,
+          "endMs": 65900,
+          "text": "[Michael] And the flowers croon,"
+        },
+        {
+          "startMs": 66000,
+          "endMs": 68800,
+          "text": "♫In the Tiki, Tiki, Tiki, Tiki, Tiki Room."
+        },
+        {
+          "startMs": 69000,
+          "endMs": 71800,
+          "text": "[José] Welcome to our tropical hideaway,"
+        },
+        {
+          "startMs": 72000,
+          "endMs": 73800,
+          "text": "[José] You lucky people, you!"
+        },
+        {
+          "startMs": 74000,
+          "endMs": 76800,
+          "text": "[José] If we weren't in the show, starting right away,"
+        },
+        {
+          "startMs": 77000,
+          "endMs": 78800,
+          "text": "[José] We'd be in the audience too!"
+        },
+        {
+          "startMs": 79000,
+          "endMs": 79900,
+          "text": "♫All together!"
+        },
+        {
+          "startMs": 80000,
+          "endMs": 81800,
+          "text": "♫In the Tiki, Tiki, Tiki, Tiki, Tiki Room,"
+        },
+        {
+          "startMs": 82000,
+          "endMs": 84800,
+          "text": "♫In the Tiki, Tiki, Tiki, Tiki, Tiki Room."
+        },
+        {
+          "startMs": 85000,
+          "endMs": 85900,
+          "text": "[José] All the birds sing words,"
+        },
+        {
+          "startMs": 86000,
+          "endMs": 86900,
+          "text": "[Michael] And the flowers croon,"
+        },
+        {
+          "startMs": 87000,
+          "endMs": 89800,
+          "text": "♫In the Tiki, Tiki, Tiki, Tiki, Tiki Room."
+        },
+        {
+          "startMs": 90000,
+          "endMs": 94800,
+          "text": "[Michael] I sing so beautiful, I should sing solo!"
+        },
+        {
+          "startMs": 95000,
+          "endMs": 96800,
+          "text": "[José] Si, So low we can't hear you!"
+        },
+        {
+          "startMs": 97000,
+          "endMs": 101800,
+          "text": "[Pierre] My voice may not be so marvelous, but my profile is out of zis world!"
+        },
+        {
+          "startMs": 102000,
+          "endMs": 105800,
+          "text": "[Fritz] Jawohl, but the trouble is it's not far enough out of this world."
+        },
+        {
+          "startMs": 106000,
+          "endMs": 107800,
+          "text": "[Fritz] Isn't that right, Herr Schmidt? Oh-ho, I see"
+        },
+        {
+          "startMs": 108000,
+          "endMs": 109800,
+          "text": "[Fritz] Schmidt has no hair!"
+        },
+        {
+          "startMs": 110000,
+          "endMs": 113800,
+          "text": "[José] Mi amigos, stop the clucking. You sound like a bunch of old hens."
+        },
+        {
+          "startMs": 114000,
+          "endMs": 116800,
+          "text": "[José] There's a lot of birds waiting to go on. For instance..."
+        },
+        {
+          "startMs": 117000,
+          "endMs": 119800,
+          "text": "[Pierre] The boys in the back are kamikaze."
+        },
+        {
+          "startMs": 120000,
+          "endMs": 120900,
+          "text": "[José] Because of their claws?"
+        },
+        {
+          "startMs": 121000,
+          "endMs": 121900,
+          "text": "[Pierre] No because they're macaws!"
+        },
+        {
+          "startMs": 122000,
+          "endMs": 124800,
+          "text": "[Pierre] And our fine feathered friend is a jolly toucan,"
+        },
+        {
+          "startMs": 125000,
+          "endMs": 132800,
+          "text": "[Pierre] and two can sound better than one toucan can."
+        },
+        {
+          "startMs": 133000,
+          "endMs": 135800,
+          "text": "[José] The bird of paradise is an elegant bird,"
+        },
+        {
+          "startMs": 136000,
+          "endMs": 137800,
+          "text": "[José] It likes to be seen, and it loves to be heard."
+        },
+        {
+          "startMs": 138000,
+          "endMs": 140800,
+          "text": "[José] Most little birdies will fly away,"
+        },
+        {
+          "startMs": 141000,
+          "endMs": 143800,
+          "text": "[José] But the Tiki Room birds are here everyday."
+        },
+        {
+          "startMs": 144000,
+          "endMs": 145800,
+          "text": "♫In the Tiki, Tiki, Tiki, Tiki, Tiki Room,"
+        },
+        {
+          "startMs": 146000,
+          "endMs": 148800,
+          "text": "♫In the Tiki, Tiki, Tiki, Tiki, Tiki Room."
+        },
+        {
+          "startMs": 149000,
+          "endMs": 149900,
+          "text": "[José] All the birds sing words,"
+        },
+        {
+          "startMs": 150000,
+          "endMs": 150900,
+          "text": "[Michael] And the flowers croon,"
+        },
+        {
+          "startMs": 151000,
+          "endMs": 153800,
+          "text": "♫In the Tiki, Tiki, Tiki, Tiki, Tiki Room."
+        },
+        {
+          "startMs": 154000,
+          "endMs": 156800,
+          "text": "[José] Our magnificent production is yet to come,"
+        },
+        {
+          "startMs": 157000,
+          "endMs": 158800,
+          "text": "[José] So strum the guitar, and beat the drum."
+        },
+        {
+          "startMs": 159000,
+          "endMs": 161800,
+          "text": "[José] We've been a hit, and we know you adore us,"
+        },
+        {
+          "startMs": 162000,
+          "endMs": 164800,
+          "text": "[José] So come on and join us in another chorus!"
+        },
+        {
+          "startMs": 165000,
+          "endMs": 167800,
+          "text": "♫In the Tiki, Tiki, Tiki, Tiki, Tiki Room,"
+        },
+        {
+          "startMs": 168000,
+          "endMs": 169800,
+          "text": "♫In the Tiki, Tiki, Tiki, Tiki, Tiki Room."
+        },
+        {
+          "startMs": 170000,
+          "endMs": 170900,
+          "text": "[Michael] A little softer..."
+        },
+        {
+          "startMs": 171000,
+          "endMs": 172800,
+          "text": "♫All the birds sing words and the flowers croon,"
+        },
+        {
+          "startMs": 173000,
+          "endMs": 174800,
+          "text": "♫In the Tiki, Tiki, Tiki, Tiki, Tiki Room."
+        },
+        {
+          "startMs": 175000,
+          "endMs": 175900,
+          "text": "[Michael] A little louder..."
+        },
+        {
+          "startMs": 176000,
+          "endMs": 177800,
+          "text": "♫In the Tiki, Tiki, Tiki, Tiki, Tiki Room,"
+        },
+        {
+          "startMs": 178000,
+          "endMs": 180800,
+          "text": "♫In the Tiki, Tiki, Tiki, Tiki, Tiki Room."
+        },
+        {
+          "startMs": 181000,
+          "endMs": 181900,
+          "text": "♫All the birds sing words,"
+        },
+        {
+          "startMs": 182000,
+          "endMs": 183800,
+          "text": "♫And the flowers croon,"
+        },
+        {
+          "startMs": 184000,
+          "endMs": 188000,
+          "text": "♫In the Tiki, Tiki, Tiki, Tiki, Tiki Room."
+        }
+      ]
+    },
+    "TikiRoom/TikiRoom_WDWS2": {
+      "rideOffsetMs": 516000,
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 3800,
+          "text": "[José] Let's give the little birdies a great big hand!"
+        },
+        {
+          "startMs": 4000,
+          "endMs": 10800,
+          "text": "[José] And now, señors and señoritas, please place your eyes into the center—of the room, that is."
+        },
+        {
+          "startMs": 11000,
+          "endMs": 13800,
+          "text": "[Michael] Look, here come the girls!"
+        },
+        {
+          "startMs": 14000,
+          "endMs": 23800,
+          "text": "[Fritz] Ach, ja! And the wunderbar bird mobile… Which has birds on it. And it goes round and round. Und dat's why they call it a “bird mobile.”"
+        },
+        {
+          "startMs": 24000,
+          "endMs": 31800,
+          "text": "[Pierre] Madames and monsieur—introducing the lovely ladies of the ensembles. Just like the Follies Bergère with all the feathers."
+        },
+        {
+          "startMs": 32000,
+          "endMs": 38800,
+          "text": "[Pierre] There's Collette! Allo, Collette. Suzette! Allo, Mimi! Gigi! Fifi! Hehe, oh Josefine!"
+        },
+        {
+          "startMs": 39000,
+          "endMs": 41800,
+          "text": "[José] I wonder what happened to Rosita…"
+        },
+        {
+          "startMs": 42000,
+          "endMs": 45800,
+          "text": "♫Let's all sing like the birdies sing:"
+        },
+        {
+          "startMs": 46000,
+          "endMs": 50800,
+          "text": "♫Tweet, tweet, tweet, tweet, tweet."
+        },
+        {
+          "startMs": 51000,
+          "endMs": 55800,
+          "text": "♫Let's all sing like the birdies sing:"
+        },
+        {
+          "startMs": 56000,
+          "endMs": 60800,
+          "text": "♫Sweet, sweet, sweet, sweet."
+        },
+        {
+          "startMs": 61000,
+          "endMs": 65800,
+          "text": "♫Let's all warble like nightingales."
+        },
+        {
+          "startMs": 66000,
+          "endMs": 69800,
+          "text": "♫Give your throat a treat."
+        },
+        {
+          "startMs": 70000,
+          "endMs": 72800,
+          "text": "♫Take your time from the birds,"
+        },
+        {
+          "startMs": 73000,
+          "endMs": 75800,
+          "text": "♫Now you all know the words:"
+        },
+        {
+          "startMs": 76000,
+          "endMs": 80800,
+          "text": "♫Tweet, tweet, tweet, tweet, tweet."
+        },
+        {
+          "startMs": 81000,
+          "endMs": 85800,
+          "text": "[José] Let's all sing like the birdies sing"
+        },
+        {
+          "startMs": 86000,
+          "endMs": 91800,
+          "text": "[José] Buh-buh-buh, buh buh-buh-buh, buh buh!"
+        },
+        {
+          "startMs": 92000,
+          "endMs": 95800,
+          "text": "[Fritz] Let's all sing like the birdies sing,"
+        },
+        {
+          "startMs": 96000,
+          "endMs": 101800,
+          "text": "[Fritz] Tweet, tweet, tweet— my, that bird sings sweetly!"
+        },
+        {
+          "startMs": 102000,
+          "endMs": 105800,
+          "text": "[Pierre] Let's all warble like nightingales—"
+        },
+        {
+          "startMs": 106000,
+          "endMs": 110800,
+          "text": "[Pierre] Ah, Mimi, c'est magnifique!"
+        },
+        {
+          "startMs": 111000,
+          "endMs": 116800,
+          "text": "[Pierre] Take your time from ze birds, now you all know ze words."
+        },
+        {
+          "startMs": 117000,
+          "endMs": 122800,
+          "text": "♫Tweet, tweet, tweet, tweet, tweet."
+        },
+        {
+          "startMs": 123000,
+          "endMs": 125800,
+          "text": "[José] Applause! Applause! That's so good!"
+        },
+        {
+          "startMs": 126000,
+          "endMs": 128800,
+          "text": "[Fritz] Wunderbar! Wunderbar! Give yourself a hand!"
+        },
+        {
+          "startMs": 129000,
+          "endMs": 130800,
+          "text": "[Pierre] Ah, zat was magnifique!"
+        },
+        {
+          "startMs": 131000,
+          "endMs": 135000,
+          "text": "[José] Si, no one laid an egg but me."
+        }
+      ]
+    },
+    "TikiRoom/TikiRoom_WDWS3": {
+      "rideOffsetMs": 648000,
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 4800,
+          "text": "[Michael] And now, ladies and gentlemen, we have something really big for you."
+        },
+        {
+          "startMs": 5000,
+          "endMs": 8800,
+          "text": "[Fritz] Ja, the birds schtand schtill, und the Tiki Room flies away!"
+        },
+        {
+          "startMs": 9000,
+          "endMs": 11800,
+          "text": "[Pierre] Mon ami, quit talking while I'm interrupting."
+        },
+        {
+          "startMs": 12000,
+          "endMs": 17800,
+          "text": "[Pierre] Ladies and gentlemen, now we present—direct from the islands—a musical luau!"
+        },
+        {
+          "startMs": 18000,
+          "endMs": 23800,
+          "text": "♫Tahuwai la a tahuwai wai la,"
+        },
+        {
+          "startMs": 24000,
+          "endMs": 29800,
+          "text": "♫Ehu hene la a pili koo lua la,"
+        },
+        {
+          "startMs": 30000,
+          "endMs": 33800,
+          "text": "♫Pututui lu a ite toe la,"
+        },
+        {
+          "startMs": 34000,
+          "endMs": 38800,
+          "text": "♫Hanu lipo ita paalai."
+        },
+        {
+          "startMs": 39000,
+          "endMs": 44800,
+          "text": "♫Tahuwai la a tahuwai wai la,"
+        },
+        {
+          "startMs": 45000,
+          "endMs": 49800,
+          "text": "♫Ehu hene la a pili koo lua la,"
+        },
+        {
+          "startMs": 50000,
+          "endMs": 55800,
+          "text": "♫Pututui lu a ite toe la,"
+        },
+        {
+          "startMs": 56000,
+          "endMs": 60800,
+          "text": "♫Hanu lipo ita paalai."
+        },
+        {
+          "startMs": 61000,
+          "endMs": 63800,
+          "text": "♫Tahuwai la a tahuwai wai la,"
+        },
+        {
+          "startMs": 64000,
+          "endMs": 66800,
+          "text": "♫Ehu hene la a pili koo lua la,"
+        },
+        {
+          "startMs": 67000,
+          "endMs": 68800,
+          "text": "♫Pututui lu a ite toe la,"
+        },
+        {
+          "startMs": 69000,
+          "endMs": 71800,
+          "text": "♫Hanu lipo ita paalai."
+        },
+        {
+          "startMs": 72000,
+          "endMs": 74800,
+          "text": "♫Tahuwai la a tahuwai wai la,"
+        },
+        {
+          "startMs": 75000,
+          "endMs": 76800,
+          "text": "♫Ehu hene la a pili koo lua la,"
+        },
+        {
+          "startMs": 77000,
+          "endMs": 79800,
+          "text": "♫Pututui lu a ite toe la,"
+        },
+        {
+          "startMs": 80000,
+          "endMs": 81800,
+          "text": "♫Hanu lipo ita paalai."
+        },
+        {
+          "startMs": 82000,
+          "endMs": 87800,
+          "text": "♫Au we ta huala,"
+        },
+        {
+          "startMs": 88000,
+          "endMs": 92800,
+          "text": "♫Au we ta huala,"
+        },
+        {
+          "startMs": 93000,
+          "endMs": 97000,
+          "text": "♫Huala, huala, huala."
+        }
+      ]
+    },
+    "TikiRoom/TikiRoom_WDWS4": {
+      "rideOffsetMs": 802000,
+      "entries": [
+        {
+          "startMs": 82000,
+          "endMs": 83800,
+          "text": "[Fritz] Ach, somebody has schtolen my thunder!"
+        },
+        {
+          "startMs": 84000,
+          "endMs": 86800,
+          "text": "[José] I think someone has left the chower running."
+        },
+        {
+          "startMs": 87000,
+          "endMs": 91800,
+          "text": "[Michael] Be careful, me fine friends. The gods have been angered by all the celebratin'!"
+        },
+        {
+          "startMs": 92000,
+          "endMs": 96800,
+          "text": "[Michael] But, me buckos, every cloud have a silver lining."
+        },
+        {
+          "startMs": 97000,
+          "endMs": 99800,
+          "text": "[Pierre] Monsieurs et madames, it's time to say “adieu.”"
+        },
+        {
+          "startMs": 100000,
+          "endMs": 107800,
+          "text": "[Pierre] But we hope you will always remember the amazing things which happened here in Walt Disney's Enchanted Tiki Room."
+        },
+        {
+          "startMs": 108000,
+          "endMs": 113800,
+          "text": "♫The birdies had their fling."
+        },
+        {
+          "startMs": 114000,
+          "endMs": 119800,
+          "text": "♫You've heard the flowers sing."
+        },
+        {
+          "startMs": 120000,
+          "endMs": 125800,
+          "text": "♫Tikis play the drums."
+        },
+        {
+          "startMs": 126000,
+          "endMs": 135800,
+          "text": "♫Hear them do the chant."
+        },
+        {
+          "startMs": 136000,
+          "endMs": 144800,
+          "text": "♫Farewell, and aloha to you!"
+        },
+        {
+          "startMs": 145000,
+          "endMs": 149800,
+          "text": "[José] Ole! Ole! Applause! Let's give the birds a standing ovation!"
+        },
+        {
+          "startMs": 150000,
+          "endMs": 154800,
+          "text": "[José] Applause! Up, up, down there! Applause! Everybody stand up on your feet! Ole!"
+        },
+        {
+          "startMs": 155000,
+          "endMs": 157800,
+          "text": "[Michael] And now, as long as you're all standin'…"
+        },
+        {
+          "startMs": 158000,
+          "endMs": 160800,
+          "text": "[José] We have a wonderful magic trick for you."
+        },
+        {
+          "startMs": 161000,
+          "endMs": 162800,
+          "text": "[Fritz] Ja, a wunderbar trick!"
+        },
+        {
+          "startMs": 163000,
+          "endMs": 168800,
+          "text": "[Fritz] Everybody, face the door, und the trick is, ve gonna make you all…"
+        },
+        {
+          "startMs": 169000,
+          "endMs": 173000,
+          "text": "[Fritz] disappear!"
+        }
+      ]
+    },
+    "TikiRoom/TikiRoom_WDWS5": {
+      "rideOffsetMs": 973000,
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 2800,
+          "text": "♫Heigh ho. Heigh ho."
+        },
+        {
+          "startMs": 3000,
+          "endMs": 3900,
+          "text": "♫It's out the door you go."
+        },
+        {
+          "startMs": 4000,
+          "endMs": 5800,
+          "text": "♫We hope you've all enjoyed the show."
+        },
+        {
+          "startMs": 6000,
+          "endMs": 8800,
+          "text": "♫Heigh ho. Heigh ho, heigh ho."
+        },
+        {
+          "startMs": 9000,
+          "endMs": 9900,
+          "text": "♫Heigh ho. Heigh ho."
+        },
+        {
+          "startMs": 10000,
+          "endMs": 11800,
+          "text": "♫Keep marching in a row."
+        },
+        {
+          "startMs": 12000,
+          "endMs": 14800,
+          "text": "♫Don't stop to look or read a book."
+        },
+        {
+          "startMs": 15000,
+          "endMs": 15900,
+          "text": "♫Heigh ho. Heigh ho, heigh ho."
+        },
+        {
+          "startMs": 16000,
+          "endMs": 17800,
+          "text": "♫Heigh ho. Heigh ho."
+        },
+        {
+          "startMs": 18000,
+          "endMs": 19800,
+          "text": "♫Just lift your feet and go."
+        },
+        {
+          "startMs": 20000,
+          "endMs": 22800,
+          "text": "♫We'll sing this song; you march along!"
+        },
+        {
+          "startMs": 23000,
+          "endMs": 24800,
+          "text": "♫Heigh ho. Heigh ho, heigh ho."
+        },
+        {
+          "startMs": 25000,
+          "endMs": 26800,
+          "text": "♫Heigh ho. Heigh ho."
+        },
+        {
+          "startMs": 27000,
+          "endMs": 28800,
+          "text": "♫Step lively— not so slow!"
+        },
+        {
+          "startMs": 29000,
+          "endMs": 29900,
+          "text": "♫Come back again; we'll see you then."
+        },
+        {
+          "startMs": 30000,
+          "endMs": 32800,
+          "text": "♫Heigh ho. Heigh ho, heigh ho."
+        },
+        {
+          "startMs": 33000,
+          "endMs": 34800,
+          "text": "♫Heigh ho. Heigh ho."
+        },
+        {
+          "startMs": 35000,
+          "endMs": 36800,
+          "text": "♫Make room for our next show."
+        },
+        {
+          "startMs": 37000,
+          "endMs": 38800,
+          "text": "♫There's folks outside; go take a ride."
+        },
+        {
+          "startMs": 39000,
+          "endMs": 40800,
+          "text": "♫Heigh ho. Heigh ho, heigh ho."
+        },
+        {
+          "startMs": 41000,
+          "endMs": 42800,
+          "text": "♫Heigh ho. Heigh ho."
+        },
+        {
+          "startMs": 43000,
+          "endMs": 44800,
+          "text": "♫It's out the door you go!"
+        },
+        {
+          "startMs": 45000,
+          "endMs": 46800,
+          "text": "♫We hope you've all enjoyed the show."
+        },
+        {
+          "startMs": 47000,
+          "endMs": 51000,
+          "text": "♫Heigh ho! Heigh ho!"
+        }
+      ]
+    }
+  }
+}

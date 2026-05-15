@@ -14,6 +14,7 @@ repositories {
     mavenCentral()
     maven { url = "https://maven.shedaniel.me/" }
     maven { url = "https://maven.terraformersmc.com/releases" }
+    maven { url = "https://jitpack.io" }
 }
 
 dependencies {
@@ -21,6 +22,10 @@ dependencies {
     mappings loom.officialMojangMappings()
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+    // MonkeyCraft API — consumed as-is; provided via MonkeycraftApiRegistration
+    modImplementation("com.github.weikengchen:monkeycraft-api:1.0.0-mc1.19") { transitive = false }
+    include "com.github.weikengchen:monkeycraft-api:1.0.0-mc1.19"
 
     // Cloth Config API for config screen
     modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {

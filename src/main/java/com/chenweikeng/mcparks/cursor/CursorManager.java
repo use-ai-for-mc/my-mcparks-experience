@@ -1,5 +1,6 @@
 package com.chenweikeng.mcparks.cursor;
 
+import com.chenweikeng.mcparks.cinematic.CinematicCameraManager;
 import com.chenweikeng.mcparks.config.ModConfig;
 import net.minecraft.client.Minecraft;
 
@@ -10,6 +11,7 @@ public class CursorManager {
 
     private boolean wasPassenger = false;
     private int passengerTicks = 0;
+    private boolean wasCinematic = false;
 
     public CursorManager() {
         instance = this;
@@ -35,6 +37,7 @@ public class CursorManager {
         state.tickGrace();
 
         boolean isPassenger = client.player.isPassenger();
+        boolean isCinematic = CinematicCameraManager.getInstance().isActive();
 
         // Track how long the player has been a passenger
         if (isPassenger) {
@@ -43,19 +46,19 @@ public class CursorManager {
             passengerTicks = 0;
         }
 
-        if (!ModConfig.currentSetting.cursorReleaseOnRide) {
-            wasPassenger = isPassenger;
-            return;
-        }
+        boolean rideReleaseEnabled = ModConfig.currentSetting.cursorReleaseOnRide;
+        boolean shouldReleaseRide = rideReleaseEnabled && isPassenger;
+        boolean shouldRelease = shouldReleaseRide || isCinematic;
+        boolean wasReleased = (rideReleaseEnabled && wasPassenger) || wasCinematic;
 
-        // Detect mount: release cursor
-        if (!wasPassenger && isPassenger) {
+        // Detect entering a release state: release cursor
+        if (!wasReleased && shouldRelease) {
             client.mouseHandler.releaseMouse();
             state.setAutomaticallyReleasedCursor(true);
         }
 
-        // Detect dismount: re-grab cursor
-        if (wasPassenger && !isPassenger) {
+        // Detect leaving a release state: re-grab cursor
+        if (wasReleased && !shouldRelease) {
             state.setAutomaticallyReleasedCursor(false);
             if (client.screen == null) {
                 client.mouseHandler.grabMouse();
@@ -63,17 +66,19 @@ public class CursorManager {
         }
 
         // Right-click override: Minecraft re-grabs the mouse on right-click,
-        // so we release it again while the player is a passenger.
-        if (isPassenger && client.mouseHandler.isRightPressed() && client.screen == null) {
+        // so we release it again while we want the cursor released.
+        if (shouldRelease && client.mouseHandler.isRightPressed() && client.screen == null) {
             client.mouseHandler.releaseMouse();
         }
 
         wasPassenger = isPassenger;
+        wasCinematic = isCinematic;
     }
 
     public void reset() {
         wasPassenger = false;
         passengerTicks = 0;
+        wasCinematic = false;
         CursorState.getInstance().reset();
     }
 }

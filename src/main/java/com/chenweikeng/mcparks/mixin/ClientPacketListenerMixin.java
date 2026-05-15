@@ -1,15 +1,13 @@
 package com.chenweikeng.mcparks.mixin;
 
+import com.chenweikeng.mcparks.ServerState;
 import com.chenweikeng.mcparks.chat.CommandTreeAliaser;
 import com.chenweikeng.mcparks.config.ModConfig;
 import com.mojang.brigadier.CommandDispatcher;
-import java.net.InetSocketAddress;
-import java.net.SocketAddress;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.commands.SharedSuggestionProvider;
-import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundCommandsPacket;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -60,7 +58,7 @@ public abstract class ClientPacketListenerMixin {
         Minecraft mc = Minecraft.getInstance();
         LocalPlayer player = mc.player;
         if (player == null) return false;
-        if (!mcparks$isMCParksServer(mc)) return false;
+        if (!ServerState.isTargetServer()) return false;
         boolean riding = player.isPassenger();
         return switch (ModConfig.currentSetting.fullbrightMode) {
             case NONE -> false;
@@ -68,25 +66,5 @@ public abstract class ClientPacketListenerMixin {
             case ONLY_WHEN_NOT_RIDING -> !riding;
             case ALWAYS -> true;
         };
-    }
-
-    private static boolean mcparks$isMCParksServer(Minecraft mc) {
-        var serverData = mc.getCurrentServer();
-        if (serverData != null && serverData.ip != null
-                && serverData.ip.toLowerCase().contains("mcparks")) {
-            return true;
-        }
-        ClientPacketListener listener = mc.getConnection();
-        if (listener != null) {
-            Connection conn = listener.getConnection();
-            if (conn != null) {
-                SocketAddress addr = conn.getRemoteAddress();
-                if (addr instanceof InetSocketAddress inet) {
-                    String host = inet.getHostString();
-                    return host != null && host.toLowerCase().contains("mcparks");
-                }
-            }
-        }
-        return false;
     }
 }

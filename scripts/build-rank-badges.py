@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """
-Render rank "pill" badge PNGs for MCParks chat using the Tiny5 pixel TTF
-(https://github.com/google/fonts/tree/main/ofl/tiny5, OFL). Tiny5 is
-designed to rasterise crisp 1-pixel strokes at 10 pt with anti-aliasing
-disabled — what we want because Minecraft samples the resulting bitmap
-font nearest-neighbor.
+Render rank "pill" badge PNGs for MCParks chat using the Monocraft pixel
+TTF (https://github.com/IdreesInc/Monocraft, OFL). Monocraft is a
+monospaced font designed to mirror Minecraft's default chat font, so
+badge text reads with the same glyph shapes as the surrounding chat
+instead of Tiny5's cramped 5-pixel forms (where letters like V and M
+collapsed into ambiguous blobs).
 
 Outputs:
   src/main/resources/assets/my-mcparks-experience/textures/ranks/<slug>.png
@@ -24,17 +25,16 @@ TEXTURE_DIR = ASSET_ROOT / "textures/ranks"
 FONT_DIR    = ASSET_ROOT / "font"
 DATA_DIR    = ASSET_ROOT / "ranks"
 
-TTF_PATH  = REPO_ROOT / "scripts/fonts/Tiny5-Regular.ttf"
-TTF_SIZE  = 10          # Tiny5's native size — renders 5-to-6-px-tall glyphs with 1-px strokes
-GLYPH_H   = 6           # upper-case ascender height (Tiny5 measures 6 from baseline)
+TTF_PATH  = REPO_ROOT / "scripts/fonts/Monocraft.ttf"
+TTF_SIZE  = 7           # Monocraft at 7pt: monospaced 5-px advance, 6-px caps
+GLYPH_H   = 6           # upper-case cap height
 PAD_X     = 2           # horizontal padding inside pill
 PAD_Y     = 1           # vertical padding above/below glyph row
 RADIUS    = 1           # rounded-corner radius (1 = clip 1 pixel per corner)
 PILL_HEIGHT = GLYPH_H + PAD_Y * 2   # = 8
-# Tiny5 uses a top-left anchor: glyph rendered pixels start 3 rows below the
-# y-coordinate passed to dc.text(). To land glyph top at row PAD_Y, we pass
-# y = PAD_Y - 3.
-TINY5_TOP_BEARING = 3
+# Glyph top sits 1 row below the y passed to dc.text() at this size; to land
+# glyph top at row PAD_Y we pass y = PAD_Y - 1.
+FONT_TOP_BEARING = 1
 
 # Sourced from actual MCParks chat logs (59 log files, 3,839 chat lines).
 RANKS = [
@@ -47,7 +47,7 @@ RANKS = [
     ("Lead",                "#CD7F32", "#FFFFFF"),
     ("Earning My Ears",     "#4C6EF5", "#FFFFFF"),
     ("Club 33",             "#DAA520", "#0B1020"),
-    ("AP",                  "#1E90FF", "#FFFFFF"),
+    ("AP",                  "#FF5555", "#FFFFFF"),
     ("DVC",                 "#2E8B57", "#FFFFFF"),
     ("D23",                 "#9E9E9E", "#0B1020"),
     ("Guest",               "#707070", "#FFFFFF"),
@@ -67,16 +67,25 @@ def hex_to_rgba(h: str) -> tuple[int, int, int, int]:
     return (int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16), 255)
 
 
-LETTER_GAP = 1  # blank column between adjacent letters
+LETTER_GAP = 0  # Monocraft is monospaced with a built-in trailing column,
+                # so adding our own gap doubled the spacing visually
+                # ("CAS T MEMBER" instead of "CAST MEMBER").
 
 
 def _measure_glyph(font, ch: str) -> tuple[int, int]:
-    """Returns (width, x_offset) for a single Tiny5 glyph with AA off."""
+    """Returns (advance, x_offset) for a single glyph with AA off.
+
+    Advance is the font-native horizontal advance (textlength), NOT the
+    inked bbox width — for letters with a negative left bearing (T, Y in
+    Monocraft) the bbox is one pixel wider than the cell, which would
+    otherwise add a stray gap after every such glyph.
+    """
     probe = Image.new("RGBA", (1, 1))
     dc = ImageDraw.Draw(probe)
     dc.fontmode = "1"
     b = dc.textbbox((0, 0), ch, font=font)
-    return (b[2] - b[0], b[0])
+    advance = int(round(dc.textlength(ch, font=font)))
+    return (advance, b[0])
 
 
 def render_pill(text: str, fill: str, text_color: str, out_path: Path) -> int:
@@ -86,49 +95,54 @@ def render_pill(text: str, fill: str, text_color: str, out_path: Path) -> int:
     text = text.upper()
     font = ImageFont.truetype(str(TTF_PATH), TTF_SIZE)
 
-    # Measure each glyph individually so we can draw them with explicit gaps.
-    # Tiny5 has zero right-side bearing — without this, strokes of adjacent
-    # letters butt into each other.
-    widths = []
-    for ch in text:
-        if ch == " ":
-            widths.append(2)  # narrow space
-        else:
-            w, _ = _measure_glyph(font, ch)
-            widths.append(w)
+    # Render the whole string in one PIL call to a tight crop, then trim
+    # leading/trailing transparent columns so the pill sits flush around
+    # the inked region. Drawing per-glyph and computing widths from each
+    # glyph's individual bbox produced uneven inter-letter gaps because
+    # Monocraft's per-glyph side bearings vary.
+    text_rgba = hex_to_rgba(text_color)
+    over_w = max(96, len(text) * (TTF_SIZE + 4)) + PAD_X * 4
+    over_h = PILL_HEIGHT
+    over = Image.new("RGBA", (over_w, over_h), (0, 0, 0, 0))
+    odc = ImageDraw.Draw(over)
+    odc.fontmode = "1"
+    odc.text((PAD_X, PAD_Y - FONT_TOP_BEARING), text, font=font, fill=text_rgba)
 
-    total_text_w = sum(widths) + LETTER_GAP * max(0, len(text) - 1)
-    pill_w = total_text_w + PAD_X * 2
+    # Find tight x-range of inked columns so we can crop leading/trailing
+    # transparent columns from the font's side bearings.
+    px = over.load()
+    left = None
+    right = None
+    for x in range(over_w):
+        for y in range(over_h):
+            if px[x, y][3] != 0:
+                left = x if left is None else left
+                right = x
+                break
+    if left is None:
+        left = right = PAD_X
+    text_left = max(0, left - PAD_X)
+    text_right = min(over_w - 1, right + PAD_X)
+    pill_w = text_right - text_left + 1
     pill_h = PILL_HEIGHT
 
     fill_rgba = hex_to_rgba(fill)
-    text_rgba = hex_to_rgba(text_color)
 
     # Pill background: 1-bit mask with corner pixels knocked out for soft look.
     mask = Image.new("L", (pill_w, pill_h), 0)
-    mdc2 = ImageDraw.Draw(mask)
-    mdc2.rectangle([0, 0, pill_w - 1, pill_h - 1], fill=255)
+    mdc = ImageDraw.Draw(mask)
+    mdc.rectangle([0, 0, pill_w - 1, pill_h - 1], fill=255)
     if RADIUS >= 1:
         for (cx, cy) in ((0, 0), (pill_w - 1, 0),
                          (0, pill_h - 1), (pill_w - 1, pill_h - 1)):
             mask.putpixel((cx, cy), 0)
 
     img = Image.new("RGBA", (pill_w, pill_h), (0, 0, 0, 0))
-    fill_img = Image.new("RGBA", (pill_w, pill_h), fill_rgba)
-    img.paste(fill_img, (0, 0), mask)
-
-    # Draw each glyph at its own cursor position with AA disabled.
-    dc = ImageDraw.Draw(img)
-    dc.fontmode = "1"
-    cursor = PAD_X
-    for i, ch in enumerate(text):
-        if ch != " ":
-            _, x_off = _measure_glyph(font, ch)
-            dc.text(
-                (cursor - x_off, PAD_Y - TINY5_TOP_BEARING),
-                ch, font=font, fill=text_rgba,
-            )
-        cursor += widths[i] + LETTER_GAP
+    fill_bg = Image.new("RGBA", (pill_w, pill_h), fill_rgba)
+    img.paste(fill_bg, (0, 0), mask)
+    # Composite the cropped text on top.
+    text_crop = over.crop((text_left, 0, text_right + 1, over_h))
+    img.alpha_composite(text_crop, (0, 0))
 
     img.save(out_path, format="PNG", optimize=True)
     return pill_w
@@ -166,7 +180,7 @@ def main():
     (FONT_DIR / "ranks.json").write_text(json.dumps({"providers": providers}, indent=2))
     (DATA_DIR / "ranks.json").write_text(json.dumps(rank_map, indent=2))
     print(f"Rendered {len(RANKS)} rank badges -> {TEXTURE_DIR}")
-    print(f"Pill height: {PILL_HEIGHT}px, glyph font: Tiny5 @ {TTF_SIZE}pt (5-px strokes, no AA)")
+    print(f"Pill height: {PILL_HEIGHT}px, glyph font: {TTF_PATH.name} @ {TTF_SIZE}pt (no AA)")
 
 
 if __name__ == "__main__":

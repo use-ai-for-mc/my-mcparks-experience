@@ -1,6 +1,8 @@
 package com.chenweikeng.mcparks.audiocache;
 
 import com.chenweikeng.mcparks.MCParksExperienceClient;
+import com.chenweikeng.mcparks.config.ConfigDefaults;
+import com.chenweikeng.mcparks.config.ModConfig;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -44,8 +46,9 @@ import net.fabricmc.loader.api.FabricLoader;
  *
  * <p>Eviction policy:
  * - TTL: entries whose lastAccessed is older than 7 days are dropped.
- * - Capacity: when entries exceed 200, or total size exceeds 500 MB,
- *   oldest-accessed entries are dropped until under the cap.
+ * - Capacity: when entries exceed 200, or total size exceeds the configured
+ *   limit (default 500 MB), oldest-accessed entries are dropped until under
+ *   the cap.
  *
  * <p>Any cache read/write error falls through to the network so playback
  * is never blocked by cache failures.
@@ -56,7 +59,6 @@ public final class AudioCache {
 
     private static final long DEFAULT_TTL_MS = 7L * 24 * 60 * 60 * 1000L;   // 7 days
     private static final long MAX_CACHE_FILES = 200;
-    private static final long MAX_CACHE_BYTES = 500L * 1024 * 1024;         // 500 MB
     private static final long ACCESS_UPDATE_GRANULARITY_MS = 5 * 60 * 1000L;
     private static final long PERIODIC_INTERVAL_SEC = 60;
 
@@ -84,6 +86,13 @@ public final class AudioCache {
                 t.setDaemon(true);
                 return t;
             });
+
+    /** Temp download files (dl-*.tmp) owned by an in-flight openStream() call.
+     *  A path is added before its temp file is created and removed once the
+     *  download is promoted into the cache or discarded. cleanupOrphanTemps()
+     *  never deletes a path still in this set, so a concurrent download is
+     *  safe from the sweep. */
+    private static final Set<Path> liveTemps = ConcurrentHashMap.newKeySet();
 
     private static final AtomicBoolean saveDirty = new AtomicBoolean(false);
     private static final AtomicBoolean accessDirty = new AtomicBoolean(false);
@@ -165,7 +174,10 @@ public final class AudioCache {
         }
 
         // Try to open a temp file for teeing. On failure, fall through to plain network.
+        // Register the path before the file exists so the orphan-temp sweep can
+        // never delete a temp out from under an in-flight download.
         Path tempPath = cacheDir.resolve("dl-" + UUID.randomUUID() + ".tmp");
+        liveTemps.add(tempPath);
         OutputStream tempOut;
         try {
             tempOut = new BufferedOutputStream(
@@ -174,6 +186,7 @@ public final class AudioCache {
                             StandardOpenOption.TRUNCATE_EXISTING),
                     DOWNLOAD_BUFFER);
         } catch (IOException e) {
+            liveTemps.remove(tempPath);
             MCParksExperienceClient.LOGGER.warn("[AudioCache] Failed to open temp file, streaming without cache", e);
             return network;
         }
@@ -183,7 +196,7 @@ public final class AudioCache {
         } catch (NoSuchAlgorithmException e) {
             // SHA-256 not available — should never happen. Close tee pieces, return plain stream.
             try { tempOut.close(); } catch (IOException ignored) {}
-            try { Files.deleteIfExists(tempPath); } catch (IOException ignored) {}
+            discardTemp(tempPath);
             return network;
         }
     }
@@ -236,12 +249,15 @@ public final class AudioCache {
         } catch (IOException e) {
             MCParksExperienceClient.LOGGER.warn("[AudioCache] Failed to promote temp cache file", e);
             try { Files.deleteIfExists(tempPath); } catch (IOException ignored) {}
+        } finally {
+            liveTemps.remove(tempPath);
         }
     }
 
     /** Discard an incomplete download. */
     static void discardTemp(Path tempPath) {
         try { Files.deleteIfExists(tempPath); } catch (IOException ignored) {}
+        liveTemps.remove(tempPath);
     }
 
     static ExecutorService drainExecutor() {
@@ -310,8 +326,9 @@ public final class AudioCache {
     }
 
     public static void evictOverflow() {
+        long maxBytes = maxCacheBytes();
         long totalBytes = totalBytes();
-        if (index.size() <= MAX_CACHE_FILES && totalBytes <= MAX_CACHE_BYTES) return;
+        if (index.size() <= MAX_CACHE_FILES && totalBytes <= maxBytes) return;
 
         List<Map.Entry<String, CacheEntry>> sorted = new ArrayList<>(index.entrySet());
         sorted.sort((a, b) -> Long.compare(
@@ -320,7 +337,7 @@ public final class AudioCache {
 
         int removed = 0;
         for (Map.Entry<String, CacheEntry> e : sorted) {
-            if (index.size() <= MAX_CACHE_FILES && totalBytes <= MAX_CACHE_BYTES) break;
+            if (index.size() <= MAX_CACHE_FILES && totalBytes <= maxBytes) break;
             totalBytes -= e.getValue().sizeBytes;
             deleteFile(e.getValue().hash);
             index.remove(e.getKey());
@@ -366,13 +383,8 @@ public final class AudioCache {
             MCParksExperienceClient.LOGGER.warn("[AudioCache] Failed to scan cache directory", e);
         }
 
-        // Clean up any leftover .tmp files from crashed writes.
-        try (DirectoryStream<Path> ds = Files.newDirectoryStream(cacheDir, "*.mp3.tmp")) {
-            for (Path p : ds) {
-                try { Files.deleteIfExists(p); } catch (IOException ignored) {}
-            }
-        } catch (IOException ignored) {
-        }
+        // Delete leftover dl-*.tmp scratch files from crashed/force-quit sessions.
+        cleanupOrphanTemps();
 
         if (droppedIndex > 0 || deletedFiles > 0) {
             MCParksExperienceClient.LOGGER.info(
@@ -386,12 +398,59 @@ public final class AudioCache {
         try {
             evictExpired();
             evictOverflow();
+            cleanupOrphanTemps();
             if (accessDirty.compareAndSet(true, false) && !saveDirty.get()) {
                 saveIndex();
             }
         } catch (Exception e) {
             MCParksExperienceClient.LOGGER.warn("[AudioCache] Periodic maintenance failed", e);
         }
+    }
+
+    /** Delete dl-*.tmp download scratch files that no in-flight download owns.
+     *  At startup the live set is empty, so every temp left behind by a
+     *  crashed or force-quit session is removed. */
+    private static void cleanupOrphanTemps() {
+        if (cacheDir == null) return;
+        int deleted = 0;
+        try (DirectoryStream<Path> ds = Files.newDirectoryStream(cacheDir, "dl-*.tmp")) {
+            for (Path p : ds) {
+                if (liveTemps.contains(p)) continue;
+                try {
+                    if (Files.deleteIfExists(p)) deleted++;
+                } catch (IOException ignored) {
+                }
+            }
+        } catch (IOException e) {
+            MCParksExperienceClient.LOGGER.warn("[AudioCache] Failed to scan for orphan temp files", e);
+        }
+        if (deleted > 0) {
+            MCParksExperienceClient.LOGGER.info(
+                    "[AudioCache] Removed {} orphaned temp download file(s)", deleted);
+        }
+    }
+
+    /** Maximum cache size in bytes, from config. Falls back to the default
+     *  when the configured value is missing or non-positive. */
+    private static long maxCacheBytes() {
+        int mb = ModConfig.currentSetting.audioCacheLimitMb;
+        if (mb <= 0) {
+            mb = ConfigDefaults.AUDIO_CACHE_LIMIT_MB;
+        }
+        return mb * 1024L * 1024L;
+    }
+
+    /** Run a capacity eviction off-thread. Called when the configured size
+     *  limit changes so a lowered limit takes effect without waiting for the
+     *  next periodic maintenance tick. */
+    public static void requestEviction() {
+        SAVE_EXECUTOR.execute(() -> {
+            try {
+                evictOverflow();
+            } catch (Exception e) {
+                MCParksExperienceClient.LOGGER.warn("[AudioCache] On-demand eviction failed", e);
+            }
+        });
     }
 
     // --- Helpers ---

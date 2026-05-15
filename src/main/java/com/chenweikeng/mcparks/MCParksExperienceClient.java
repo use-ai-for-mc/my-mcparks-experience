@@ -2,6 +2,8 @@ package com.chenweikeng.mcparks;
 
 import com.chenweikeng.mcparks.audio.MCParksAudioService;
 import com.chenweikeng.mcparks.audiocache.AudioCache;
+import com.chenweikeng.mcparks.cinematic.CinematicCameraManager;
+import com.chenweikeng.mcparks.cinematic.Viewpoint;
 import com.chenweikeng.mcparks.config.ClothConfigScreen;
 import com.chenweikeng.mcparks.config.ModConfig;
 import com.chenweikeng.mcparks.chat.RankBadges;
@@ -9,12 +11,16 @@ import com.chenweikeng.mcparks.cursor.CursorManager;
 import com.chenweikeng.mcparks.emoji.EmojiAssets;
 import com.chenweikeng.mcparks.fly.FlyManager;
 import com.chenweikeng.mcparks.fullbright.DayTimeHandler;
+import com.chenweikeng.mcparks.monkeycraft.MonkeycraftAudioCoordinator;
+import com.chenweikeng.mcparks.monkeycraft.MonkeycraftCompat;
 import com.chenweikeng.mcparks.ride.RideDetector;
 import com.chenweikeng.mcparks.ride.RideHudRenderer;
 import com.chenweikeng.mcparks.ride.RidePathRecorder;
 import com.chenweikeng.mcparks.ride.RideSessionRecorder;
 import com.chenweikeng.mcparks.ride.RideRegistry;
 import com.chenweikeng.mcparks.ride.experience.ParkTracker;
+import com.chenweikeng.mcparks.showtimes.ShowTimesOverlay;
+import com.chenweikeng.mcparks.showtimes.ShowTimesTooltip;
 import com.chenweikeng.mcparks.skincache.TextureCache;
 import com.chenweikeng.mcparks.status.StatusBarController;
 import com.chenweikeng.mcparks.skincache.TextureRegistrar;
@@ -22,12 +28,11 @@ import com.chenweikeng.mcparks.subtitle.SubtitleManager;
 import com.chenweikeng.mcparks.subtitle.SubtitleRenderer;
 import com.chenweikeng.mcparks.subtitle.TimedSubtitlePlayer;
 import com.chenweikeng.mcparks.ride.experience.RideExperience;
+import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.DoubleArgumentType;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
-import java.net.InetSocketAddress;
-import java.net.SocketAddress;
 import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -36,13 +41,13 @@ import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
+import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.commands.CommandBuildContext;
-import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -59,6 +64,7 @@ public class MCParksExperienceClient implements ClientModInitializer {
 
     private final CursorManager cursorManager = new CursorManager();
     private final FlyManager flyManager = new FlyManager();
+    private KeyMapping cinematicToggleKey;
     private final DayTimeHandler dayTimeHandler = new DayTimeHandler();
     private final RideDetector rideDetector = new RideDetector();
     private final RidePathRecorder ridePathRecorder = new RidePathRecorder();
@@ -81,6 +87,8 @@ public class MCParksExperienceClient implements ClientModInitializer {
         AudioCache.init();
         EmojiAssets.load();
         RankBadges.load();
+        ShowTimesTooltip.register();
+        ShowTimesOverlay.register();
         LOGGER.info("My MCParks Experience client initialized");
 
         // Wire the timed subtitle player into the HUD renderer for audio-based progress
@@ -89,6 +97,13 @@ public class MCParksExperienceClient implements ClientModInitializer {
         MCParksAudioService.getInstance().setUserVolumeInternal(
             ModConfig.currentSetting.volume
         );
+
+        cinematicToggleKey = KeyBindingHelper.registerKeyBinding(new KeyMapping(
+                "key.my-mcparks-experience.cinematic_toggle",
+                InputConstants.Type.KEYSYM,
+                InputConstants.KEY_V,
+                "key.categories.my-mcparks-experience"
+        ));
 
         ClientPlayConnectionEvents.JOIN.register((handler, sender, client) -> {
             onServerJoin(client);
@@ -115,6 +130,7 @@ public class MCParksExperienceClient implements ClientModInitializer {
             pendingScreen = null;
         }
 
+        tickCinematicCamera(client);
         cursorManager.tick(client);
         flyManager.tick(client);
         rideDetector.tick(client);
@@ -153,38 +169,25 @@ public class MCParksExperienceClient implements ClientModInitializer {
     }
 
     private void onServerJoin(Minecraft client) {
-        String serverIp = resolveServerHost(client);
-        if (serverIp == null) return;
+        if (!ServerState.isTargetServer()) return;
 
-        if (serverIp.toLowerCase().contains("mcparks")) {
-            MacosDockIconHandler.apply();
+        MacosDockIconHandler.apply();
 
-            if (ModConfig.currentSetting.autoConnect) {
+        // Lazy-init MonkeyCraft compat now that we know we're on the target
+        // server. Idempotent — safe to call on every join.
+        MonkeycraftCompat.init();
+
+        if (ModConfig.currentSetting.autoConnect) {
+            if (MonkeycraftAudioCoordinator.isPhoneAttached()) {
+                LOGGER.info("Joined MCParks server but MonkeyCraft client is attached; "
+                    + "skipping PC audio auto-connect (client plays it instead)");
+            } else {
+                String serverIp = ServerState.resolveServerHost(client);
                 LOGGER.info("Joined MCParks server: {}, auto-connecting audio", serverIp);
                 String username = client.getUser().getName();
                 CompletableFuture.runAsync(() -> MCParksAudioService.getInstance().connect(username));
             }
         }
-    }
-
-    private static String resolveServerHost(Minecraft client) {
-        // Server list path
-        var serverData = client.getCurrentServer();
-        if (serverData != null && serverData.ip != null) {
-            return serverData.ip;
-        }
-        // Direct connect / --server launch arg
-        ClientPacketListener listener = client.getConnection();
-        if (listener != null) {
-            Connection conn = listener.getConnection();
-            if (conn != null) {
-                SocketAddress addr = conn.getRemoteAddress();
-                if (addr instanceof InetSocketAddress inet) {
-                    return inet.getHostString();
-                }
-            }
-        }
-        return null;
     }
 
     private void onServerDisconnect() {
@@ -196,6 +199,7 @@ public class MCParksExperienceClient implements ClientModInitializer {
         StatusBarController.getInstance().onDisconnect();
         ridePathRecorder.reset();
         sessionRecorder.reset();
+        CinematicCameraManager.getInstance().onDisconnect();
         timedSubtitlePlayer.reset();
         timedSubsActive = false;
         SubtitleManager.clear();
@@ -312,6 +316,21 @@ public class MCParksExperienceClient implements ClientModInitializer {
                         })
                 )
         );
+    }
+
+    private void tickCinematicCamera(Minecraft client) {
+        CinematicCameraManager mgr = CinematicCameraManager.getInstance();
+        while (cinematicToggleKey != null && cinematicToggleKey.consumeClick()) {
+            if (mgr.isActive()) {
+                mgr.disable();
+            } else {
+                Viewpoint vp = mgr.makePlayerAnchoredViewpoint("prototype");
+                if (vp != null) {
+                    mgr.enable(vp);
+                }
+            }
+        }
+        mgr.tick(client);
     }
 
     private void scanNearbyModels(double radius) {

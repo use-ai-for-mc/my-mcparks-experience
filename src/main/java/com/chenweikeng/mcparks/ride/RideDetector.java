@@ -105,8 +105,14 @@ public class RideDetector {
         }
         currentExperience = matched;
         if (matched != null) {
-            // Don't set boardingTimeMs — that starts the HUD timer.
-            // Real boarding sets it in the passenger branch of tick().
+            // For boarding-loop preshows (e.g. TowerOfTerrorPreshow) the
+            // player will board a vehicle later; leave boardingTimeMs at
+            // zero so the HUD timer doesn't start prematurely. For
+            // theater-mode experiences there is no boarding event, so
+            // anchor the timer here.
+            if (matched.isTheaterMode()) {
+                boardingTimeMs = System.currentTimeMillis();
+            }
             LOGGER.info("Preshow experience matched: {} (park={})",
                     matched.name(), ctx.currentPark);
             try {
@@ -287,6 +293,9 @@ public class RideDetector {
     // --- Public getters for HUD renderer ---
 
     public boolean isOnRide() {
+        if (currentExperience != null && currentExperience.isTheaterMode()) {
+            return true;
+        }
         return wasPassenger && (currentExperience != null || currentRide != null);
     }
 

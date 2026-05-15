@@ -1,0 +1,92 @@
+{
+  "totalRideTimeSec": 600,
+  "tracks": {
+    "RDCT/10Minutes": {
+      "rideOffsetMs": 0,
+      "loopDurationMs": 0,
+      "entries": [
+        {
+          "startMs": 4000,
+          "endMs": 6999,
+          "text": "[Narrator] Ladies and gentlemen, boys and girls,"
+        },
+        {
+          "startMs": 7000,
+          "endMs": 10999,
+          "text": "[Narrator] You're invited to share a dazzling celebration with us at Disneyland!"
+        },
+        {
+          "startMs": 11000,
+          "endMs": 18999,
+          "text": "[Narrator] In just 10 minutes Tinker Bell will bring the skies above Sleeping Beauty Castle to life as never before!"
+        },
+        {
+          "startMs": 19000,
+          "endMs": 21999,
+          "text": "[Narrator] Please join us for the fireworks spectacular,"
+        },
+        {
+          "startMs": 22000,
+          "endMs": 24999,
+          "text": "[Narrator] Remember… Dreams Come True."
+        },
+        {
+          "startMs": 25000,
+          "endMs": 26499,
+          "text": "[Narrator] Presented by Honda."
+        },
+        {
+          "startMs": 26500,
+          "endMs": 31999,
+          "text": "[Narrator] Our breathtaking celebration in the sky begins in just 10 minutes!"
+        },
+        {
+          "startMs": 32000,
+          "endMs": 73558,
+          "text": "[Narrator] Thank You!"
+        }
+      ]
+    },
+    "RDCT/preshow": {
+      "rideOffsetMs": 75000,
+      "loopDurationMs": 0,
+      "entries": []
+    },
+    "RDCT/5Minutes": {
+      "rideOffsetMs": 300000,
+      "loopDurationMs": 0,
+      "entries": [
+        {
+          "startMs": 0,
+          "endMs": 2999,
+          "text": "[Narrator] Ladies and gentlemen, boys and girls."
+        },
+        {
+          "startMs": 3000,
+          "endMs": 8999,
+          "text": "[Narrator] In just a few minutes the lights will be dimmed so you can fully experience our fireworks spectacular,"
+        },
+        {
+          "startMs": 9000,
+          "endMs": 10999,
+          "text": "[Narrator] Remember… Dreams Come True!"
+        },
+        {
+          "startMs": 11000,
+          "endMs": 12999,
+          "text": "[Narrator] Presented by Honda."
+        },
+        {
+          "startMs": 13000,
+          "endMs": 16999,
+          "text": "[Narrator] Please remain in the same area until the lights return to normal."
+        },
+        {
+          "startMs": 17000,
+          "endMs": 43434,
+          "text": "[Narrator] Thank You!"
+        }
+      ]
+    }
+  }
+}
